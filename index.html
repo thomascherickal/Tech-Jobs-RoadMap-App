@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Role Roadmap Generator</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
+    <script src="static/roadmaps-data.js" defer></script>
+    <script src="static/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell wide">
+      <section class="hero">
+        <p class="eyebrow">12-month transition planner</p>
+        <h1>AI Role Roadmap Generator</h1>
+        <p class="lede">Choose where you are, where you want to go, and get a structured plan with difficulty calibrated to your experience.</p>
+      </section>
+
+      <section class="panel">
+        <form class="roadmap-form" id="roadmap-form">
+          <label>
+            Current Role
+            <select name="current_role" id="current-role" required>
+              <option value="">Loading roles...</option>
+            </select>
+          </label>
+
+          <label>
+            Target AI Role
+            <select name="target_ai_role" id="target-ai-role" required>
+              <option value="">Loading roles...</option>
+            </select>
+          </label>
+
+          <label>
+            Years of Experience
+            <input type="number" name="years_of_experience" id="years-of-experience" min="0" max="40" step="0.5" value="3" required>
+          </label>
+
+          <button type="submit">Generate Roadmap</button>
+        </form>
+      </section>
+
+      <section class="empty-state" id="empty-state">
+        <div>
+          <span>Ready</span>
+          <strong>Select a path to generate your roadmap.</strong>
+        </div>
+      </section>
+
+      <section class="result" id="result" hidden>
+        <nav class="topbar">
+          <a href="#roadmap-form" id="new-roadmap">New roadmap</a>
+          <button type="button" class="secondary" id="download-pdf">Download PDF</button>
+        </nav>
+
+        <section class="result-hero">
+          <div>
+            <p class="eyebrow" id="match-type"></p>
+            <h1 id="roadmap-title"></h1>
+            <p class="lede" id="roadmap-summary"></p>
+          </div>
+          <aside class="score-card">
+            <span>Difficulty Score</span>
+            <strong id="difficulty-score"></strong>
+            <small id="difficulty-label"></small>
+          </aside>
+        </section>
+
+        <section class="meta-grid">
+          <div>
+            <span>Current Role</span>
+            <strong id="meta-current-role"></strong>
+          </div>
+          <div>
+            <span>Target AI Role</span>
+            <strong id="meta-target-role"></strong>
+          </div>
+          <div>
+            <span>Experience</span>
+            <strong id="meta-experience"></strong>
+          </div>
+        </section>
+
+        <section class="timeline" id="timeline"></section>
+      </section>
+    </main>
+  </body>
+</html>
