@@ -3,7 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AI Role Roadmap Generator</title>
+    <title>AI Role Roadmap Generator | Calibrate Your Pivot</title>
+    <meta name="description" content="Generate a structured, personalized 12-month career upskilling roadmap into AI roles like MLOps, AI Safety, Research, and Engineering, calibrated to your experience.">
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
     <script src="static/roadmaps-data.js" defer></script>
@@ -11,57 +18,77 @@
   </head>
   <body>
     <main class="shell wide">
-      <section class="hero">
-        <p class="eyebrow">12-month transition planner</p>
-        <h1>AI Role Roadmap Generator</h1>
-        <p class="lede">Choose where you are, where you want to go, and get a structured plan with difficulty calibrated to your experience.</p>
-      </section>
+      <header class="hero">
+        <p class="eyebrow" id="hero-subtitle">12-month transition planner</p>
+        <h1 id="hero-title">AI Role Roadmap Generator</h1>
+        <p class="lede">Choose where you are, where you want to go, and get a structured plan with difficulty calibrated to your experience. 100% free and open-source.</p>
+      </header>
 
-      <section class="panel">
+      <!-- Selector Dashboard Panel -->
+      <section class="panel glass-panel" id="form-panel">
         <form class="roadmap-form" id="roadmap-form">
-          <label>
-            Current Role
-            <select name="current_role" id="current-role" required>
-              <option value="">Loading roles...</option>
-            </select>
-          </label>
+          <div class="form-grid">
+            <label for="current-role">
+              Current Role
+              <select name="current_role" id="current-role" required>
+                <option value="">Loading roles...</option>
+              </select>
+            </label>
 
-          <label>
-            Target AI Role
-            <select name="target_ai_role" id="target-ai-role" required>
-              <option value="">Loading roles...</option>
-            </select>
-          </label>
+            <label for="target-ai-role">
+              Target AI Role
+              <select name="target_ai_role" id="target-ai-role" required>
+                <option value="">Loading roles...</option>
+              </select>
+            </label>
 
-          <label>
-            Years of Experience
-            <input type="number" name="years_of_experience" id="years-of-experience" min="0" max="40" step="0.5" value="3" required>
-          </label>
+            <label for="years-of-experience" class="range-label">
+              <span>Years of Experience: <strong id="experience-val">3</strong> years</span>
+              <input type="range" name="years_of_experience" id="years-of-experience" min="0" max="20" step="0.5" value="3" required>
+            </label>
+          </div>
 
-          <button type="submit">Generate Roadmap</button>
+          <div class="form-actions">
+            <!-- Dynamic Real-Time Difficulty Gauge -->
+            <div class="live-preview" id="live-preview">
+              <div class="preview-header">
+                <span class="preview-title">Calibrated Difficulty</span>
+                <strong id="preview-difficulty" class="preview-value">--%</strong>
+              </div>
+              <div class="preview-meter-container">
+                <div class="preview-meter-fill" id="preview-meter-fill" style="width: 0%;"></div>
+              </div>
+              <span class="preview-subtext" id="preview-credit">Calculating credit...</span>
+            </div>
+
+            <button type="submit" id="generate-btn" class="glow-button">Generate Custom Roadmap</button>
+          </div>
         </form>
       </section>
 
-      <section class="empty-state" id="empty-state">
+      <!-- Ready State -->
+      <section class="empty-state glass-panel" id="empty-state">
         <div>
-          <span>Ready</span>
-          <strong>Select a path to generate your roadmap.</strong>
+          <span class="pulse-badge">Ready</span>
+          <strong>Configure your transition above.</strong>
+          <p>Select a pathway and experience level to construct your customized 12-month master timeline.</p>
         </div>
       </section>
 
+      <!-- Results Display Section -->
       <section class="result" id="result" hidden>
         <nav class="topbar">
-          <a href="#roadmap-form" id="new-roadmap">New roadmap</a>
-          <button type="button" class="secondary" id="download-pdf">Download PDF</button>
+          <a href="#roadmap-form" id="new-roadmap" class="back-link">← Adjust parameters</a>
+          <button type="button" class="secondary glow-button-secondary" id="download-pdf">Download Free PDF</button>
         </nav>
 
         <section class="result-hero">
           <div>
             <p class="eyebrow" id="match-type"></p>
-            <h1 id="roadmap-title"></h1>
+            <h2 id="roadmap-title"></h2>
             <p class="lede" id="roadmap-summary"></p>
           </div>
-          <aside class="score-card">
+          <aside class="score-card glass-panel">
             <span>Difficulty Score</span>
             <strong id="difficulty-score"></strong>
             <small id="difficulty-label"></small>
@@ -69,21 +96,54 @@
         </section>
 
         <section class="meta-grid">
-          <div>
+          <div class="glass-panel">
             <span>Current Role</span>
             <strong id="meta-current-role"></strong>
           </div>
-          <div>
+          <div class="glass-panel">
             <span>Target AI Role</span>
             <strong id="meta-target-role"></strong>
           </div>
-          <div>
-            <span>Experience</span>
+          <div class="glass-panel">
+            <span>Experience Credit</span>
             <strong id="meta-experience"></strong>
           </div>
         </section>
 
+        <!-- Timeline Flow -->
         <section class="timeline" id="timeline"></section>
+      </section>
+
+      <!-- Wall of Fame & Sponsors Section -->
+      <section class="sponsors-section glass-panel">
+        <div class="sponsors-header">
+          <p class="eyebrow">Sponsor-Supported Education</p>
+          <h2>Wall of Fame & Sponsors</h2>
+          <p class="lede"> democratizing high-quality AI career pivots without expensive bootcamps. Powered by our amazing Patreon community.</p>
+        </div>
+        <div class="sponsors-grid">
+          <div class="sponsor-category">
+            <h3>🏢 Community Sponsors</h3>
+            <div class="sponsor-list tier-gold">
+              <div class="sponsor-logo-placeholder">Sponsor / Bootcamps (Slot Available)</div>
+            </div>
+          </div>
+          <div class="sponsor-category">
+            <h3>🎓 Career Accelerators & Pioneers</h3>
+            <div class="pioneers-list">
+              <span class="pioneer-tag">Alex Rivera</span>
+              <span class="pioneer-tag">Sarah Chen</span>
+              <span class="pioneer-tag">Michael Adebayo</span>
+              <span class="pioneer-tag">Elena Rostova</span>
+              <span class="pioneer-tag">David Kim</span>
+              <span class="pioneer-tag">Emma Watson</span>
+            </div>
+          </div>
+        </div>
+        <div class="patreon-cta-bar">
+          <span>Want your name featured in our digital Wall of Fame?</span>
+          <a href="https://patreon.com/" target="_blank" rel="noopener noreferrer" class="patreon-button">Become a Patreon Patron</a>
+        </div>
       </section>
     </main>
   </body>

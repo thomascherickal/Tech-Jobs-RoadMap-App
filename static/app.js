@@ -361,15 +361,163 @@ function generatePdf(context) {
   doc.save(filename);
 }
 
+const ADDITIONAL_REFERENCES = {
+  1: [
+    { title: "Google MLCC: ML Prereqs", url: "https://developers.google.com/machine-learning/crash-course/prereqs-and-prework" },
+    { title: "Kaggle Learn: Python", url: "https://www.kaggle.com/learn/python" },
+    { title: "W3Schools: Python Tutorial", url: "https://www.w3schools.com/python/" },
+    { title: "MDN: JavaScript Guide", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" },
+    { title: "FreeCodeCamp: Python Basics", url: "https://www.freecodecamp.org/learn/scientific-computing-with-python/" }
+  ],
+  2: [
+    { title: "Kaggle: Intro to ML", url: "https://www.kaggle.com/learn/intro-to-machine-learning" },
+    { title: "Scikit-Learn: Getting Started", url: "https://scikit-learn.org/stable/getting_started.html" },
+    { title: "Google MLCC: Representation", url: "https://developers.google.com/machine-learning/crash-course/representation" },
+    { title: "Towards Data Science: ML Basics", url: "https://towardsdatascience.com/machine-learning/home" },
+    { title: "StatQuest YouTube channel", url: "https://youtube.com/@statquest" }
+  ],
+  3: [
+    { title: "fast.ai: Deep Learning Course", url: "https://course.fast.ai/" },
+    { title: "PyTorch: Learning Tutorials", url: "https://docs.pytorch.org/tutorials/" },
+    { title: "TensorFlow: Core Quickstart", url: "https://www.tensorflow.org/tutorials/quickstart/beginner" },
+    { title: "3Blue1Brown: DL Series", url: "https://www.3blue1brown.com/topics/deep-learning" },
+    { title: "Stanford: CS230 DL Cheatsheet", url: "https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-deep-learning-tips-tricks" }
+  ],
+  4: [
+    { title: "Hugging Face: NLP Course", url: "https://huggingface.co/learn/nlp-course" },
+    { title: "OpenAI: Prompt Engineering", url: "https://platform.openai.com/docs/guides/prompt-engineering" },
+    { title: "Cohere: LLM University", url: "https://cohere.com/llmu" },
+    { title: "Google MLCC: Generative AI", url: "https://developers.google.com/machine-learning/crash-course/generative-ai" },
+    { title: "DeepLearning.AI Short Courses", url: "https://www.deeplearning.ai/" }
+  ],
+  5: [
+    { title: "Pinecone: Vector Database Learn", url: "https://www.pinecone.io/learn/" },
+    { title: "Hugging Face: Embeddings Guide", url: "https://huggingface.co/blog/getting-started-with-embeddings" },
+    { title: "OpenAI: Embeddings API Guide", url: "https://platform.openai.com/docs/guides/embeddings" },
+    { title: "Weaviate: Vector Academy", url: "https://weaviate.io/developers/academy" },
+    { title: "Cohere: Semantic Search", url: "https://txt.cohere.com/what-is-semantic-search/" }
+  ],
+  6: [
+    { title: "LangChain: RAG Tutorial", url: "https://python.langchain.com/docs/tutorials/rag/" },
+    { title: "LlamaIndex: Starter Tutorial", url: "https://docs.llamaindex.ai/en/stable/getting_started/starter_example/" },
+    { title: "MongoDB: Atlas Vector Search", url: "https://www.mongodb.com/products/platform/atlas-vector-search" },
+    { title: "LangChain: Developer Academy", url: "https://academy.langchain.com/" },
+    { title: "Pinecone: RAG Architecture Handbook", url: "https://www.pinecone.io/learn/retrieval-augmented-generation/" }
+  ],
+  7: [
+    { title: "Arize AI: Phoenix Evaluation", url: "https://phoenix.arize.com/" },
+    { title: "Hugging Face: Evaluate Library", url: "https://huggingface.co/docs/evaluate/index" },
+    { title: "TruLens: Evaluation Tools", url: "https://www.trulens.org/" },
+    { title: "Weights & Biases Track Guide", url: "https://docs.wandb.ai/" },
+    { title: "Scikit-Learn: Metrics Scoring", url: "https://scikit-learn.org/stable/modules/model_evaluation.html" }
+  ],
+  8: [
+    { title: "Chip Huyen: ML Systems Design", url: "https://huyenchip.com/ml-interviews-book/" },
+    { title: "GitHub: System Design Primer", url: "https://github.com/donnemartin/system-design-primer" },
+    { title: "Google: Rules of Machine Learning", url: "https://developers.google.com/machine-learning/guides/rules-of-ml" },
+    { title: "Evidently AI: ML Monitoring Guide", url: "https://www.evidentlyai.com/" },
+    { title: "AWS Architecture: AI/ML Center", url: "https://aws.amazon.com/architecture/ml/" }
+  ],
+  9: [
+    { title: "Docker: Curriculum for Beginners", url: "https://docker-curriculum.com/" },
+    { title: "Hugging Face: Spaces Deploy Guide", url: "https://huggingface.co/docs/hub/spaces" },
+    { title: "Streamlit: Deploy App Tutorial", url: "https://docs.streamlit.io/deploy/streamlit-community-cloud" },
+    { title: "FastAPI: Deployment Guide", url: "https://fastapi.tiangolo.com/deployment/" },
+    { title: "DVC: GitHub Actions for ML", url: "https://dvc.org/doc/use-cases/ci-cd-for-machine-learning" }
+  ],
+  10: [
+    { title: "Microsoft: AutoGen Framework", url: "https://microsoft.github.io/autogen/" },
+    { title: "CrewAI: Multi-Agent Platform", url: "https://docs.crewai.com/" },
+    { title: "OpenAI: Assistants API Reference", url: "https://platform.openai.com/docs/assistants/overview" },
+    { title: "LangGraph: Agentic Workflows", url: "https://langchain-ai.github.io/langgraph/" },
+    { title: "Microsoft: Semantic Kernel Guides", url: "https://learn.microsoft.com/en-us/semantic-kernel/" }
+  ],
+  11: [
+    { title: "OWASP: Top 10 for LLM Apps", url: "https://owasp.org/www-project-top-10-for-large-language-model-applications/" },
+    { title: "NIST: AI Risk Management", url: "https://www.nist.gov/itl/ai-risk-management-framework" },
+    { title: "Lakera: Gandalf Prompt Injection", url: "https://gandalf.lakera.ai/" },
+    { title: "Microsoft: Responsible AI Standards", url: "https://www.microsoft.com/en-us/ai/responsible-ai" },
+    { title: "Google: AI Principles Practices", url: "https://ai.google/responsibility/principles/" }
+  ],
+  12: [
+    { title: "Hugging Face: Spaces Portfolio", url: "https://huggingface.co/spaces" },
+    { title: "GitHub: Profile README Guide", url: "https://github.com/abhisheknaiidu/awesome-github-profile-readme" },
+    { title: "Google: Technical Writing Courses", url: "https://developers.google.com/tech-writing" },
+    { title: "Kaggle: ML Competitions Portfolio", url: "https://www.kaggle.com/competitions" },
+    { title: "Papers with Code: Trends Benchmarks", url: "https://paperswithcode.com/" }
+  ]
+};
+
+function updateLivePreview() {
+  const currentRole = elements.currentRole.value;
+  const targetRole = elements.targetRole.value;
+  const years = Number(elements.years.value);
+
+  // Update slider display bubble
+  const expVal = document.querySelector("#experience-val");
+  if (expVal) {
+    expVal.textContent = years;
+  }
+
+  if (!currentRole || !targetRole || state.roadmaps.length === 0) {
+    return;
+  }
+
+  const match = findRoadmap(currentRole, targetRole, state.roadmaps);
+  const difficulty = difficultyScore(years, match.roadmap);
+
+  const previewDifficulty = document.querySelector("#preview-difficulty");
+  const previewMeterFill = document.querySelector("#preview-meter-fill");
+  const previewCredit = document.querySelector("#preview-credit");
+
+  if (previewDifficulty) {
+    previewDifficulty.textContent = `${difficulty.score}%`;
+  }
+  if (previewMeterFill) {
+    previewMeterFill.style.width = `${difficulty.score}%`;
+    
+    // Smoothly color difficulty states
+    if (difficulty.score >= 80) {
+      previewMeterFill.style.background = 'var(--danger)';
+    } else if (difficulty.score >= 55) {
+      previewMeterFill.style.background = 'var(--accent-2)';
+    } else {
+      previewMeterFill.style.background = 'var(--accent)';
+    }
+  }
+  if (previewCredit) {
+    previewCredit.textContent = `${difficulty.experienceCredit} point experience credit (${difficulty.label})`;
+  }
+}
+
 async function loadRoadmaps() {
   if (!window.ROADMAP_DATA?.roadmaps) {
     throw new Error("Roadmap data was not loaded.");
   }
-  state.roadmaps = window.ROADMAP_DATA.roadmaps;
+
+  // Enrich roadmaps with additional 5 free links per month dynamically
+  state.roadmaps = window.ROADMAP_DATA.roadmaps.map((roadmap) => {
+    return {
+      ...roadmap,
+      months: roadmap.months.map((month) => {
+        const additional = ADDITIONAL_REFERENCES[month.month] || [];
+        return {
+          ...month,
+          references: [...(month.references || []), ...additional],
+        };
+      }),
+    };
+  });
 
   const { currentRoles, targetRoles } = availableOptions(state.roadmaps);
   populateSelect(elements.currentRole, currentRoles);
   populateSelect(elements.targetRole, targetRoles);
+
+  // Setup live updates for the form panel
+  updateLivePreview();
+  elements.currentRole.addEventListener("change", updateLivePreview);
+  elements.targetRole.addEventListener("change", updateLivePreview);
+  elements.years.addEventListener("input", updateLivePreview);
 }
 
 elements.form.addEventListener("submit", (event) => {
@@ -402,3 +550,4 @@ loadRoadmaps().catch((error) => {
     </div>
   `;
 });
+
