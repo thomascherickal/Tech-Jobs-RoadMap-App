@@ -4,1032 +4,687 @@ window.ROADMAP_DATA = {
       "current_role": "Software Engineer",
       "target_ai_role": "AI Engineer",
       "title": "Software Engineer to AI Engineer",
-      "summary": "A production-focused path from application engineering into model-powered systems, LLM integrations, evaluation, and deployment.",
-      "base_difficulty": 70,
+      "summary": "A production-focused 2026 path from application engineering into context-engineered LLM systems, MCP tool integrations, automated evals, and resilient AI deployment.",
+      "base_difficulty": 68,
       "months": [
         {
           "month": 1,
-          "focus": "JavaScript AI Foundations",
+          "focus": "Modern Python AI Stack",
           "tasks": [
-            "Refresh JavaScript for data workflows",
-            "Practice NumPy and pandas basics",
-            "Build a CLI that cleans and validates text data"
+            "Set up reproducible Python environments with uv, ruff, and pyproject.toml",
+            "Build typed data pipelines using Pydantic v2, Polars, and DuckDB",
+            "Create a CLI that ingests, normalizes, and validates messy JSON/text corpora"
           ],
           "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
+            "Standardize on uv lockfiles and strict ruff linting from day one so every experiment is reproducible across machines.",
+            "Model all input and output records with Pydantic v2 schemas to catch malformed fields, missing values, and encoding issues early.",
+            "Benchmark Polars/DuckDB transforms on a realistic text dataset and log data-quality metrics before any model sees the data."
           ],
           "references": [
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             },
             {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Machine Learning Basics",
+          "focus": "Applied Machine Learning",
           "tasks": [
-            "Study supervised learning concepts",
-            "Train scikit-learn classification and regression models",
-            "Track experiments and compare metrics"
+            "Master supervised learning, train/test splits, and data leakage prevention",
+            "Train scikit-learn baselines (logistic regression, gradient-boosted trees) on tabular and text features",
+            "Compare classical ML baselines against zero-shot LLM classifiers on cost, latency, and F1"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Always build a fast classical baseline first—many classification, routing, and scoring tasks do not need an LLM in production.",
+            "Track precision, recall, calibration, and inference latency per slice so you know exactly where simple models fail.",
+            "Document the cost-per-1k-predictions and latency tradeoffs between scikit-learn and hosted frontier models."
           ],
           "references": [
             {
-              "title": "Kaggle: Intro to ML",
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "Kaggle: Intro to Machine Learning",
               "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
-            },
-            {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "StatQuest ML basics",
-              "url": "https://youtube.com/@statquest"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Deep Learning Concepts",
+          "focus": "Deep Learning & Transformer Mechanics",
           "tasks": [
-            "Learn tensors, gradients, and neural network layers",
-            "Train a small PyTorch model",
-            "Document overfitting and regularization findings"
+            "Work with PyTorch tensors, autograd, mixed precision, and GPU memory profiling",
+            "Fine-tune a compact open-weight encoder/embedding model on domain data",
+            "Inspect tokenization, context-window limits, and KV-cache memory scaling"
           ],
           "upskilling_instructions": [
-            "Learn the training loop slowly: tensors, batches, forward pass, loss, backward pass, optimizer step, validation, and checkpointing.",
-            "Run small experiments with learning rate, batch size, regularization, and architecture depth so you can connect symptoms to fixes.",
-            "End with a concise model report showing curves, failure examples, compute cost, and whether a simpler model would have been enough."
+            "Build intuition for why token count, sequence length, and batch size drive GPU memory and latency in Transformer inference.",
+            "Run small fine-tuning experiments and log training/validation loss curves to spot overfitting and label noise.",
+            "Keep a reference sheet of model parameter counts, context lengths, and quantization formats (BF16, FP8, INT4)."
           ],
           "references": [
             {
               "title": "PyTorch Tutorials",
-              "url": "https://docs.pytorch.org/tutorials/"
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "PyTorch Learn the Basics",
-              "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "Google MLCC: Neural Networks",
-              "url": "https://developers.google.com/machine-learning/crash-course/neural-networks"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "LLM Application Patterns",
+          "focus": "LLM APIs, Reasoning Models & Structured Outputs",
           "tasks": [
-            "Build prompt templates and structured outputs",
-            "Add retries, validation, and guardrails",
-            "Compare outputs across several prompts"
+            "Build resilient model clients with strict JSON Schema structured outputs and retries",
+            "Implement model routing between fast/low-cost models and reasoning models with thinking budgets",
+            "Use prompt caching and streaming responses to cut latency and token spend"
           ],
           "upskilling_instructions": [
-            "Build prompts as versioned artifacts: state the task, audience, context, constraints, examples, output schema, and refusal boundaries.",
-            "Compare prompt variants against the same test set, then measure correctness, format adherence, latency, and failure modes instead of relying on vibes.",
-            "Finish with a small LLM feature that validates structured output and gives users a graceful path when the answer is uncertain."
+            "Enforce strict schema validation on every model response and treat schema violations as typed application errors.",
+            "Route routine extraction or classification to fast models while reserving reasoning models for multi-step planning or verification.",
+            "Measure time-to-first-token (TTFT), total latency, and cached vs uncached token costs across providers."
           ],
           "references": [
             {
-              "title": "OpenAI Prompt Engineering Best Practices",
-              "url": "https://openai.com/academy/prompting/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "OpenAI Text Generation Guide",
-              "url": "https://platform.openai.com/docs/guides/text-generation"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "Google MLCC: Large Language Models",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Embeddings and Retrieval",
+          "focus": "Context Engineering & Hybrid Retrieval",
           "tasks": [
-            "Create an embedding search prototype",
-            "Chunk documents and test retrieval quality",
-            "Implement citation-backed responses"
+            "Implement hybrid search combining BM25 lexical matching, dense embeddings, and cross-encoder reranking",
+            "Parse complex PDFs, tables, and charts using multimodal vision-language models",
+            "Build citation-backed answers with chunk provenance and context-budget management"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Compare pure vector search against hybrid BM25 + dense + reranker pipelines on exact-match terms, IDs, and domain jargon.",
+            "Preserve document structure (headings, tables, page numbers) during chunking instead of blindly splitting by fixed character counts.",
+            "Verify every generated claim against its retrieved source chunk and surface clickable citations in the response."
           ],
           "references": [
             {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "RAG Systems",
+          "focus": "Production RAG & Memory Architectures",
           "tasks": [
-            "Build a RAG workflow with browser JavaScript",
-            "Add document upload and indexing",
-            "Evaluate retrieval and answer quality"
+            "Design an incremental indexing pipeline with document versioning and permission-aware filtering",
+            "Add short-term conversation compaction and long-term user/episodic memory layers",
+            "Evaluate retrieval recall@k, groundedness, and end-to-end answer accuracy"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Enforce document-level access control (ACLs) inside the retrieval query itself so unauthorized chunks never enter the model context.",
+            "Implement context compaction (summarizing older turns and pruning stale tool outputs) to prevent context rot in long sessions.",
+            "Build an automated indexing test that verifies updates, deletes, and permission changes propagate cleanly."
           ],
           "references": [
             {
-              "title": "LangChain: RAG Tutorial",
-              "url": "https://python.langchain.com/docs/tutorials/rag/"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "LlamaIndex: Starter Tutorial",
-              "url": "https://docs.llamaindex.ai/en/stable/getting_started/starter_example/"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Pinecone: RAG Handbook",
-              "url": "https://www.pinecone.io/learn/retrieval-augmented-generation/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "Model Evaluation",
+          "focus": "Evals, Observability & CI Gates",
           "tasks": [
-            "Create golden datasets",
-            "Score factuality, relevance, and latency",
-            "Add regression checks to CI"
+            "Curate a versioned golden evaluation dataset covering happy paths, edge cases, and adversarial inputs",
+            "Build automated evals combining deterministic assertions, code graders, and calibrated LLM-as-a-judge",
+            "Instrument OpenTelemetry GenAI traces and block PR merges on eval regressions in GitHub Actions"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Treat evals like unit and integration tests: every bug report or failure mode in production should become a permanent eval case.",
+            "Calibrate LLM-as-a-judge rubrics against human SME labels until inter-rater agreement is high before trusting automated scores.",
+            "Log trace IDs, prompt versions, model IDs, token counts, and latency spans with OpenTelemetry GenAI conventions."
           ],
           "references": [
             {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "AI System Design",
+          "focus": "Model Context Protocol (MCP) & Tool-Using Agents",
           "tasks": [
-            "Design async inference workflows",
-            "Add caching and queue boundaries",
-            "Document reliability tradeoffs"
+            "Build and test custom MCP servers exposing resources, prompts, and typed tools",
+            "Implement bounded tool-calling loops with human-in-the-loop approval for state-changing actions",
+            "Evaluate agent trajectory efficiency, tool-selection accuracy, and task completion rate"
           ],
           "upskilling_instructions": [
-            "Draw the system before coding: user flow, data flow, trust boundaries, model calls, storage, queues, retries, monitoring, and fallback behavior.",
-            "Prototype the riskiest component first, then add observability so failures are visible as structured logs, metrics, traces, or review queues.",
-            "Finish with an architecture note that explains tradeoffs in latency, cost, quality, reliability, and operational ownership."
+            "Design tool schemas with clear descriptions, narrow scopes, and idempotency keys so agents cannot trigger unintended side effects.",
+            "Enforce max-step budgets, timeouts, and explicit confirmation gates before any write, delete, or external API mutation.",
+            "Record full agent trajectories (thoughts, tool calls, tool responses) to debug multi-step failures systematically."
           ],
           "references": [
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "MDN Web APIs",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/API"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "OpenTelemetry JavaScript Documentation",
-              "url": "https://opentelemetry.io/docs/languages/js/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Deployment",
+          "focus": "AI System Architecture & Async Workflows",
           "tasks": [
-            "Containerize an AI service",
-            "Add observability and cost logging",
-            "Deploy to a cloud or local production-like target"
+            "Build FastAPI streaming and background-job services for long-running agentic tasks",
+            "Add semantic/exact caching, rate-limiting, circuit breakers, and provider fallback routing",
+            "Benchmark concurrency, queue backpressure, and graceful degradation under provider outages"
           ],
           "upskilling_instructions": [
-            "Package the app so another person can run it without hidden local assumptions: environment variables, dependency pins, and clear startup commands.",
-            "Add production-minded basics: health checks, logging, secret handling, timeouts, resource limits, and rollback notes.",
-            "Deploy or simulate deployment, then measure startup time, request latency, error behavior, and the steps needed to debug an incident."
+            "Decouple slow reasoning or multi-step agent runs from HTTP request-response cycles using durable queues and status webhooks/SSE.",
+            "Implement multi-provider fallbacks and circuit breakers so a single model API outage degrades gracefully rather than taking down your app.",
+            "Track unit economics per user/tenant including retries, tool calls, and embedding/reranking overhead."
           ],
           "references": [
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Uvicorn Deployment",
-              "url": "https://www.uvicorn.org/"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Agents and Tools",
+          "focus": "Deployment, Containers & Self-Hosted Inference",
           "tasks": [
-            "Build tool-calling workflows",
-            "Add permission checks for tool execution",
-            "Measure task completion rate"
+            "Containerize your AI API and worker services with multi-stage Docker builds",
+            "Run and benchmark open-weight models locally or on GPU instances via vLLM/Ollama",
+            "Set up automated staging deployments, health checks, and cost/latency alerting"
           ],
           "upskilling_instructions": [
-            "Start with one tool and one narrow task; define exactly when the model may call the tool, what arguments are allowed, and what requires confirmation.",
-            "Test agent behavior with success cases, ambiguous requests, malicious instructions, missing data, and tool failures.",
-            "Ship a constrained workflow with audit logs, permission checks, tool output validation, and a human handoff path."
+            "Know when to use frontier hosted APIs versus self-hosted open-weight models for privacy, predictable cost, or fine-tuned specialization.",
+            "Configure readiness probes, structured JSON logging, and per-endpoint token/cost alerts before opening traffic.",
+            "Test rollback procedures for both application code and prompt/model configurations."
           ],
           "references": [
             {
-              "title": "OpenAI Function Calling Help",
-              "url": "https://openai.com/index/function-calling-and-other-api-updates/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "OpenAI File Search Guide",
-              "url": "https://platform.openai.com/docs/guides/assistants/tools/file-search"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             },
             {
-              "title": "OWASP LLM Top 10",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Security and Safety",
+          "focus": "AI Security, Sandboxing & Governance",
           "tasks": [
-            "Test prompt injection scenarios",
-            "Add data handling controls",
-            "Create safety and abuse monitoring notes"
+            "Red-team your app against direct/indirect prompt injection, data exfiltration, and MCP tool poisoning",
+            "Sandbox any agent-generated code or file operations using isolated containers",
+            "Implement PII redaction, audit logging, and alignment with OWASP LLM/Agentic Top 10"
           ],
           "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
+            "Never trust retrieved documents, web pages, or external MCP tool outputs—treat all untrusted text as potential prompt injection vectors.",
+            "Isolate code execution and shell tools in ephemeral sandboxes with no host filesystem or internal network access.",
+            "Document data retention, model training opt-outs, and incident response playbooks for enterprise security reviews."
           ],
           "references": [
             {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Portfolio Capstone",
+          "focus": "Production Capstone & AI Engineering Portfolio",
           "tasks": [
-            "Ship a complete AI product demo",
-            "Write architecture and evaluation docs",
-            "Prepare interview stories around tradeoffs"
+            "Ship an end-to-end production AI application featuring hybrid RAG, MCP tools, and live evals",
+            "Publish architecture diagrams, eval scorecards, latency/cost benchmarks, and a post-mortem",
+            "Practice system-design interviews covering context engineering, agent reliability, and scaling tradeoffs"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Lead your portfolio write-up with measurable outcomes: eval accuracy before/after iteration, p95 latency, and cost per task.",
+            "Include a live demo or reproducible repo with a one-command setup (`uv run`) and automated CI evals.",
+            "Prepare concrete stories about debugging hallucinations, tightening retrieval, and preventing tool-use failures."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         }
       ]
     },
     {
-      "current_role": "Software Engineer",
-      "target_ai_role": "ML Engineer",
-      "title": "Software Engineer to ML Engineer",
-      "summary": "A path into model training, feature pipelines, experimentation, and reliable ML deployment.",
-      "base_difficulty": 76,
+      "current_role": "Frontend Engineer",
+      "target_ai_role": "AI Engineer",
+      "title": "Frontend Engineer to AI Engineer",
+      "summary": "A TypeScript-first and full-stack 2026 roadmap turning frontend expertise into streaming AI interfaces, generative UI, MCP integrations, and evaluated LLM backends.",
+      "base_difficulty": 66,
       "months": [
         {
           "month": 1,
-          "focus": "Math and JavaScript Refresh",
+          "focus": "TypeScript AI Foundations & Typed Schemas",
           "tasks": [
-            "Review linear algebra and probability basics",
-            "Practice NumPy vectorization",
-            "Implement metrics from scratch"
+            "Build Node/TypeScript AI utilities with strict Zod schemas and async streaming",
+            "Practice token counting, context budgeting, and structured JSON generation",
+            "Create a CLI that processes and validates text/markdown files using LLM APIs"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Use Zod schemas as the single source of truth for both LLM structured outputs and TypeScript UI props.",
+            "Measure token usage and streaming chunk timing so you understand how backend latency affects perceived frontend speed.",
+            "Keep API keys strictly on the server or edge runtime; never expose provider credentials in client bundles."
           ],
           "references": [
             {
-              "title": "Mathematics for ML Book",
-              "url": "https://mml-book.github.io/"
+              "title": "TypeScript Handbook",
+              "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
             },
             {
-              "title": "Kaggle Learn: Python",
-              "url": "https://www.kaggle.com/learn/python"
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
             },
             {
-              "title": "Google MLCC: ML Prereqs",
-              "url": "https://developers.google.com/machine-learning/crash-course/prereqs-and-prework"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Classical ML",
+          "focus": "Streaming & Generative UI Patterns",
           "tasks": [
-            "Train scikit-learn baseline models",
-            "Learn train-validation-test splits",
-            "Compare precision, recall, and ROC-AUC"
+            "Build streaming chat and structured-object UIs with Server-Sent Events (SSE) and Vercel AI SDK",
+            "Design Generative UI components that render interactive cards, tables, and charts from tool outputs",
+            "Handle partial JSON streaming, loading skeletons, and user-initiated stream cancellation cleanly"
           ],
           "upskilling_instructions": [
-            "Start with a simple baseline model, then improve only after you can explain the target, features, split strategy, and evaluation metric.",
-            "Run at least three model comparisons and record what changed, why it changed, and whether it improved generalization or only training performance.",
-            "Close the month with an error analysis: inspect false positives, false negatives, weak segments, and the next data or feature bet."
+            "Design UI states for every phase of model execution: thinking, tool-calling, streaming partial output, error, and retry.",
+            "Use AbortController and clean cancellation handlers so users can interrupt slow generations without corrupting client state.",
+            "Separate raw model reasoning traces from user-facing summaries with collapsible, accessible UI controls."
           ],
           "references": [
             {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             },
             {
-              "title": "scikit-learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "MDN Web Docs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Feature Engineering",
+          "focus": "Python Interop & Core ML Literacy",
           "tasks": [
-            "Build preprocessing pipelines",
-            "Handle missing values and categorical data",
-            "Version datasets and feature transforms"
+            "Set up Python with uv to run embedding, evaluation, and data-processing scripts",
+            "Learn supervised ML basics, embeddings, and cosine similarity with scikit-learn",
+            "Compare classical classifiers against LLM calls for UI routing and intent detection"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Even as a TypeScript-focused AI Engineer, reading Python notebooks and running eval/ML scripts with uv is essential.",
+            "Use small classifiers or embeddings for instant UI autocomplete and intent routing instead of waiting on a full LLM call.",
+            "Verify model behavior on edge-case inputs rather than assuming prompt tweaks fix systematic classification errors."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "Experiment Tracking",
+          "focus": "Browser & Edge AI with WebGPU",
           "tasks": [
-            "Log parameters and metrics",
-            "Run controlled model comparisons",
-            "Create repeatable experiment reports"
+            "Run small open-weight models and embeddings directly in the browser via WebGPU / Transformers.js",
+            "Implement client-side semantic search, voice transcription, or offline summarization",
+            "Benchmark WebGPU cold-start download size, memory limits, and fallback to cloud APIs"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Use progressive loading and IndexedDB/Cache API caching so multi-megabyte model weights do not block initial page render.",
+            "Design hybrid architectures that run privacy-sensitive or low-latency tasks on-device and escalate complex reasoning to server APIs.",
+            "Test graceful degradation on devices without WebGPU support."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "MDN WebGPU API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "MDN Web Docs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Deep Learning",
+          "focus": "Embeddings, Hybrid Search & Citation UI",
           "tasks": [
-            "Train PyTorch models",
-            "Tune optimizers and learning rates",
-            "Use GPUs when available"
+            "Build a server-side hybrid search pipeline (BM25 + pgvector/Qdrant + reranking)",
+            "Render inline citations, source previews, and highlighted evidence spans in the UI",
+            "Handle multi-format document uploads (PDFs, images, markdown) with multimodal parsing"
           ],
           "upskilling_instructions": [
-            "Learn the training loop slowly: tensors, batches, forward pass, loss, backward pass, optimizer step, validation, and checkpointing.",
-            "Run small experiments with learning rate, batch size, regularization, and architecture depth so you can connect symptoms to fixes.",
-            "End with a concise model report showing curves, failure examples, compute cost, and whether a simpler model would have been enough."
+            "Never show unverified citations: map every inline footnote to the exact chunk ID and page metadata returned by retrieval.",
+            "Design split-pane or drawer source viewers so users can verify AI claims in one click.",
+            "Measure retrieval precision separately from UI rendering to isolate where bad answers originate."
           ],
           "references": [
             {
-              "title": "PyTorch Tutorials",
-              "url": "https://docs.pytorch.org/tutorials/"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "PyTorch Learn the Basics",
-              "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Google MLCC: Neural Networks",
-              "url": "https://developers.google.com/machine-learning/crash-course/neural-networks"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Data Pipelines",
+          "focus": "MCP Clients & Agentic Frontend Workflows",
           "tasks": [
-            "Create batch feature jobs",
-            "Validate input schemas",
-            "Add pipeline monitoring"
+            "Build an MCP client in TypeScript that connects to local or remote MCP servers",
+            "Implement human-in-the-loop (HITL) approval modals and undo/rollback flows for agent tool calls",
+            "Support multi-step background agent runs with live progress indicators"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Surface exact tool arguments (e.g., email recipient, SQL query, file path) in approval dialogs before executing side effects.",
+            "Persist agent state and step history on the server so refreshing the browser tab resumes the live workflow seamlessly.",
+            "Constrain tool execution permissions per user session."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "Model Serving",
+          "focus": "Automated Evals & UI Regression Testing",
           "tasks": [
-            "Expose inference through a JavaScript interface",
-            "Add batch and online prediction paths",
-            "Measure latency and throughput"
+            "Build Promptfoo / Vitest eval suites for prompts, structured outputs, and tool selection",
+            "Test streaming UI behavior and error recovery with automated end-to-end tests",
+            "Add CI eval thresholds in GitHub Actions so prompt regressions fail pull requests"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Separate deterministic UI/schema tests from probabilistic model-quality evals in your CI pipeline.",
+            "Pin model snapshots in CI evals and track pass rates over time to catch silent provider behavior shifts.",
+            "Include accessibility checks (keyboard navigation, ARIA live regions for streaming text) in your test suite."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "MLOps",
+          "focus": "Observability, Latency & Cost Engineering",
           "tasks": [
-            "Package models with reproducible environments",
-            "Create CI checks for training code",
-            "Automate model promotion gates"
+            "Instrument end-to-end traces from browser interaction to LLM API and vector DB spans",
+            "Implement prompt caching, optimistic UI updates, and smart model routing",
+            "Build an internal dashboard tracking TTFT, tokens per session, and user thumbs-up/down feedback"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Correlate frontend interaction IDs with backend OpenTelemetry trace IDs so user feedback links directly to the exact prompt and context.",
+            "Use prompt caching for stable system instructions and large shared context prefixes to cut both latency and cost.",
+            "Optimize perceived latency with immediate optimistic UI feedback and progressive rendering."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Monitoring",
+          "focus": "Multimodal & Voice Interfaces",
           "tasks": [
-            "Track prediction drift",
-            "Log model performance signals",
-            "Define retraining triggers"
+            "Build image/screenshot input flows and real-time audio/voice streaming interfaces",
+            "Handle turn-taking, interruption (barge-in), and transcription error correction in UI",
+            "Test multimodal prompts across diverse screen sizes, lighting, and noisy audio"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Always provide a text fallback and transcript view alongside voice or camera inputs for accessibility and noisy environments.",
+            "Compress and resize images client-side before upload to reduce bandwidth and vision-token cost.",
+            "Design clear visual indicators for microphone state, processing, and speaking."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "MDN Web Docs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Scaling",
+          "focus": "Full-Stack Deployment & Edge Scaling",
           "tasks": [
-            "Optimize inference performance",
-            "Test async and batch strategies",
-            "Estimate serving costs"
+            "Deploy full-stack AI apps with streaming-capable edge/container infrastructure",
+            "Configure rate limiting, per-user token quotas, and abuse protection at the API gateway",
+            "Set up staging environments with synthetic traffic and cost alarms"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Verify your hosting/proxy layer does not buffer SSE streams—configure timeouts and flush headers for long-running generations.",
+            "Enforce per-user and per-IP token budgets before requests reach expensive reasoning models.",
+            "Run load tests simulating concurrent streaming connections."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Responsible ML",
+          "focus": "Frontend & Agentic AI Security",
           "tasks": [
-            "Evaluate bias and error slices",
-            "Document model limitations",
-            "Add explainability artifacts"
+            "Prevent XSS and markdown/HTML injection when rendering untrusted LLM outputs",
+            "Defend against indirect prompt injection via user-uploaded files or fetched web content",
+            "Implement strict CSP headers, PII redaction, and safe tool-execution boundaries"
           ],
           "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
+            "Sanitize all LLM-generated markdown, links, and SVG/HTML before rendering—treat model output as untrusted user input.",
+            "Never auto-execute links or client-side actions returned by a model without explicit user confirmation.",
+            "Review your app against the OWASP Top 10 for LLM Applications."
           ],
           "references": [
             {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Production Capstone",
+          "focus": "Full-Stack AI Capstone & Portfolio",
           "tasks": [
-            "Ship an end-to-end ML system",
-            "Create a model card",
-            "Prepare system design interview notes"
+            "Launch a polished full-stack AI product featuring Generative UI, hybrid RAG, and MCP tools",
+            "Publish a technical case study covering UX latency optimizations, eval metrics, and security controls",
+            "Prepare for AI Engineer interviews spanning frontend streaming, context engineering, and system design"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Showcase live interactive UX alongside hard engineering numbers: TTFT, eval pass rate, and cost per session.",
+            "Document why you chose specific models, caching strategies, and human-in-the-loop checkpoints.",
+            "Record a crisp 2-minute walkthrough demonstrating edge-case handling and source citations."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "current_role": "Software Engineer",
-      "target_ai_role": "AI Product Manager",
-      "title": "Software Engineer to AI Product Manager",
-      "summary": "A transition from engineering delivery into AI product strategy, discovery, metrics, and cross-functional execution.",
-      "base_difficulty": 62,
-      "months": [
-        {
-          "month": 1,
-          "focus": "AI Product Landscape",
-          "tasks": [
-            "Map AI product categories",
-            "Study common LLM capabilities and limits",
-            "Analyze three AI products"
-          ],
-          "upskilling_instructions": [
-            "Build prompts as versioned artifacts: state the task, audience, context, constraints, examples, output schema, and refusal boundaries.",
-            "Compare prompt variants against the same test set, then measure correctness, format adherence, latency, and failure modes instead of relying on vibes.",
-            "Finish with a small LLM feature that validates structured output and gives users a graceful path when the answer is uncertain."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Prompt Engineering Best Practices",
-              "url": "https://openai.com/academy/prompting/"
-            },
-            {
-              "title": "OpenAI Text Generation Guide",
-              "url": "https://platform.openai.com/docs/guides/text-generation"
-            },
-            {
-              "title": "Google MLCC: Large Language Models",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
-            }
-          ]
-        },
-        {
-          "month": 2,
-          "focus": "Customer Discovery",
-          "tasks": [
-            "Run problem interviews",
-            "Convert pain points into opportunity statements",
-            "Prioritize by frequency and severity"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "Technical Fluency",
-          "tasks": [
-            "Learn RAG, fine-tuning, and agents at PM depth",
-            "Create decision trees for build choices",
-            "Document risks and dependencies"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "Metrics",
-          "tasks": [
-            "Define activation and quality metrics",
-            "Add AI-specific evaluation metrics",
-            "Design a dashboard outline"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
-            },
-            {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
-            }
-          ]
-        },
-        {
-          "month": 5,
-          "focus": "Prototyping",
-          "tasks": [
-            "Build a clickable or lightweight AI prototype",
-            "Run usability tests",
-            "Capture failure modes"
-          ],
-          "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
-          ],
-          "references": [
-            {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
-            },
-            {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
-            },
-            {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
-            }
-          ]
-        },
-        {
-          "month": 6,
-          "focus": "Roadmapping",
-          "tasks": [
-            "Write a PRD for an AI feature",
-            "Plan MVP and post-MVP scope",
-            "Define release gates"
-          ],
-          "upskilling_instructions": [
-            "Design features from a clear hypothesis, not convenience: write down why each feature should help before adding it to the pipeline.",
-            "Use train-only fitting for preprocessing, test categorical and numerical transforms separately, and watch for target leakage at every step.",
-            "Deliver a feature pipeline that can transform new records consistently and includes notes on rejected features and tradeoffs."
-          ],
-          "references": [
-            {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
-            },
-            {
-              "title": "Google MLCC: Categorical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/categorical-data"
-            },
-            {
-              "title": "scikit-learn ColumnTransformer",
-              "url": "https://scikit-learn.org/stable/modules/compose.html#column-transformer"
-            }
-          ]
-        },
-        {
-          "month": 7,
-          "focus": "Evaluation Strategy",
-          "tasks": [
-            "Create acceptance criteria for model output",
-            "Set human review loops",
-            "Plan benchmark datasets"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
-            },
-            {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
-            },
-            {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
-            }
-          ]
-        },
-        {
-          "month": 8,
-          "focus": "Go-to-Market",
-          "tasks": [
-            "Develop positioning",
-            "Create launch messaging",
-            "Plan beta feedback loops"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 9,
-          "focus": "Risk and Compliance",
-          "tasks": [
-            "Assess privacy and safety risks",
-            "Write escalation policies",
-            "Partner with legal and security stakeholders"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 10,
-          "focus": "Experimentation",
-          "tasks": [
-            "Design A/B and holdout tests",
-            "Interpret quality and business metrics together",
-            "Prioritize iteration bets"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Hugging Face NLP Course",
-              "url": "https://huggingface.co/learn/nlp-course"
-            },
-            {
-              "title": "OpenAI: Prompt Engineering",
-              "url": "https://platform.openai.com/docs/guides/prompt-engineering"
-            },
-            {
-              "title": "OWASP Top 10 LLM Apps",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "Executive Communication",
-          "tasks": [
-            "Prepare strategy narratives",
-            "Translate model tradeoffs into business impact",
-            "Practice roadmap reviews"
-          ],
-          "upskilling_instructions": [
-            "Start with a simple baseline model, then improve only after you can explain the target, features, split strategy, and evaluation metric.",
-            "Run at least three model comparisons and record what changed, why it changed, and whether it improved generalization or only training performance.",
-            "Close the month with an error analysis: inspect false positives, false negatives, weak segments, and the next data or feature bet."
-          ],
-          "references": [
-            {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
-            },
-            {
-              "title": "scikit-learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
-            }
-          ]
-        },
-        {
-          "month": 12,
-          "focus": "Portfolio Case Study",
-          "tasks": [
-            "Publish an AI product case study",
-            "Show discovery-to-launch reasoning",
-            "Prepare PM interview stories"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         }
@@ -1039,1032 +694,342 @@ window.ROADMAP_DATA = {
       "current_role": "Data Analyst",
       "target_ai_role": "AI Engineer",
       "title": "Data Analyst to AI Engineer",
-      "summary": "A practical path from analytics into JavaScript apps, LLM workflows, retrieval systems, and AI application delivery.",
-      "base_difficulty": 78,
+      "summary": "A structured 2026 transition from SQL, BI, and analytics into Python software engineering, production RAG, automated evals, and AI services.",
+      "base_difficulty": 76,
       "months": [
         {
           "month": 1,
-          "focus": "Software Foundations",
+          "focus": "Software Engineering Foundations in Python",
           "tasks": [
-            "Strengthen JavaScript modules and project structure",
-            "Practice Git workflows",
-            "Build small tested modules"
+            "Transition from ad-hoc notebooks to modular Python packages managed with uv and ruff",
+            "Master Git workflows, virtual environments, type hints, and Pydantic v2 models",
+            "Write pytest unit tests for data-cleaning and SQL-to-Python transformation modules"
           ],
           "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
+            "Break habit of keeping production logic inside notebooks—extract reusable functions into tested Python modules.",
+            "Use Git feature branches and meaningful commit messages for every pipeline or prompt change.",
+            "Add type annotations and Pydantic validation so data-shape bugs fail loudly during development."
           ],
           "references": [
             {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             },
             {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "APIs and Web Services",
+          "focus": "Modern Data Engineering & APIs",
           "tasks": [
-            "Learn HTTP and REST concepts",
-            "Build a browser-based CRUD workflow",
-            "Add request validation with Pydantic"
+            "Build fast analytical and text-processing pipelines with Polars and DuckDB",
+            "Create REST and streaming endpoints using FastAPI with request/response validation",
+            "Handle async I/O, retries, pagination, and structured logging in Python services"
           ],
           "upskilling_instructions": [
-            "Build one API from scratch with typed request and response models, clear validation errors, and a small set of realistic sample requests.",
-            "Practice the full request lifecycle: route design, schema validation, status codes, exception handling, logging, and basic security boundaries.",
-            "Ship a working local demo with API docs, curl examples, and tests for both successful and invalid inputs."
+            "Leverage your SQL strengths in DuckDB to process millions of text/log rows locally before sending subsets to LLMs.",
+            "Test your FastAPI endpoints with pytest and FastAPI's TestClient, including malformed payloads and timeouts.",
+            "Log structured JSON events with latency and row counts for every API call."
           ],
           "references": [
             {
-              "title": "MDN Web API Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "Pydantic Documentation",
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Applied Machine Learning",
+          "tasks": [
+            "Train classification, regression, and forecasting models in scikit-learn",
+            "Prevent target leakage with proper time-based and group-based cross-validation",
+            "Build an error-analysis report slicing metrics across business segments"
+          ],
+          "upskilling_instructions": [
+            "Use your analytics instincts to audit datasets for survivorship bias, label leakage, and missing-not-at-random values.",
+            "Compare simple interpretable models against complex ones and document feature importance.",
+            "Save preprocessing pipelines alongside trained weights so inference matches training."
+          ],
+          "references": [
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Production Python & Async Systems",
+          "tasks": [
+            "Write concurrent batch-processing scripts using asyncio and bounded semaphores",
+            "Implement idempotency, checkpointing, and dead-letter queues for failed records",
+            "Package your data-and-API service cleanly in a Docker container"
+          ],
+          "upskilling_instructions": [
+            "When calling LLM APIs over thousands of rows, always use bounded concurrency and exponential backoff for rate limits.",
+            "Checkpoint intermediate results to Parquet/DuckDB so long batch jobs resume cleanly after failures.",
+            "Verify your Docker container runs identically locally and in CI."
+          ],
+          "references": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
               "url": "https://docs.pydantic.dev/latest/"
             },
             {
-              "title": "MDN HTTP Overview",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "ML Basics",
-          "tasks": [
-            "Train scikit-learn models",
-            "Interpret common metrics",
-            "Create reproducible notebooks"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
-            },
-            {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "StatQuest ML basics",
-              "url": "https://youtube.com/@statquest"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "Production JavaScript",
-          "tasks": [
-            "Add logging and error handling",
-            "Write unit tests",
-            "Refactor notebooks into modules"
-          ],
-          "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
-          ],
-          "references": [
-            {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
-            },
-            {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
-            },
-            {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "LLM Basics",
+          "focus": "LLM APIs & Structured Data Extraction",
           "tasks": [
-            "Create prompt templates",
-            "Parse structured model outputs",
-            "Evaluate answer quality manually"
+            "Use LLMs with strict JSON Schema outputs to extract entities and categories from unstructured text",
+            "Combine SQL/DuckDB analytics with LLM-extracted tags to answer previously unqueryable questions",
+            "Compare prompt strategies and reasoning models on accuracy and cost per 1,000 rows"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Validate every extracted field with Pydantic and route low-confidence or malformed rows to a review queue.",
+            "Test prompts on a stratified sample of messy real-world records, not just clean examples.",
+            "Use batch APIs or prompt caching when processing large analytical backfills."
           ],
           "references": [
             {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "StatQuest ML basics",
-              "url": "https://youtube.com/@statquest"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Embeddings",
+          "focus": "Embeddings, Hybrid Search & Text-to-SQL",
           "tasks": [
-            "Generate embeddings for text data",
-            "Build similarity search",
-            "Tune chunking strategies"
+            "Build a hybrid search index (BM25 + dense embeddings) over company docs or tickets",
+            "Design a safe Text-to-SQL / semantic-layer assistant backed by DuckDB or Postgres",
+            "Enforce read-only SQL execution, schema allowlists, and query timeouts"
           ],
           "upskilling_instructions": [
-            "Create a small corpus, generate embeddings, and manually inspect nearest-neighbor results to build intuition for semantic similarity.",
-            "Experiment with chunk size, metadata, filtering, and similarity thresholds; record where retrieval improves and where it becomes noisy.",
-            "Deliver a searchable prototype with evaluation queries, expected matches, and notes on cost, refresh cadence, and privacy boundaries."
+            "In Text-to-SQL systems, provide curated table schemas, join keys, and example queries—never dump 500 raw tables into the prompt.",
+            "Run generated SQL in a read-only sandbox with row limits and explain-plan checks before execution.",
+            "Measure SQL execution accuracy and semantic correctness against analyst-written ground truth."
           ],
           "references": [
             {
-              "title": "OpenAI Embeddings API Reference",
-              "url": "https://platform.openai.com/docs/api-reference/embeddings"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "OpenAI Embeddings FAQ",
-              "url": "https://openai.com/index/introducing-text-and-code-embeddings/"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "Google MLCC: Embeddings",
-              "url": "https://developers.google.com/machine-learning/crash-course/embeddings"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "RAG API",
+          "focus": "Evaluation & Metric Rigor",
           "tasks": [
-            "Create document ingestion endpoints",
-            "Serve grounded answers",
-            "Return source citations"
+            "Apply your analytics background to design statistically sound LLM evaluation suites",
+            "Track faithfulness, relevance, SQL correctness, latency, and cost across prompt versions",
+            "Run automated evals in CI with Promptfoo or Langfuse before deploying changes"
           ],
           "upskilling_instructions": [
-            "Build the retrieval pipeline before the chatbot: ingestion, chunking, metadata, indexing, search, reranking if needed, and citation formatting.",
-            "Test grounded answers against known documents and track unsupported claims, missing citations, stale data, and bad retrieval separately.",
-            "End with a RAG demo that can explain which sources were used and what the system should do when the corpus has no answer."
+            "Compute confidence intervals and slice metrics by query type so overall averages do not hide critical segment failures.",
+            "Calibrate automated LLM judges against human analyst ratings.",
+            "Build a clear eval scorecard stakeholders can read at a glance."
           ],
           "references": [
             {
-              "title": "OpenAI Retrieval Guide",
-              "url": "https://platform.openai.com/docs/guides/assistants/tools/file-search"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "OpenAI File Search Guide",
-              "url": "https://platform.openai.com/docs/guides/assistants/tools/file-search"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "LangChain RAG Tutorial",
-              "url": "https://js.langchain.com/docs/tutorials/rag/"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "System Reliability",
+          "focus": "System Reliability & Caching",
           "tasks": [
-            "Add retries and timeouts",
-            "Cache repeated requests",
-            "Track errors and latency"
+            "Add semantic/exact response caching and fallback model routing to your FastAPI service",
+            "Instrument OpenTelemetry traces and monitor token spend, error rates, and p95 latency",
+            "Write runbooks for provider outages, schema drift, and embedding re-indexing"
           ],
           "upskilling_instructions": [
-            "Draw the system before coding: user flow, data flow, trust boundaries, model calls, storage, queues, retries, monitoring, and fallback behavior.",
-            "Prototype the riskiest component first, then add observability so failures are visible as structured logs, metrics, traces, or review queues.",
-            "Finish with an architecture note that explains tradeoffs in latency, cost, quality, reliability, and operational ownership."
+            "Monitor input data drift and query distribution shifts just as you would monitor BI pipeline SLAs.",
+            "Set hard daily spend caps and anomaly alerts on LLM API keys.",
+            "Test graceful fallback responses when upstream model APIs time out."
           ],
           "references": [
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             },
             {
-              "title": "MDN Web APIs",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/API"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "OpenTelemetry JavaScript Documentation",
-              "url": "https://opentelemetry.io/docs/languages/js/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Evaluation",
+          "focus": "Deep Learning & Embedding Fine-Tuning",
           "tasks": [
-            "Build test prompts",
-            "Create scoring rubrics",
-            "Track regressions over time"
+            "Learn PyTorch fundamentals and how Transformer embeddings work",
+            "Fine-tune a small embedding or reranker model on domain-specific query-document pairs",
+            "Measure retrieval lift before and after domain adaptation"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "You do not need to pretrain models from scratch—focus on how fine-tuning small encoders/rerankers boosts retrieval accuracy.",
+            "Use hard negatives from your own search logs to make fine-tuned embeddings dramatically sharper.",
+            "Document the compute cost and retrieval NDCG/MRR improvement."
           ],
           "references": [
             {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
+              "title": "PyTorch Tutorials",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Deployment",
+          "focus": "MCP Tools & Analytical Agents",
           "tasks": [
-            "Containerize the app",
-            "Deploy a public demo",
-            "Add environment-based configuration"
+            "Build an MCP server exposing curated DuckDB/warehouse metrics and semantic definitions",
+            "Create a bounded analyst agent that queries data, runs Python checks, and cites sources",
+            "Add approval gates and read-only guardrails for every tool invocation"
           ],
           "upskilling_instructions": [
-            "Package the app so another person can run it without hidden local assumptions: environment variables, dependency pins, and clear startup commands.",
-            "Add production-minded basics: health checks, logging, secret handling, timeouts, resource limits, and rollback notes.",
-            "Deploy or simulate deployment, then measure startup time, request latency, error behavior, and the steps needed to debug an incident."
+            "Expose high-level semantic metric tools (e.g., `get_monthly_retention`) alongside raw read-only SQL to prevent inconsistent metric definitions.",
+            "Require the agent to show the exact SQL and row counts behind every chart or insight.",
+            "Test agent trajectories on ambiguous business questions."
           ],
           "references": [
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "Uvicorn Deployment",
-              "url": "https://www.uvicorn.org/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Security",
+          "focus": "Security, Privacy & Data Governance",
           "tasks": [
-            "Handle user data safely",
-            "Test prompt injection",
-            "Add role-based access basics"
+            "Implement PII masking and column-level access controls before data reaches external LLM APIs",
+            "Test your AI analyst system against prompt injection and unauthorized data-exfiltration attempts",
+            "Document compliance with company data policies and NIST AI RMF"
           ],
           "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
+            "Never send raw customer PII or confidential financial rows to third-party APIs without approved enterprise DPAs and masking.",
+            "Enforce row-level and column-level security in the database layer, not in the system prompt.",
+            "Audit query logs for suspicious patterns or injection attempts."
           ],
           "references": [
             {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone",
+          "focus": "Capstone: Production AI Analytics System",
           "tasks": [
-            "Ship an analytics-to-AI assistant",
-            "Write implementation docs",
-            "Create a portfolio walkthrough"
+            "Ship an end-to-end AI analytics/RAG application with FastAPI, DuckDB/pgvector, MCP, and CI evals",
+            "Publish a case study highlighting business impact, eval methodology, and cost controls",
+            "Prepare for AI Engineer interviews emphasizing data rigor, evals, and production Python"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Frame your analytics background as a superpower: most AI teams struggle with data quality and evaluation, where you excel.",
+            "Demonstrate clean code, automated tests, and measurable accuracy improvements over a naive baseline.",
+            "Practice explaining architecture and data-pipeline tradeoffs clearly."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "current_role": "Data Analyst",
-      "target_ai_role": "ML Engineer",
-      "title": "Data Analyst to ML Engineer",
-      "summary": "A data-heavy path into production-grade model development, pipelines, monitoring, and deployment.",
-      "base_difficulty": 72,
-      "months": [
-        {
-          "month": 1,
-          "focus": "JavaScript Engineering",
-          "tasks": [
-            "Move analysis code into modules",
-            "Write pytest tests",
-            "Practice Git branching"
-          ],
-          "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
-          ],
-          "references": [
-            {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
-            },
-            {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
-            },
-            {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
-            }
-          ]
-        },
-        {
-          "month": 2,
-          "focus": "Statistics for ML",
-          "tasks": [
-            "Review distributions and hypothesis testing",
-            "Connect statistics to model evaluation",
-            "Explain uncertainty clearly"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
-            },
-            {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "Classical Models",
-          "tasks": [
-            "Train regression and tree models",
-            "Tune hyperparameters",
-            "Compare baselines"
-          ],
-          "upskilling_instructions": [
-            "Start with a simple baseline model, then improve only after you can explain the target, features, split strategy, and evaluation metric.",
-            "Run at least three model comparisons and record what changed, why it changed, and whether it improved generalization or only training performance.",
-            "Close the month with an error analysis: inspect false positives, false negatives, weak segments, and the next data or feature bet."
-          ],
-          "references": [
-            {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
-            },
-            {
-              "title": "scikit-learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "Feature Pipelines",
-          "tasks": [
-            "Build reusable preprocessing",
-            "Avoid leakage",
-            "Version feature definitions"
-          ],
-          "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
-          ],
-          "references": [
-            {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
-            },
-            {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
-            },
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            }
-          ]
-        },
-        {
-          "month": 5,
-          "focus": "Experimentation",
-          "tasks": [
-            "Use experiment tracking",
-            "Run ablation studies",
-            "Create model selection reports"
-          ],
-          "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
-          ],
-          "references": [
-            {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
-            },
-            {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
-            },
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            }
-          ]
-        },
-        {
-          "month": 6,
-          "focus": "Deep Learning Basics",
-          "tasks": [
-            "Train simple neural networks",
-            "Understand embeddings",
-            "Use validation curves"
-          ],
-          "upskilling_instructions": [
-            "Create a small corpus, generate embeddings, and manually inspect nearest-neighbor results to build intuition for semantic similarity.",
-            "Experiment with chunk size, metadata, filtering, and similarity thresholds; record where retrieval improves and where it becomes noisy.",
-            "Deliver a searchable prototype with evaluation queries, expected matches, and notes on cost, refresh cadence, and privacy boundaries."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Embeddings API Reference",
-              "url": "https://platform.openai.com/docs/api-reference/embeddings"
-            },
-            {
-              "title": "OpenAI Embeddings FAQ",
-              "url": "https://openai.com/index/introducing-text-and-code-embeddings/"
-            },
-            {
-              "title": "Google MLCC: Embeddings",
-              "url": "https://developers.google.com/machine-learning/crash-course/embeddings"
-            }
-          ]
-        },
-        {
-          "month": 7,
-          "focus": "Model Packaging",
-          "tasks": [
-            "Serialize models safely",
-            "Create inference wrappers",
-            "Add schema validation"
-          ],
-          "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
-          ],
-          "references": [
-            {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
-            },
-            {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
-            },
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            }
-          ]
-        },
-        {
-          "month": 8,
-          "focus": "Serving",
-          "tasks": [
-            "Build online prediction APIs",
-            "Add batch scoring jobs",
-            "Benchmark latency"
-          ],
-          "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
-          ],
-          "references": [
-            {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
-            },
-            {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
-            },
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            }
-          ]
-        },
-        {
-          "month": 9,
-          "focus": "Orchestration",
-          "tasks": [
-            "Schedule training workflows",
-            "Add data quality checks",
-            "Create failure alerts"
-          ],
-          "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
-          ],
-          "references": [
-            {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
-            },
-            {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
-            },
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            }
-          ]
-        },
-        {
-          "month": 10,
-          "focus": "Monitoring",
-          "tasks": [
-            "Track drift",
-            "Monitor prediction distributions",
-            "Define retraining criteria"
-          ],
-          "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
-          ],
-          "references": [
-            {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
-            },
-            {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
-            },
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "Responsible ML",
-          "tasks": [
-            "Audit error segments",
-            "Create explainability reports",
-            "Write model cards"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 12,
-          "focus": "Capstone",
-          "tasks": [
-            "Deliver a production-style ML project",
-            "Publish code and documentation",
-            "Practice ML system design"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "current_role": "Data Analyst",
-      "target_ai_role": "AI Product Manager",
-      "title": "Data Analyst to AI Product Manager",
-      "summary": "A path that uses analytics strengths to drive AI product discovery, prioritization, experimentation, and business outcomes.",
-      "base_difficulty": 58,
-      "months": [
-        {
-          "month": 1,
-          "focus": "Product Foundations",
-          "tasks": [
-            "Learn product discovery basics",
-            "Study AI product examples",
-            "Translate metrics into user problems"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Mathematics for ML Book",
-              "url": "https://mml-book.github.io/"
-            },
-            {
-              "title": "Kaggle Learn: Python",
-              "url": "https://www.kaggle.com/learn/python"
-            },
-            {
-              "title": "Google MLCC: ML Prereqs",
-              "url": "https://developers.google.com/machine-learning/crash-course/prereqs-and-prework"
-            }
-          ]
-        },
-        {
-          "month": 2,
-          "focus": "User Research",
-          "tasks": [
-            "Conduct five customer interviews",
-            "Synthesize themes",
-            "Write opportunity briefs"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "AI Fluency",
-          "tasks": [
-            "Learn LLM and ML product patterns",
-            "Map model capabilities to user jobs",
-            "Document AI constraints"
-          ],
-          "upskilling_instructions": [
-            "Build prompts as versioned artifacts: state the task, audience, context, constraints, examples, output schema, and refusal boundaries.",
-            "Compare prompt variants against the same test set, then measure correctness, format adherence, latency, and failure modes instead of relying on vibes.",
-            "Finish with a small LLM feature that validates structured output and gives users a graceful path when the answer is uncertain."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Prompt Engineering Best Practices",
-              "url": "https://openai.com/academy/prompting/"
-            },
-            {
-              "title": "OpenAI Text Generation Guide",
-              "url": "https://platform.openai.com/docs/guides/text-generation"
-            },
-            {
-              "title": "Google MLCC: Large Language Models",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "Metric Design",
-          "tasks": [
-            "Define north-star and guardrail metrics",
-            "Create quality metrics for AI outputs",
-            "Build a measurement plan"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Google: People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            },
-            {
-              "title": "NN/g: UX for AI Research",
-              "url": "https://www.nngroup.com/articles/ai-ux/"
-            },
-            {
-              "title": "UX Collective: Designing AI",
-              "url": "https://uxdesign.cc/"
-            }
-          ]
-        },
-        {
-          "month": 5,
-          "focus": "PRDs",
-          "tasks": [
-            "Write a concise PRD",
-            "Define MVP scope",
-            "Create launch criteria"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 6,
-          "focus": "Prototyping",
-          "tasks": [
-            "Create a low-code AI prototype",
-            "Run usability sessions",
-            "Prioritize improvements"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 7,
-          "focus": "Experimentation",
-          "tasks": [
-            "Design A/B tests",
-            "Build success dashboards",
-            "Connect product usage to quality signals"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Hugging Face NLP Course",
-              "url": "https://huggingface.co/learn/nlp-course"
-            },
-            {
-              "title": "OpenAI: Prompt Engineering",
-              "url": "https://platform.openai.com/docs/guides/prompt-engineering"
-            },
-            {
-              "title": "OWASP Top 10 LLM Apps",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            }
-          ]
-        },
-        {
-          "month": 8,
-          "focus": "Cross-Functional Execution",
-          "tasks": [
-            "Run sprint planning rituals",
-            "Manage tradeoff decisions",
-            "Document dependencies"
-          ],
-          "upskilling_instructions": [
-            "Spend the first week rebuilding fundamentals with short daily coding sessions, then convert one familiar work task into reusable JavaScript.",
-            "By mid-month, practice reading files, transforming data, handling errors, and writing functions that can be tested without manual setup.",
-            "Finish with a small repo that includes a README, sample input data, and evidence that the app logic works on more than one case."
-          ],
-          "references": [
-            {
-              "title": "JavaScript Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
-            },
-            {
-              "title": "NumPy Absolute Beginners Guide",
-              "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
-            },
-            {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
-            }
-          ]
-        },
-        {
-          "month": 9,
-          "focus": "Risk",
-          "tasks": [
-            "Assess privacy, bias, and misuse risks",
-            "Design review workflows",
-            "Create policy notes"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 10,
-          "focus": "Launch",
-          "tasks": [
-            "Plan beta cohorts",
-            "Create enablement materials",
-            "Gather launch feedback"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "Strategy",
-          "tasks": [
-            "Create market and competitor analysis",
-            "Build a 6-month roadmap",
-            "Present investment rationale"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 12,
-          "focus": "Portfolio",
-          "tasks": [
-            "Write a data-driven AI PM case study",
-            "Show product judgment with metrics",
-            "Prepare interview narratives"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         }
@@ -2074,1032 +1039,342 @@ window.ROADMAP_DATA = {
       "current_role": "Product Manager",
       "target_ai_role": "AI Engineer",
       "title": "Product Manager to AI Engineer",
-      "summary": "A technical transition path emphasizing JavaScript, web APIs, ML fundamentals, and hands-on AI application construction.",
-      "base_difficulty": 86,
+      "summary": "An intensive 2026 transition from product strategy into hands-on Python engineering, LLM/RAG architecture, MCP agents, and production deployment.",
+      "base_difficulty": 84,
       "months": [
         {
           "month": 1,
-          "focus": "JavaScript Fundamentals",
+          "focus": "Python & Developer Tooling Foundations",
           "tasks": [
-            "Complete daily JavaScript exercises",
-            "Learn functions, classes, and modules",
-            "Build a command-line utility"
+            "Learn core Python syntax, data structures, functions, and error handling using uv",
+            "Use Git, GitHub, and terminal workflows daily for versioned code",
+            "Build a small Python CLI that reads, cleans, and summarizes CSV/JSON files"
           ],
           "upskilling_instructions": [
-            "Spend the first week rebuilding fundamentals with short daily coding sessions, then convert one familiar work task into reusable JavaScript.",
-            "By mid-month, practice reading files, transforming data, handling errors, and writing functions that can be tested without manual setup.",
-            "Finish with a small repo that includes a README, sample input data, and evidence that the app logic works on more than one case."
+            "Write code every single day and commit small working increments to Git rather than trying to read everything passively.",
+            "Use AI coding assistants to explain errors and write tests, but make sure you can trace and debug every line yourself.",
+            "Verify your CLI with pytest on edge cases like empty files and malformed rows."
           ],
           "references": [
             {
-              "title": "JavaScript Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "NumPy Absolute Beginners Guide",
-              "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
             },
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Developer Workflow",
+          "focus": "Software Practices & Data Manipulation",
           "tasks": [
-            "Use Git and virtual environments",
-            "Write tests with pytest",
-            "Read and debug existing code"
+            "Write modular Python code with type hints, Pydantic v2 models, and ruff linting",
+            "Process structured datasets using Polars and DuckDB SQL queries",
+            "Build unit tests and practice debugging with logs and breakpoints"
           ],
           "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
+            "Focus on clean data contracts: define what valid input and output look like before writing business logic.",
+            "Practice reading stack traces methodically to isolate root causes.",
+            "Write small, single-purpose functions that are easy to test."
           ],
           "references": [
             {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
-            },
-            {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
-            },
-            {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "Web APIs",
-          "tasks": [
-            "Learn HTTP and JSON",
-            "Build a JavaScript web app",
-            "Add validation and error handling"
-          ],
-          "upskilling_instructions": [
-            "Build one API from scratch with typed request and response models, clear validation errors, and a small set of realistic sample requests.",
-            "Practice the full request lifecycle: route design, schema validation, status codes, exception handling, logging, and basic security boundaries.",
-            "Ship a working local demo with API docs, curl examples, and tests for both successful and invalid inputs."
-          ],
-          "references": [
-            {
-              "title": "MDN Web API Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs"
-            },
-            {
-              "title": "Pydantic Documentation",
+              "title": "Pydantic v2 Documentation",
               "url": "https://docs.pydantic.dev/latest/"
             },
             {
-              "title": "MDN HTTP Overview",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "Data Handling",
-          "tasks": [
-            "Use pandas for datasets",
-            "Clean and transform text data",
-            "Create reproducible scripts"
-          ],
-          "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
-          ],
-          "references": [
-            {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
             },
             {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
-            },
-            {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
-            }
-          ]
-        },
-        {
-          "month": 5,
-          "focus": "ML Concepts",
-          "tasks": [
-            "Train basic models",
-            "Understand evaluation metrics",
-            "Explain model limitations"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
-            },
-            {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
-            }
-          ]
-        },
-        {
-          "month": 6,
-          "focus": "LLM Apps",
-          "tasks": [
-            "Build prompt-driven features",
-            "Add structured output parsing",
-            "Create evaluation samples"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "OpenAI: Prompt Engineering",
-              "url": "https://platform.openai.com/docs/guides/prompt-engineering"
-            },
-            {
-              "title": "Hugging Face: NLP Course",
-              "url": "https://huggingface.co/learn/nlp-course"
-            },
-            {
-              "title": "Google MLCC: LLMs",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
-            }
-          ]
-        },
-        {
-          "month": 7,
-          "focus": "Embeddings and Search",
-          "tasks": [
-            "Build semantic search",
-            "Experiment with chunk sizes",
-            "Measure retrieval relevance"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Pinecone: Vector Embeddings Guide",
-              "url": "https://www.pinecone.io/learn/vector-embeddings/"
-            },
-            {
-              "title": "Hugging Face: Embeddings Hub",
-              "url": "https://huggingface.co/blog/getting-started-with-embeddings"
-            },
-            {
-              "title": "OpenAI: Embeddings API Guide",
-              "url": "https://platform.openai.com/docs/guides/embeddings"
-            }
-          ]
-        },
-        {
-          "month": 8,
-          "focus": "RAG",
-          "tasks": [
-            "Create a document Q&A app",
-            "Return citations",
-            "Evaluate hallucination risks"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 9,
-          "focus": "Backend Quality",
-          "tasks": [
-            "Add logging and monitoring",
-            "Handle secrets and config",
-            "Create CI checks"
-          ],
-          "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
-          ],
-          "references": [
-            {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
-            },
-            {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
-            },
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            }
-          ]
-        },
-        {
-          "month": 10,
-          "focus": "Deployment",
-          "tasks": [
-            "Containerize the service",
-            "Deploy a live demo",
-            "Measure latency and cost"
-          ],
-          "upskilling_instructions": [
-            "Package the app so another person can run it without hidden local assumptions: environment variables, dependency pins, and clear startup commands.",
-            "Add production-minded basics: health checks, logging, secret handling, timeouts, resource limits, and rollback notes.",
-            "Deploy or simulate deployment, then measure startup time, request latency, error behavior, and the steps needed to debug an incident."
-          ],
-          "references": [
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            },
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "Uvicorn Deployment",
-              "url": "https://www.uvicorn.org/"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "AI Safety",
-          "tasks": [
-            "Test prompt injection",
-            "Add content safeguards",
-            "Document data boundaries"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 12,
-          "focus": "Capstone",
-          "tasks": [
-            "Ship a polished AI app",
-            "Publish architecture notes",
-            "Practice engineering interviews"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "current_role": "Product Manager",
-      "target_ai_role": "ML Engineer",
-      "title": "Product Manager to ML Engineer",
-      "summary": "A demanding path from product work into model development, software engineering, data pipelines, and MLOps.",
-      "base_difficulty": 90,
-      "months": [
-        {
-          "month": 1,
-          "focus": "Programming Basics",
-          "tasks": [
-            "Practice JavaScript daily",
-            "Understand data structures",
-            "Build small scripts"
-          ],
-          "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
-          ],
-          "references": [
-            {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
-            },
-            {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
-            },
-            {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
-            }
-          ]
-        },
-        {
-          "month": 2,
-          "focus": "Software Practices",
-          "tasks": [
-            "Use Git",
-            "Write tests",
-            "Refactor code into modules"
-          ],
-          "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
-          ],
-          "references": [
-            {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
-            },
-            {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
-            },
-            {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Math Foundations",
+          "focus": "Web APIs & Backend Services",
           "tasks": [
-            "Study linear algebra basics",
-            "Review probability",
-            "Connect math to model behavior"
+            "Understand HTTP, JSON, REST, SSE streaming, and authentication basics",
+            "Build a FastAPI service that validates requests and calls external APIs cleanly",
+            "Add structured logging, timeouts, and error handling to your endpoints"
           ],
           "upskilling_instructions": [
-            "Start with a simple baseline model, then improve only after you can explain the target, features, split strategy, and evaluation metric.",
-            "Run at least three model comparisons and record what changed, why it changed, and whether it improved generalization or only training performance.",
-            "Close the month with an error analysis: inspect false positives, false negatives, weak segments, and the next data or feature bet."
+            "Trace the full lifecycle of a request from client to FastAPI route to external model API and back.",
+            "Test failure scenarios (429 rate limits, 500 errors, timeouts) and return clear client responses.",
+            "Keep secrets in environment variables, never hardcoded in source files."
           ],
           "references": [
             {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "scikit-learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "MDN Web Docs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "Data Science Basics",
+          "focus": "Machine Learning Fundamentals",
           "tasks": [
-            "Use pandas and visualization libraries",
-            "Clean datasets",
-            "Create train-test splits"
+            "Learn supervised vs unsupervised learning, train/test splits, and evaluation metrics",
+            "Train simple scikit-learn models to understand features, overfitting, and baselines",
+            "Analyze precision, recall, and confusion matrices on real datasets"
           ],
           "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
+            "Understanding classical ML prevents you from using expensive LLMs for problems a tiny classifier solves in 2ms.",
+            "Focus on why models fail: bad data, leakage, class imbalance, or distribution shift.",
+            "Document clear metric definitions for every experiment."
           ],
           "references": [
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             },
             {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
             },
             {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Classical ML",
+          "focus": "LLM APIs & Context Engineering",
           "tasks": [
-            "Train baseline models",
-            "Tune hyperparameters",
-            "Analyze errors"
+            "Build applications using structured outputs, system prompts, and model routing",
+            "Compare standard models vs reasoning models on latency, cost, and quality",
+            "Implement prompt versioning and golden test cases"
           ],
           "upskilling_instructions": [
-            "Start with a simple baseline model, then improve only after you can explain the target, features, split strategy, and evaluation metric.",
-            "Run at least three model comparisons and record what changed, why it changed, and whether it improved generalization or only training performance.",
-            "Close the month with an error analysis: inspect false positives, false negatives, weak segments, and the next data or feature bet."
+            "Treat prompts as versioned code artifacts, not ad-hoc strings scattered across files.",
+            "Test structured outputs with strict schemas and automated retries on validation failure.",
+            "Measure token cost and latency per user workflow."
           ],
           "references": [
             {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "scikit-learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Feature Engineering",
+          "focus": "Embeddings & RAG Systems",
           "tasks": [
-            "Create preprocessing pipelines",
-            "Prevent leakage",
-            "Version datasets"
+            "Learn how vector embeddings and hybrid search (BM25 + dense + reranking) work",
+            "Build a RAG pipeline over product docs or support tickets using pgvector or Qdrant",
+            "Add source citations and measure retrieval quality separately from answer generation"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Debug bad RAG answers by inspecting the retrieved chunks first—80% of RAG failures are retrieval or chunking problems.",
+            "Preserve document headings and metadata during ingestion.",
+            "Compare answers with and without reranking."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "Deep Learning",
+          "focus": "Evaluation & Observability",
           "tasks": [
-            "Learn neural network basics",
-            "Train PyTorch models",
-            "Experiment with embeddings"
+            "Build an evaluation suite with golden datasets and LLM-as-a-judge rubrics",
+            "Instrument traces, token usage, and latency with Langfuse and OpenTelemetry",
+            "Set up automated eval checks in GitHub Actions"
           ],
           "upskilling_instructions": [
-            "Create a small corpus, generate embeddings, and manually inspect nearest-neighbor results to build intuition for semantic similarity.",
-            "Experiment with chunk size, metadata, filtering, and similarity thresholds; record where retrieval improves and where it becomes noisy.",
-            "Deliver a searchable prototype with evaluation queries, expected matches, and notes on cost, refresh cadence, and privacy boundaries."
+            "Use your PM skill of defining clear acceptance criteria to write sharp, unambiguous eval rubrics.",
+            "Review failed eval traces weekly and categorize root causes.",
+            "Never ship a prompt or model change without comparing against your baseline eval."
           ],
           "references": [
             {
-              "title": "OpenAI Embeddings API Reference",
-              "url": "https://platform.openai.com/docs/api-reference/embeddings"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "OpenAI Embeddings FAQ",
-              "url": "https://openai.com/index/introducing-text-and-code-embeddings/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Google MLCC: Embeddings",
-              "url": "https://developers.google.com/machine-learning/crash-course/embeddings"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Model Serving",
+          "focus": "MCP & Agentic Workflows",
           "tasks": [
-            "Build prediction APIs",
-            "Package models",
-            "Benchmark inference"
+            "Build a simple MCP server and connect it to an LLM agent with strict tool schemas",
+            "Implement human-in-the-loop confirmation steps and step limits",
+            "Evaluate agent task completion rate and failure modes"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Start with deterministic workflows and add autonomous agent loops only where dynamic planning is genuinely needed.",
+            "Require explicit user approval before any irreversible external action.",
+            "Log every tool call and return value for debugging."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Pipelines",
+          "focus": "System Reliability & Cost Engineering",
           "tasks": [
-            "Create scheduled training jobs",
-            "Add data validation",
-            "Automate reports"
+            "Add caching, rate limiting, and provider fallbacks to your FastAPI AI backend",
+            "Handle async background jobs for long-running AI workflows",
+            "Model unit economics: cost per active user and gross margin impact"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Design graceful fallbacks so users get a helpful degraded experience if a model API is slow or down.",
+            "Use prompt caching and smaller models for classification/routing to keep unit costs sustainable.",
+            "Load-test your API endpoints before sharing demos."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "MLOps",
+          "focus": "Deployment & Cloud Operations",
           "tasks": [
-            "Track experiments",
-            "Create CI for ML code",
-            "Define model promotion gates"
+            "Containerize your AI application with Docker and deploy to a cloud platform",
+            "Configure environment secrets, health checks, and CI/CD pipelines",
+            "Monitor production logs, error rates, and daily token spend"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Automate builds and deployments via GitHub Actions so shipping fixes is fast and repeatable.",
+            "Verify health checks and rollback procedures work in practice.",
+            "Set billing alerts on all model provider accounts."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Monitoring",
+          "focus": "AI Security, Safety & Governance",
           "tasks": [
-            "Track drift and performance",
-            "Set retraining triggers",
-            "Write model cards"
+            "Test your application against prompt injection and data-leakage scenarios",
+            "Add input/output guardrails, PII redaction, and safe tool permissions",
+            "Map your system's risks to OWASP LLM Top 10 and NIST AI RMF"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Ensure authorization happens in backend code before data is ever placed into a prompt.",
+            "Sandbox any code or file-system tools.",
+            "Write a clear AI safety & data-handling brief for your project."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
-            },
-            {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
-            },
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            }
-          ]
-        },
-        {
-          "month": 12,
-          "focus": "Portfolio",
-          "tasks": [
-            "Ship an end-to-end ML system",
-            "Document tradeoffs",
-            "Prepare system design stories"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "current_role": "Product Manager",
-      "target_ai_role": "AI Product Manager",
-      "title": "Product Manager to AI Product Manager",
-      "summary": "A focused PM upskilling path for AI-native strategy, model evaluation, responsible launch, and AI product growth.",
-      "base_difficulty": 48,
-      "months": [
-        {
-          "month": 1,
-          "focus": "AI Product Models",
-          "tasks": [
-            "Study LLM, RAG, fine-tuning, and agents",
-            "Map capabilities to product use cases",
-            "Create an AI vocabulary brief"
-          ],
-          "upskilling_instructions": [
-            "Start with one tool and one narrow task; define exactly when the model may call the tool, what arguments are allowed, and what requires confirmation.",
-            "Test agent behavior with success cases, ambiguous requests, malicious instructions, missing data, and tool failures.",
-            "Ship a constrained workflow with audit logs, permission checks, tool output validation, and a human handoff path."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Function Calling Help",
-              "url": "https://openai.com/index/function-calling-and-other-api-updates/"
-            },
-            {
-              "title": "OpenAI File Search Guide",
-              "url": "https://platform.openai.com/docs/guides/assistants/tools/file-search"
-            },
-            {
-              "title": "OWASP LLM Top 10",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            }
-          ]
-        },
-        {
-          "month": 2,
-          "focus": "Use Case Selection",
-          "tasks": [
-            "Identify high-friction workflows",
-            "Prioritize AI opportunities",
-            "Define feasibility and value criteria"
-          ],
-          "upskilling_instructions": [
-            "Spend the first week rebuilding fundamentals with short daily coding sessions, then convert one familiar work task into reusable JavaScript.",
-            "By mid-month, practice reading files, transforming data, handling errors, and writing functions that can be tested without manual setup.",
-            "Finish with a small repo that includes a README, sample input data, and evidence that the app logic works on more than one case."
-          ],
-          "references": [
-            {
-              "title": "JavaScript Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
-            },
-            {
-              "title": "NumPy Absolute Beginners Guide",
-              "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
-            },
-            {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "Discovery",
-          "tasks": [
-            "Run targeted interviews",
-            "Validate willingness to use AI assistance",
-            "Capture trust concerns"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "PRD for AI",
-          "tasks": [
-            "Write AI-specific specs",
-            "Define human review states",
-            "Set output quality thresholds"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
-            },
-            {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
-            }
-          ]
-        },
-        {
-          "month": 5,
-          "focus": "Evaluation",
-          "tasks": [
-            "Create evaluation datasets",
-            "Define rubrics",
-            "Review model outputs with SMEs"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
-            },
-            {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
-            },
-            {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
-            }
-          ]
-        },
-        {
-          "month": 6,
-          "focus": "Prototype",
-          "tasks": [
-            "Build or coordinate an AI prototype",
-            "Run usability tests",
-            "Track failure modes"
-          ],
-          "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
-          ],
-          "references": [
-            {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
-            },
-            {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
-            },
-            {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
-            }
-          ]
-        },
-        {
-          "month": 7,
-          "focus": "Safety and Privacy",
-          "tasks": [
-            "Define data boundaries",
-            "Plan abuse prevention",
-            "Create escalation paths"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 8,
-          "focus": "Experiment Design",
-          "tasks": [
-            "Define rollout metrics",
-            "Plan A/B tests",
-            "Create quality guardrails"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Google: People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            },
-            {
-              "title": "NN/g: UX for AI Research",
-              "url": "https://www.nngroup.com/articles/ai-ux/"
-            },
-            {
-              "title": "UX Collective: Designing AI",
-              "url": "https://uxdesign.cc/"
-            }
-          ]
-        },
-        {
-          "month": 9,
-          "focus": "Launch Planning",
-          "tasks": [
-            "Plan beta launch",
-            "Write enablement materials",
-            "Prepare support workflows"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 10,
-          "focus": "Growth",
-          "tasks": [
-            "Analyze adoption funnels",
-            "Improve onboarding",
-            "Prioritize retention bets"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "Strategy",
-          "tasks": [
-            "Create AI product vision",
-            "Map competitive differentiation",
-            "Present roadmap tradeoffs"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Leadership Portfolio",
+          "focus": "Engineering Capstone & Career Transition",
           "tasks": [
-            "Publish an AI PM case study",
-            "Show measurable outcomes",
-            "Prepare executive interview stories"
+            "Ship a complete, deployed AI product with clean code, tests, evals, and observability",
+            "Write an engineering architecture doc explaining technical tradeoffs you made",
+            "Practice coding and AI system-design interviews to prove hands-on execution"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Your differentiator is combining product judgment with real, tested, deployed engineering code.",
+            "Be ready to walk through your codebase, eval results, and debugging stories line by line.",
+            "Target hybrid roles like Forward Deployed AI Engineer or Founding AI Engineer alongside core AI Engineer roles."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         }
@@ -3109,1032 +1384,342 @@ window.ROADMAP_DATA = {
       "current_role": "UX Designer",
       "target_ai_role": "AI Engineer",
       "title": "UX Designer to AI Engineer",
-      "summary": "A hands-on technical path that turns UX intuition into AI prototyping, full-stack implementation, and production-minded AI systems.",
-      "base_difficulty": 88,
+      "summary": "A 2026 pathway from UX design into full-stack TypeScript/Python AI engineering, generative UI, streaming interactions, RAG, and evaluated AI products.",
+      "base_difficulty": 84,
       "months": [
         {
           "month": 1,
-          "focus": "JavaScript Basics",
+          "focus": "Programming Foundations in TypeScript & Python",
           "tasks": [
-            "Practice JavaScript syntax daily",
-            "Build small automation scripts",
-            "Learn debugging basics"
+            "Learn TypeScript fundamentals, async/await, and Zod schemas for web AI apps",
+            "Set up Python with uv for running data, embedding, and evaluation scripts",
+            "Build a small interactive script or CLI using versioned Git commits"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Pair your visual intuition with code by building small, working interactive prototypes every week.",
+            "Use Git from day one so you can experiment freely and roll back broken changes.",
+            "Learn to read console errors and API payloads methodically."
           ],
           "references": [
             {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+              "title": "TypeScript Handbook",
+              "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
             },
             {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
             },
             {
-              "title": "StatQuest ML basics",
-              "url": "https://youtube.com/@statquest"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Web Foundations",
+          "focus": "Web Foundations & Streaming UI",
           "tasks": [
-            "Learn HTTP and APIs",
-            "Build a JavaScript app interface",
-            "Connect forms to endpoints"
+            "Build accessible HTML/CSS/TypeScript interfaces that handle streaming text and loading states",
+            "Use the Vercel AI SDK to connect a frontend interface to an LLM backend",
+            "Design clear states for thinking, tool execution, cancellation, and error recovery"
           ],
           "upskilling_instructions": [
-            "Build one API from scratch with typed request and response models, clear validation errors, and a small set of realistic sample requests.",
-            "Practice the full request lifecycle: route design, schema validation, status codes, exception handling, logging, and basic security boundaries.",
-            "Ship a working local demo with API docs, curl examples, and tests for both successful and invalid inputs."
+            "Design for latency from the start: streaming tokens, skeleton states, and optimistic UI make AI feel twice as fast.",
+            "Ensure keyboard navigation and screen-reader announcements work smoothly during live streaming.",
+            "Test how your UI behaves when a stream drops mid-sentence."
           ],
           "references": [
             {
-              "title": "MDN Web API Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             },
             {
-              "title": "Pydantic Documentation",
-              "url": "https://docs.pydantic.dev/latest/"
+              "title": "MDN Web Docs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web"
             },
             {
-              "title": "MDN HTTP Overview",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
+              "title": "TypeScript Handbook",
+              "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Data Skills",
+          "focus": "APIs, Backends & Structured Outputs",
           "tasks": [
-            "Use pandas for structured data",
-            "Clean text datasets",
-            "Create simple charts"
+            "Build a FastAPI or Node/TypeScript backend endpoint with schema validation",
+            "Use LLM structured outputs to drive rich Generative UI components (cards, forms, tables)",
+            "Implement server-side secret management, rate limiting, and retries"
           ],
           "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
+            "Validate every model response with Zod or Pydantic before rendering dynamic UI components.",
+            "Separate presentation logic from prompt templates so you can iterate on both independently.",
+            "Log request latency and token usage on the server."
           ],
           "references": [
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
             },
             {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "ML Foundations",
+          "focus": "Machine Learning & Embedding Intuition",
           "tasks": [
-            "Train simple models",
-            "Understand evaluation metrics",
-            "Document error cases"
+            "Learn core ML concepts: classification, embeddings, similarity, and evaluation metrics",
+            "Explore scikit-learn and vector embeddings to see how semantic search works",
+            "Build a visual explorer showing how text chunks cluster by embedding similarity"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Mathematics for ML Book",
-              "url": "https://mml-book.github.io/"
-            },
-            {
-              "title": "Kaggle Learn: Python",
-              "url": "https://www.kaggle.com/learn/python"
-            },
-            {
-              "title": "Google MLCC: ML Prereqs",
-              "url": "https://developers.google.com/machine-learning/crash-course/prereqs-and-prework"
-            }
-          ]
-        },
-        {
-          "month": 5,
-          "focus": "LLM Prototyping",
-          "tasks": [
-            "Create prompt workflows",
-            "Design structured outputs",
-            "Test UX of AI uncertainty"
-          ],
-          "upskilling_instructions": [
-            "Build prompts as versioned artifacts: state the task, audience, context, constraints, examples, output schema, and refusal boundaries.",
-            "Compare prompt variants against the same test set, then measure correctness, format adherence, latency, and failure modes instead of relying on vibes.",
-            "Finish with a small LLM feature that validates structured output and gives users a graceful path when the answer is uncertain."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Prompt Engineering Best Practices",
-              "url": "https://openai.com/academy/prompting/"
-            },
-            {
-              "title": "OpenAI Text Generation Guide",
-              "url": "https://platform.openai.com/docs/guides/text-generation"
-            },
-            {
-              "title": "Google MLCC: Large Language Models",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
-            }
-          ]
-        },
-        {
-          "month": 6,
-          "focus": "Embeddings",
-          "tasks": [
-            "Build semantic search",
-            "Compare query results",
-            "Design relevance feedback loops"
-          ],
-          "upskilling_instructions": [
-            "Create a small corpus, generate embeddings, and manually inspect nearest-neighbor results to build intuition for semantic similarity.",
-            "Experiment with chunk size, metadata, filtering, and similarity thresholds; record where retrieval improves and where it becomes noisy.",
-            "Deliver a searchable prototype with evaluation queries, expected matches, and notes on cost, refresh cadence, and privacy boundaries."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Embeddings API Reference",
-              "url": "https://platform.openai.com/docs/api-reference/embeddings"
-            },
-            {
-              "title": "OpenAI Embeddings FAQ",
-              "url": "https://openai.com/index/introducing-text-and-code-embeddings/"
-            },
-            {
-              "title": "Google MLCC: Embeddings",
-              "url": "https://developers.google.com/machine-learning/crash-course/embeddings"
-            }
-          ]
-        },
-        {
-          "month": 7,
-          "focus": "RAG Product",
-          "tasks": [
-            "Create document Q&A",
-            "Show citations in UI",
-            "Evaluate answer trust"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 8,
-          "focus": "Engineering Quality",
-          "tasks": [
-            "Add tests",
-            "Handle errors gracefully",
-            "Create logging"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Hugging Face NLP Course",
-              "url": "https://huggingface.co/learn/nlp-course"
-            },
-            {
-              "title": "OpenAI: Prompt Engineering",
-              "url": "https://platform.openai.com/docs/guides/prompt-engineering"
-            },
-            {
-              "title": "OWASP Top 10 LLM Apps",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            }
-          ]
-        },
-        {
-          "month": 9,
-          "focus": "Deployment",
-          "tasks": [
-            "Deploy a working app",
-            "Use environment variables",
-            "Monitor latency"
-          ],
-          "upskilling_instructions": [
-            "Package the app so another person can run it without hidden local assumptions: environment variables, dependency pins, and clear startup commands.",
-            "Add production-minded basics: health checks, logging, secret handling, timeouts, resource limits, and rollback notes.",
-            "Deploy or simulate deployment, then measure startup time, request latency, error behavior, and the steps needed to debug an incident."
-          ],
-          "references": [
-            {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
-            },
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "Uvicorn Deployment",
-              "url": "https://www.uvicorn.org/"
-            }
-          ]
-        },
-        {
-          "month": 10,
-          "focus": "Agents",
-          "tasks": [
-            "Build a tool-using assistant",
-            "Design confirmation flows",
-            "Measure completion quality"
-          ],
-          "upskilling_instructions": [
-            "Start with one tool and one narrow task; define exactly when the model may call the tool, what arguments are allowed, and what requires confirmation.",
-            "Test agent behavior with success cases, ambiguous requests, malicious instructions, missing data, and tool failures.",
-            "Ship a constrained workflow with audit logs, permission checks, tool output validation, and a human handoff path."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Function Calling Help",
-              "url": "https://openai.com/index/function-calling-and-other-api-updates/"
-            },
-            {
-              "title": "OpenAI File Search Guide",
-              "url": "https://platform.openai.com/docs/guides/assistants/tools/file-search"
-            },
-            {
-              "title": "OWASP LLM Top 10",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "Safety UX",
-          "tasks": [
-            "Design trust and review states",
-            "Test misuse scenarios",
-            "Document guardrails"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 12,
-          "focus": "Capstone",
-          "tasks": [
-            "Ship an AI UX prototype as real software",
-            "Publish code and design notes",
-            "Prepare portfolio storytelling"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "current_role": "UX Designer",
-      "target_ai_role": "ML Engineer",
-      "title": "UX Designer to ML Engineer",
-      "summary": "A deep technical transition into programming, data, modeling, serving, and MLOps with portfolio-ready proof points.",
-      "base_difficulty": 94,
-      "months": [
-        {
-          "month": 1,
-          "focus": "Programming Foundations",
-          "tasks": [
-            "Learn JavaScript fundamentals",
-            "Build scripts from UX workflow needs",
-            "Practice problem solving"
-          ],
-          "upskilling_instructions": [
-            "Design for trust by making AI state visible: confidence, sources, editability, review steps, user control, and graceful failure states.",
-            "Prototype the core interaction and test it with users before optimizing visuals; listen for confusion, over-trust, and unmet expectations.",
-            "Deliver interaction notes that specify empty states, loading states, error states, feedback capture, and safety copy."
-          ],
-          "references": [
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            },
-            {
-              "title": "Nielsen Norman Group AI Articles",
-              "url": "https://www.nngroup.com/articles/ai-paradigm/"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            }
-          ]
-        },
-        {
-          "month": 2,
-          "focus": "Software Workflow",
-          "tasks": [
-            "Use Git and GitHub",
-            "Write basic tests",
-            "Organize projects cleanly"
-          ],
-          "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
-          ],
-          "references": [
-            {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
-            },
-            {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
-            },
-            {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "Math for ML",
-          "tasks": [
-            "Study vectors and matrices",
-            "Review probability",
-            "Connect math concepts to model examples"
-          ],
-          "upskilling_instructions": [
-            "Start with a simple baseline model, then improve only after you can explain the target, features, split strategy, and evaluation metric.",
-            "Run at least three model comparisons and record what changed, why it changed, and whether it improved generalization or only training performance.",
-            "Close the month with an error analysis: inspect false positives, false negatives, weak segments, and the next data or feature bet."
+            "Understanding embeddings helps you design better search, clustering, and recommendation experiences.",
+            "Learn why models are probabilistic and why UX must handle uncertainty gracefully.",
+            "Document common failure modes like false positives and low-confidence matches."
           ],
           "references": [
             {
               "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "url": "https://developers.google.com/machine-learning/crash-course"
             },
             {
-              "title": "scikit-learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "Data Handling",
-          "tasks": [
-            "Use pandas",
-            "Clean datasets",
-            "Visualize distributions"
-          ],
-          "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
-          ],
-          "references": [
-            {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
-            },
-            {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
-            },
-            {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Classical ML",
+          "focus": "Multimodal, Voice & Browser AI",
           "tasks": [
-            "Train baseline models",
-            "Evaluate metrics",
-            "Analyze errors by segment"
+            "Build image/sketch-to-code or visual QA workflows using multimodal vision models",
+            "Experiment with client-side WebGPU / Transformers.js for instant local AI interactions",
+            "Prototype voice or real-time multimodal input with clear feedback states"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Use your design eye to craft seamless multimodal inputs (drag-and-drop, paste, annotated screenshots).",
+            "Provide visible confidence cues and easy manual correction whenever AI interprets visual or audio input.",
+            "Benchmark local WebGPU inference vs cloud API latency."
           ],
           "references": [
             {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+              "title": "MDN WebGPU API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API"
             },
             {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             },
             {
-              "title": "StatQuest ML basics",
-              "url": "https://youtube.com/@statquest"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Feature Engineering",
+          "focus": "RAG Systems & Trustworthy Citation UX",
           "tasks": [
-            "Build preprocessing pipelines",
-            "Encode categorical features",
-            "Prevent leakage"
+            "Build a hybrid search and RAG backend over a real knowledge base",
+            "Design and implement inline citations, source drawers, and confidence indicators",
+            "Measure retrieval quality and verify that citations accurately support generated claims"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Trust is a UX and engineering problem together: users trust AI when they can verify sources in one click.",
+            "Test how your UI handles 'I don't know / not in sources' responses cleanly.",
+            "Inspect retrieved chunks whenever an answer looks wrong."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "Deep Learning",
+          "focus": "Evaluations & Human-Centered Quality",
           "tasks": [
-            "Train neural networks",
-            "Learn embeddings",
-            "Experiment with transfer learning"
+            "Create golden test sets based on real user tasks and edge cases",
+            "Run automated evals with Promptfoo or Langfuse and correlate scores with user satisfaction",
+            "Wire in-app user feedback (thumbs, edits, regenerations) directly into eval datasets"
           ],
           "upskilling_instructions": [
-            "Create a small corpus, generate embeddings, and manually inspect nearest-neighbor results to build intuition for semantic similarity.",
-            "Experiment with chunk size, metadata, filtering, and similarity thresholds; record where retrieval improves and where it becomes noisy.",
-            "Deliver a searchable prototype with evaluation queries, expected matches, and notes on cost, refresh cadence, and privacy boundaries."
+            "Turn qualitative usability-test findings into automated eval assertions so fixes never regress.",
+            "Track edit distance (how much users edit AI drafts) as a real-world quality signal.",
+            "Run evals in CI before merging prompt or UI changes."
           ],
           "references": [
             {
-              "title": "OpenAI Embeddings API Reference",
-              "url": "https://platform.openai.com/docs/api-reference/embeddings"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "OpenAI Embeddings FAQ",
-              "url": "https://openai.com/index/introducing-text-and-code-embeddings/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Google MLCC: Embeddings",
-              "url": "https://developers.google.com/machine-learning/crash-course/embeddings"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Serving Models",
+          "focus": "MCP Tools & Human-in-the-Loop Agents",
           "tasks": [
-            "Create inference APIs",
-            "Validate inputs",
-            "Benchmark response times"
+            "Connect an AI interface to MCP tools with clear user-approval checkpoints",
+            "Build undo/rollback, step-by-step progress views, and editable action previews",
+            "Test multi-step agent workflows with real users to spot trust and control gaps"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Never let an agent perform a destructive or external action silently—preview the exact payload and ask for confirmation.",
+            "Design resumable UI states for long-running background agents.",
+            "Measure both task completion rate and user sense of control."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Training Pipelines",
+          "focus": "Observability & Performance Optimization",
           "tasks": [
-            "Automate training runs",
-            "Track experiments",
-            "Version models"
+            "Instrument end-to-end traces with OpenTelemetry and Langfuse",
+            "Optimize perceived and actual latency via prompt caching and smart model routing",
+            "Profile frontend bundle size, streaming render performance, and API costs"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Use fast models for instant UI helpers and reserve slower reasoning models for explicit deep-work actions.",
+            "Avoid re-rendering entire markdown trees on every streamed token.",
+            "Track cost per completed user task."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "MDN Web Docs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "MLOps",
+          "focus": "Deployment & Production Shipping",
           "tasks": [
-            "Create CI checks",
-            "Package models",
-            "Define promotion criteria"
+            "Containerize your backend with Docker and deploy your full-stack AI app",
+            "Set up CI/CD with GitHub Actions, environment secrets, and uptime checks",
+            "Monitor production errors, streaming dropouts, and token budgets"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Verify SSE streaming works cleanly behind your production reverse proxy or CDN.",
+            "Set hard rate limits and spend alerts before sharing your app publicly.",
+            "Test mobile and low-bandwidth behavior in production."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Monitoring and Ethics",
+          "focus": "AI Security, Accessibility & Responsible Design",
           "tasks": [
-            "Track drift",
-            "Audit error slices",
-            "Write model cards"
+            "Sanitize AI-generated markdown/HTML to prevent XSS and unsafe link execution",
+            "Test against prompt injection and ensure PII is protected",
+            "Audit your AI product for accessibility, bias, and transparent AI disclosure"
           ],
           "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
+            "Make AI capabilities and limitations obvious in the interface without overwhelming the user.",
+            "Verify screen readers, keyboard shortcuts, and high-contrast modes work across all AI components.",
+            "Follow OWASP LLM Top 10 and NIST AI RMF guidance."
           ],
           "references": [
             {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
+              "title": "MDN Web Docs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone",
+          "focus": "Design-Engineered AI Capstone",
           "tasks": [
-            "Ship an ML system with a usable interface",
-            "Document technical decisions",
-            "Prepare ML interview practice"
+            "Launch a flagship AI application that showcases both refined UX and solid engineering",
+            "Publish a case study with architecture diagrams, eval metrics, and usability insights",
+            "Prepare for AI Engineer and Design Engineer interviews with live code walkthroughs"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Your rare combination of UX craft and full-stack AI engineering is in high demand for AI-native products.",
+            "Demonstrate clean TypeScript/Python code, automated evals, and thoughtful human-in-the-loop patterns.",
+            "Practice explaining backend architecture, retrieval, and latency tradeoffs clearly."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "current_role": "UX Designer",
-      "target_ai_role": "AI Product Manager",
-      "title": "UX Designer to AI Product Manager",
-      "summary": "A design-led AI PM path focused on discovery, trust, prototyping, evaluation, and product strategy.",
-      "base_difficulty": 56,
-      "months": [
-        {
-          "month": 1,
-          "focus": "AI Product Literacy",
-          "tasks": [
-            "Study LLM and ML product patterns",
-            "Analyze AI interaction models",
-            "Build an AI product teardown"
-          ],
-          "upskilling_instructions": [
-            "Build prompts as versioned artifacts: state the task, audience, context, constraints, examples, output schema, and refusal boundaries.",
-            "Compare prompt variants against the same test set, then measure correctness, format adherence, latency, and failure modes instead of relying on vibes.",
-            "Finish with a small LLM feature that validates structured output and gives users a graceful path when the answer is uncertain."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Prompt Engineering Best Practices",
-              "url": "https://openai.com/academy/prompting/"
-            },
-            {
-              "title": "OpenAI Text Generation Guide",
-              "url": "https://platform.openai.com/docs/guides/text-generation"
-            },
-            {
-              "title": "Google MLCC: Large Language Models",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
-            }
-          ]
-        },
-        {
-          "month": 2,
-          "focus": "Problem Discovery",
-          "tasks": [
-            "Run user interviews",
-            "Map AI-suitable pain points",
-            "Prioritize by value and risk"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "Technical Fluency",
-          "tasks": [
-            "Learn RAG, agents, and evaluation basics",
-            "Create build-vs-buy notes",
-            "Document model limitations"
-          ],
-          "upskilling_instructions": [
-            "Start with one tool and one narrow task; define exactly when the model may call the tool, what arguments are allowed, and what requires confirmation.",
-            "Test agent behavior with success cases, ambiguous requests, malicious instructions, missing data, and tool failures.",
-            "Ship a constrained workflow with audit logs, permission checks, tool output validation, and a human handoff path."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Function Calling Help",
-              "url": "https://openai.com/index/function-calling-and-other-api-updates/"
-            },
-            {
-              "title": "OpenAI File Search Guide",
-              "url": "https://platform.openai.com/docs/guides/assistants/tools/file-search"
-            },
-            {
-              "title": "OWASP LLM Top 10",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "AI UX Patterns",
-          "tasks": [
-            "Design uncertainty and review states",
-            "Prototype feedback loops",
-            "Test trust signals"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 5,
-          "focus": "PRD Writing",
-          "tasks": [
-            "Write product specs",
-            "Define output quality criteria",
-            "Set MVP scope"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
-            },
-            {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
-            }
-          ]
-        },
-        {
-          "month": 6,
-          "focus": "Evaluation",
-          "tasks": [
-            "Create rubric-based evaluations",
-            "Plan human review",
-            "Track failures by category"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
-            },
-            {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
-            },
-            {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
-            }
-          ]
-        },
-        {
-          "month": 7,
-          "focus": "Prototype Testing",
-          "tasks": [
-            "Build a realistic prototype",
-            "Run usability tests",
-            "Translate findings into roadmap changes"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
-            },
-            {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
-            },
-            {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
-            }
-          ]
-        },
-        {
-          "month": 8,
-          "focus": "Metrics",
-          "tasks": [
-            "Define adoption and quality metrics",
-            "Design guardrails",
-            "Create dashboard sketches"
-          ],
-          "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
-          ],
-          "references": [
-            {
-              "title": "Hugging Face NLP Course",
-              "url": "https://huggingface.co/learn/nlp-course"
-            },
-            {
-              "title": "OpenAI: Prompt Engineering",
-              "url": "https://platform.openai.com/docs/guides/prompt-engineering"
-            },
-            {
-              "title": "OWASP Top 10 LLM Apps",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            }
-          ]
-        },
-        {
-          "month": 9,
-          "focus": "Launch Readiness",
-          "tasks": [
-            "Plan beta release",
-            "Create onboarding materials",
-            "Coordinate support feedback"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 10,
-          "focus": "Risk Management",
-          "tasks": [
-            "Assess privacy and misuse risks",
-            "Design escalation workflows",
-            "Partner with legal and security"
-          ],
-          "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "NIST AI Risk Management Framework",
-              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
-            },
-            {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "Strategy",
-          "tasks": [
-            "Create a product vision",
-            "Analyze competitors",
-            "Prioritize roadmap bets"
-          ],
-          "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
-          ],
-          "references": [
-            {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
-            },
-            {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
-            },
-            {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
-            }
-          ]
-        },
-        {
-          "month": 12,
-          "focus": "Portfolio",
-          "tasks": [
-            "Publish an AI PM case study",
-            "Show research-to-roadmap impact",
-            "Practice PM interviews"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         }
@@ -4144,342 +1729,1722 @@ window.ROADMAP_DATA = {
       "current_role": "Any Role",
       "target_ai_role": "AI Engineer",
       "title": "Default Path to AI Engineer",
-      "summary": "A general fallback path for building AI application engineering skill from any starting point.",
-      "base_difficulty": 82,
+      "summary": "A comprehensive 2026 baseline path into AI engineering covering modern Python, applied ML, context engineering, MCP agents, evals, and production deployment.",
+      "base_difficulty": 80,
       "months": [
         {
           "month": 1,
-          "focus": "JavaScript and Git",
+          "focus": "Python & Git Engineering Foundations",
           "tasks": [
-            "Practice JavaScript fundamentals",
-            "Use Git confidently",
-            "Build small automation scripts"
+            "Set up modern Python workflows with uv, ruff, and virtual environments",
+            "Learn Git branching, pull requests, and pytest unit testing",
+            "Build a Python CLI that cleans, validates, and summarizes structured text data"
           ],
           "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
+            "Build strong habits early: modular functions, type hints, and automated tests for every script.",
+            "Commit small, working changes to Git daily to build fluency with version control.",
+            "Use Pydantic v2 to validate data schemas rather than ad-hoc dictionary checks."
           ],
           "references": [
             {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
             },
             {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "APIs",
+          "focus": "APIs, Data Pipelines & Async Python",
           "tasks": [
-            "Learn HTTP",
-            "Build JavaScript interaction handlers",
-            "Validate requests and responses"
+            "Build REST and streaming endpoints with FastAPI and Pydantic v2",
+            "Process tabular and text datasets efficiently using Polars and DuckDB",
+            "Implement async HTTP clients with retries, timeouts, and structured logging"
           ],
           "upskilling_instructions": [
-            "Build one API from scratch with typed request and response models, clear validation errors, and a small set of realistic sample requests.",
-            "Practice the full request lifecycle: route design, schema validation, status codes, exception handling, logging, and basic security boundaries.",
-            "Ship a working local demo with API docs, curl examples, and tests for both successful and invalid inputs."
+            "Understand HTTP status codes, JSON serialization, and async I/O before calling LLM APIs at scale.",
+            "Write FastAPI integration tests covering valid, invalid, and timeout scenarios.",
+            "Keep API keys in environment variables and never commit secrets."
           ],
           "references": [
             {
-              "title": "MDN Web API Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Pydantic Documentation",
+              "title": "Pydantic v2 Documentation",
               "url": "https://docs.pydantic.dev/latest/"
             },
             {
-              "title": "MDN HTTP Overview",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Data Basics",
+          "focus": "Applied Machine Learning",
           "tasks": [
-            "Use pandas",
-            "Clean datasets",
-            "Create repeatable scripts"
+            "Master supervised learning, train/validation/test splits, and leakage prevention",
+            "Train scikit-learn baselines and inspect precision, recall, F1, and calibration",
+            "Compare classical ML models against LLM zero-shot performance"
           ],
           "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
+            "Always benchmark a fast classical baseline before reaching for a heavyweight LLM.",
+            "Analyze error slices to understand whether failures come from noisy labels, missing features, or class imbalance.",
+            "Save and version preprocessing steps alongside model artifacts."
           ],
           "references": [
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             },
             {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "ML Basics",
+          "focus": "Deep Learning & Transformer Basics",
           "tasks": [
-            "Train baseline models",
-            "Understand metrics",
-            "Document model limits"
+            "Learn tensors, backpropagation, and training loops in PyTorch",
+            "Explore open-weight models on Hugging Face, tokenization, and quantization",
+            "Fine-tune a small encoder or classifier on a domain dataset"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Focus on practical Transformer mechanics: context windows, token limits, and memory/latency tradeoffs.",
+            "Plot training and validation curves to diagnose overfitting.",
+            "Understand how quantization (FP8, INT4) reduces VRAM requirements."
           ],
           "references": [
             {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+              "title": "PyTorch Tutorials",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "StatQuest ML basics",
-              "url": "https://youtube.com/@statquest"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "LLM Apps",
+          "focus": "LLM APIs, Reasoning & Structured Outputs",
           "tasks": [
-            "Use prompt templates",
-            "Parse structured outputs",
-            "Evaluate responses"
+            "Build reliable LLM wrappers with strict JSON Schema structured outputs",
+            "Route tasks between fast models and reasoning models with thinking budgets",
+            "Use prompt caching and streaming to optimize latency and token cost"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Treat prompts as versioned code and validate every structured output against a strict schema.",
+            "Measure time-to-first-token (TTFT) and cost per 1,000 requests across model tiers.",
+            "Design clear fallback behavior when a model returns an invalid or refused response."
           ],
           "references": [
             {
-              "title": "OpenAI: Prompt Engineering",
-              "url": "https://platform.openai.com/docs/guides/prompt-engineering"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "Hugging Face: NLP Course",
-              "url": "https://huggingface.co/learn/nlp-course"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "Google MLCC: LLMs",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Embeddings",
+          "focus": "Embeddings & Hybrid RAG Systems",
           "tasks": [
-            "Build semantic search",
-            "Tune chunking",
-            "Measure relevance"
+            "Build a hybrid search pipeline (BM25 + dense embeddings + reranking) with pgvector or Qdrant",
+            "Parse PDFs, tables, and markdown while preserving document hierarchy and metadata",
+            "Generate grounded answers with verifiable inline citations"
           ],
           "upskilling_instructions": [
-            "Create a small corpus, generate embeddings, and manually inspect nearest-neighbor results to build intuition for semantic similarity.",
-            "Experiment with chunk size, metadata, filtering, and similarity thresholds; record where retrieval improves and where it becomes noisy.",
-            "Deliver a searchable prototype with evaluation queries, expected matches, and notes on cost, refresh cadence, and privacy boundaries."
+            "Debug RAG failures by inspecting retrieved chunks first before tweaking prompts.",
+            "Test chunking strategies on real messy documents with tables and headers.",
+            "Enforce user/tenant permission filters inside the retrieval query."
           ],
           "references": [
             {
-              "title": "OpenAI Embeddings API Reference",
-              "url": "https://platform.openai.com/docs/api-reference/embeddings"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "OpenAI Embeddings FAQ",
-              "url": "https://openai.com/index/introducing-text-and-code-embeddings/"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Google MLCC: Embeddings",
-              "url": "https://developers.google.com/machine-learning/crash-course/embeddings"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "RAG",
+          "focus": "Evaluations & Observability",
           "tasks": [
-            "Create document Q&A",
-            "Add citations",
-            "Test answer quality"
+            "Curate a golden eval dataset with normal cases, edge cases, and adversarial prompts",
+            "Build automated evals using deterministic checks and calibrated LLM-as-a-judge",
+            "Instrument OpenTelemetry GenAI traces and Langfuse dashboards"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Run evals automatically in CI on every prompt, retrieval, or model change.",
+            "Turn every production bug into a permanent regression test case.",
+            "Track quality, latency, and cost together so improvements on one metric do not silently break another."
           ],
           "references": [
             {
-              "title": "LangChain: RAG Tutorial",
-              "url": "https://python.langchain.com/docs/tutorials/rag/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "LlamaIndex: Starter Tutorial",
-              "url": "https://docs.llamaindex.ai/en/stable/getting_started/starter_example/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Pinecone: RAG Handbook",
-              "url": "https://www.pinecone.io/learn/retrieval-augmented-generation/"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Reliability",
+          "focus": "MCP & Tool-Using Agents",
           "tasks": [
-            "Add logging",
-            "Handle failures",
-            "Use retries and timeouts"
+            "Build custom MCP servers exposing typed tools and context resources",
+            "Implement bounded agent loops with step budgets and human approval for write actions",
+            "Evaluate agent trajectories, tool-call accuracy, and task completion rate"
           ],
           "upskilling_instructions": [
-            "Draw the system before coding: user flow, data flow, trust boundaries, model calls, storage, queues, retries, monitoring, and fallback behavior.",
-            "Prototype the riskiest component first, then add observability so failures are visible as structured logs, metrics, traces, or review queues.",
-            "Finish with an architecture note that explains tradeoffs in latency, cost, quality, reliability, and operational ownership."
+            "Write clear, narrow tool schemas with strict parameter validation and idempotency.",
+            "Start with deterministic workflows and only add open-ended agent loops where needed.",
+            "Log every tool input and output for post-run debugging."
           ],
           "references": [
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "MDN Web APIs",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/API"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "OpenTelemetry JavaScript Documentation",
-              "url": "https://opentelemetry.io/docs/languages/js/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Deployment",
+          "focus": "AI System Reliability & Architecture",
           "tasks": [
-            "Containerize the app",
-            "Deploy a demo",
-            "Track latency and cost"
+            "Design async background workers for long-running reasoning and agent jobs",
+            "Add caching, rate limiting, circuit breakers, and multi-provider fallbacks",
+            "Load-test your AI service and model unit economics at scale"
           ],
           "upskilling_instructions": [
-            "Package the app so another person can run it without hidden local assumptions: environment variables, dependency pins, and clear startup commands.",
-            "Add production-minded basics: health checks, logging, secret handling, timeouts, resource limits, and rollback notes.",
-            "Deploy or simulate deployment, then measure startup time, request latency, error behavior, and the steps needed to debug an incident."
+            "Never block HTTP request threads on multi-step agent executions—use queues and streaming status updates.",
+            "Test how your service behaves when an upstream model API returns 429 or 503 errors.",
+            "Monitor per-feature token spend and set hard budget alerts."
           ],
           "references": [
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Uvicorn Deployment",
-              "url": "https://www.uvicorn.org/"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Agents",
+          "focus": "Deployment & Operations",
           "tasks": [
-            "Build tool workflows",
-            "Add confirmations",
-            "Evaluate completion"
+            "Containerize your AI application with multi-stage Docker builds",
+            "Automate testing, evals, and deployment using GitHub Actions",
+            "Configure production health checks, structured logs, and cost/latency alerts"
           ],
           "upskilling_instructions": [
-            "Start with one tool and one narrow task; define exactly when the model may call the tool, what arguments are allowed, and what requires confirmation.",
-            "Test agent behavior with success cases, ambiguous requests, malicious instructions, missing data, and tool failures.",
-            "Ship a constrained workflow with audit logs, permission checks, tool output validation, and a human handoff path."
+            "Keep staging and production configurations identical via environment variables and Docker.",
+            "Practice rolling back a bad prompt or model version quickly.",
+            "Benchmark self-hosted open-weight inference vs managed APIs."
           ],
           "references": [
             {
-              "title": "OpenAI Function Calling Help",
-              "url": "https://openai.com/index/function-calling-and-other-api-updates/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "OpenAI File Search Guide",
-              "url": "https://platform.openai.com/docs/guides/assistants/tools/file-search"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             },
             {
-              "title": "OWASP LLM Top 10",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Safety",
+          "focus": "Security, Sandboxing & Responsible AI",
           "tasks": [
-            "Test prompt injection",
-            "Protect sensitive data",
-            "Document guardrails"
+            "Red-team your app against prompt injection, tool poisoning, and data leakage",
+            "Sandbox agent code execution and apply PII scrubbing before external API calls",
+            "Audit your system against OWASP LLM Top 10 and NIST AI RMF"
           ],
           "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
+            "Treat all retrieved external text and tool outputs as untrusted input.",
+            "Enforce authorization in application and database code, never solely in system prompts.",
+            "Document data retention, privacy boundaries, and incident response steps."
           ],
           "references": [
             {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone",
+          "focus": "Capstone & Job Readiness",
           "tasks": [
-            "Ship a polished AI app",
-            "Write architecture notes",
-            "Prepare interview stories"
+            "Ship a complete, deployed AI product with hybrid RAG, MCP tools, and CI evals",
+            "Write a thorough technical case study covering architecture, evals, and cost tradeoffs",
+            "Prepare for technical and system-design interviews with live demos"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Lead with concrete metrics: retrieval precision, eval pass rate, p95 latency, and cost per task.",
+            "Make your repository effortless to inspect and run (`uv run` / Docker Compose).",
+            "Practice explaining failure modes you found and how you engineered around them."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Model Context Protocol (MCP) Docs",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Software Engineer",
+      "target_ai_role": "ML Engineer",
+      "title": "Software Engineer to ML Engineer",
+      "summary": "A 2026 engineering path from software development into statistical modeling, PyTorch 2.x, post-training (LoRA/DPO/GRPO), high-throughput vLLM serving, and production ML pipelines.",
+      "base_difficulty": 74,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Math & Modern Python Data Stack",
+          "tasks": [
+            "Refresh linear algebra, probability, and calculus intuition for optimization",
+            "Master NumPy, Polars, and DuckDB inside uv-managed Python workspaces",
+            "Build deterministic, tested feature-extraction pipelines with pytest"
+          ],
+          "upskilling_instructions": [
+            "Focus on matrix shapes, broadcasting, gradients, and conditional probability as working engineering tools.",
+            "Use Polars and DuckDB for fast, reproducible dataset transforms instead of slow row-by-row Python loops.",
+            "Write unit tests asserting schema invariants, null-handling, and zero NaN/Inf propagation."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
+            },
+            {
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Supervised Learning & Tabular Baselines",
+          "tasks": [
+            "Build end-to-end scikit-learn and XGBoost pipelines with proper cross-validation",
+            "Prevent data leakage across time-series, user-grouped, and target-encoded features",
+            "Optimize threshold selection against real business cost/benefit matrices"
+          ],
+          "upskilling_instructions": [
+            "Always split data by time or entity group before computing any scaling, imputation, or target statistics.",
+            "Log precision-recall curves, calibration plots, and confusion matrices per slice.",
+            "Package preprocessing and model weights into a single scikit-learn Pipeline artifact."
+          ],
+          "references": [
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            },
+            {
+              "title": "XGBoost Documentation",
+              "url": "https://xgboost.readthedocs.io/en/stable/"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Feature Engineering & Data Quality",
+          "tasks": [
+            "Design domain-specific temporal, aggregation, and text/embedding features",
+            "Automate schema validation and distribution assertions before training runs",
+            "Run systematic ablation studies to drop noisy or redundant features"
+          ],
+          "upskilling_instructions": [
+            "Measure feature importance and permutation impact on a held-out validation set before keeping any new feature.",
+            "Verify online-offline feature parity so training features match what is available at inference time.",
+            "Document data lineage and known upstream collection biases."
+          ],
+          "references": [
+            {
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
+            },
+            {
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Deep Learning with PyTorch 2.x",
+          "tasks": [
+            "Implement custom Datasets, DataLoaders, training loops, and mixed-precision (BF16) in PyTorch",
+            "Profile GPU utilization and accelerate models with torch.compile",
+            "Diagnose vanishing/exploding gradients, overfitting, and learning-rate schedules"
+          ],
+          "upskilling_instructions": [
+            "Verify your training loop on a tiny 32-sample overfit test first to catch label or loss bugs immediately.",
+            "Use PyTorch Profiler to spot data-loading bottlenecks before blaming GPU compute speed.",
+            "Track gradient norms, validation loss, and throughput (samples/sec) on every run."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Transformers, Fine-Tuning & Embeddings",
+          "tasks": [
+            "Fine-tune open-weight encoders and sequence models using Hugging Face Transformers",
+            "Train custom domain embedding or reranker models with contrastive loss",
+            "Evaluate fine-tuned models against zero-shot frontier baselines on accuracy and latency"
+          ],
+          "upskilling_instructions": [
+            "Compare zero-shot API performance against a compact fine-tuned model—often a 100M-1B parameter model wins on cost and speed.",
+            "Inspect tokenization edge cases (numbers, code, domain jargon) before training.",
+            "Keep a frozen test set completely untouched until final model comparison."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Post-Training: LoRA, DPO & Reinforcement Fine-Tuning",
+          "tasks": [
+            "Fine-tune open-weight LLMs efficiently using QLoRA/LoRA and TRL",
+            "Align model behavior with Direct Preference Optimization (DPO) and verifiable-reward RL (GRPO)",
+            "Generate, filter, and deduplicate synthetic training data without causing model collapse"
+          ],
+          "upskilling_instructions": [
+            "Start with high-quality curated SFT examples before reaching for preference optimization or RL.",
+            "Validate synthetic training pairs with automated verifiers (unit tests, math checkers, schema validators) rather than blind self-play.",
+            "Track both target task lift and capability regression on general benchmarks."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Experiment Tracking & Model Registries",
+          "tasks": [
+            "Track hyperparameters, datasets, metrics, and artifacts reproducibly with MLflow",
+            "Automate model promotion gates (staging -> production) via metric thresholds",
+            "Version training datasets and evaluation splits alongside code in Git"
+          ],
+          "upskilling_instructions": [
+            "Make every experiment reproducible from a single command and logged git commit SHA.",
+            "Never promote a model to production without comparing it head-to-head against the current champion.",
+            "Store calibration and slice-level metrics inside the model registry metadata."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "High-Throughput Model Serving & Quantization",
+          "tasks": [
+            "Serve open-weight LLMs with vLLM using continuous batching and PagedAttention",
+            "Benchmark FP8/AWQ/GGUF quantization tradeoffs across throughput, TTFT, and accuracy",
+            "Expose typed FastAPI + Pydantic v2 inference gateways with batching and health checks"
+          ],
+          "upskilling_instructions": [
+            "Measure latency under realistic concurrent load (p50, p95, p99 TTFT and tokens/sec), not single-request benchmarks.",
+            "Verify quantized models on your golden eval set to ensure accuracy loss stays within budget.",
+            "Configure graceful shutdown and readiness probes for containerized model servers."
+          ],
+          "references": [
+            {
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Distributed Training & Ray Pipelines",
+          "tasks": [
+            "Scale preprocessing, hyperparameter tuning, and training across GPUs using Ray or PyTorch FSDP",
+            "Handle spot-instance checkpointing, fault tolerance, and memory optimization",
+            "Profile communication overhead vs compute utilization in multi-GPU runs"
+          ],
+          "upskilling_instructions": [
+            "Test checkpoint resume logic early so a mid-run preemption does not waste hours of GPU compute.",
+            "Tune batch size, gradient accumulation, and activation checkpointing to maximize MFU without OOMs.",
+            "Log GPU cost per training run alongside final validation metrics."
+          ],
+          "references": [
+            {
+              "title": "Ray Distributed ML Docs",
+              "url": "https://docs.ray.io/en/latest/"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Monitoring, Drift & Continuous Retraining",
+          "tasks": [
+            "Monitor input feature drift, embedding shift, and prediction confidence in production",
+            "Build automated feedback loops that sample uncertain predictions for human labeling",
+            "Schedule shadow-model evaluations before swapping live production traffic"
+          ],
+          "upskilling_instructions": [
+            "Track both data drift (covariate shift) and concept drift (stale ground-truth relationships).",
+            "Always run new models in shadow mode against live traffic before full rollout.",
+            "Define clear rollback triggers tied to error rate, latency, or business KPI drops."
+          ],
+          "references": [
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "ML Security, Fairness & Governance",
+          "tasks": [
+            "Audit models for demographic slice disparities, data poisoning, and membership inference",
+            "Harden inference endpoints against adversarial inputs and model-extraction abuse",
+            "Document model cards and risk assessments aligned with NIST AI RMF"
+          ],
+          "upskilling_instructions": [
+            "Slice evaluation metrics across key user cohorts and geographies to uncover hidden bias.",
+            "Sanitize external training data sources to prevent poisoned or copyrighted contamination.",
+            "Write clear model cards stating intended use, known limitations, and retraining cadence."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Production ML Capstone & Interviews",
+          "tasks": [
+            "Deliver an end-to-end ML system: Polars pipeline, PyTorch/TRL training, MLflow registry, and vLLM/FastAPI serving",
+            "Publish benchmarks covering accuracy, quantization tradeoffs, p95 latency, and drift alerts",
+            "Prepare for ML Engineer interviews spanning ML theory, coding, and production ML system design"
+          ],
+          "upskilling_instructions": [
+            "Highlight engineering rigor: reproducible training, leakage-free validation, and real serving benchmarks.",
+            "Be ready to explain why you chose classical ML, fine-tuning, or RL post-training for each problem.",
+            "Practice whiteboard ML system design (ranking, fraud, recommendations, LLM post-training)."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Data Analyst",
+      "target_ai_role": "ML Engineer",
+      "title": "Data Analyst to ML Engineer",
+      "summary": "A 2026 path turning SQL and analytical mastery into production Python engineering, predictive modeling, PyTorch fine-tuning, and deployed ML systems.",
+      "base_difficulty": 72,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Python Engineering & Modern Data Tools",
+          "tasks": [
+            "Move from notebooks to modular Python packages using uv, ruff, and Git",
+            "Master NumPy, Polars, and DuckDB for fast vectorized feature processing",
+            "Write pytest unit tests for data transformations and edge-case handling"
+          ],
+          "upskilling_instructions": [
+            "Refactor repetitive notebook cells into tested Python modules with clear function signatures.",
+            "Use DuckDB and Polars together to replace slow pandas scripts.",
+            "Validate schemas at pipeline boundaries with Pydantic v2."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            },
+            {
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Statistical Modeling & Experimentation",
+          "tasks": [
+            "Connect hypothesis testing, confidence intervals, and causal thinking to ML evaluation",
+            "Build scikit-learn classification and regression pipelines with stratified/time splits",
+            "Analyze residuals, calibration, and business-metric lift"
+          ],
+          "upskilling_instructions": [
+            "Use your analytics intuition to question suspiciously high accuracy—almost always a sign of data leakage.",
+            "Compute confidence intervals on validation metrics when comparing candidate models.",
+            "Translate model thresholds into concrete revenue or cost impact."
+          ],
+          "references": [
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Gradient Boosting & Feature Engineering",
+          "tasks": [
+            "Train XGBoost/LightGBM models on messy real-world tabular datasets",
+            "Engineer lag, rolling-window, and interaction features cleanly without future leakage",
+            "Use SHAP or permutation importance to interpret predictions for stakeholders"
+          ],
+          "upskilling_instructions": [
+            "Verify every rolling or aggregation feature uses strictly past timestamps relative to the prediction point.",
+            "Compare gradient-boosted trees against simple logistic/linear baselines.",
+            "Document feature definitions in a shared spec."
+          ],
+          "references": [
+            {
+              "title": "XGBoost Documentation",
+              "url": "https://xgboost.readthedocs.io/en/stable/"
+            },
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Software Engineering for ML Pipelines",
+          "tasks": [
+            "Build reproducible training scripts configurable via CLI/YAML and tracked in Git",
+            "Package ML pipelines in Docker containers with automated CI tests in GitHub Actions",
+            "Handle missing data, schema drift, and logging cleanly"
+          ],
+          "upskilling_instructions": [
+            "Ensure a teammate can clone your repo and reproduce your training run with a single command.",
+            "Add smoke tests in CI that train on a tiny synthetic fixture in seconds.",
+            "Separate configuration from code."
+          ],
+          "references": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Deep Learning Foundations in PyTorch",
+          "tasks": [
+            "Learn tensors, autograd, neural network layers, and optimization in PyTorch",
+            "Train tabular/text neural networks and compare them against XGBoost baselines",
+            "Diagnose overfitting, underfitting, and learning-rate instability"
+          ],
+          "upskilling_instructions": [
+            "Use PyTorch where unstructured data (text, images, sequences) gives neural nets a clear edge over trees.",
+            "Plot training and validation curves for every run.",
+            "Test mixed precision and proper train/eval mode switching."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "NLP, Embeddings & Open-Weight Fine-Tuning",
+          "tasks": [
+            "Fine-tune Hugging Face encoder models for classification, NER, or semantic search",
+            "Explore LoRA fine-tuning of compact open-weight LLMs with TRL",
+            "Evaluate fine-tuned models against hosted LLM APIs on cost, latency, and accuracy"
+          ],
+          "upskilling_instructions": [
+            "Show stakeholders the exact unit-cost savings of a fine-tuned 1B-7B model vs calling a frontier API at high volume.",
+            "Audit training labels for annotator disagreement before fine-tuning.",
+            "Benchmark inference latency on realistic input lengths."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Experiment Tracking & Model Versioning",
+          "tasks": [
+            "Log parameters, datasets, metrics, and model artifacts using MLflow",
+            "Build reproducible comparison reports across feature sets and model families",
+            "Establish model promotion criteria and regression checks"
+          ],
+          "upskilling_instructions": [
+            "Tag every MLflow run with dataset version, git commit, and slice metrics.",
+            "Never delete failed experiments—document why they failed so the team learns.",
+            "Automate model artifact registration."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Model Serving & APIs",
+          "tasks": [
+            "Wrap trained models in FastAPI + Pydantic v2 inference microservices",
+            "Serve open-weight LLMs or embeddings efficiently with vLLM or ONNX Runtime",
+            "Benchmark single-item vs batch inference throughput and p95 latency"
+          ],
+          "upskilling_instructions": [
+            "Validate all incoming feature types and ranges in Pydantic before passing tensors to the model.",
+            "Implement health/readiness endpoints and structured prediction logging.",
+            "Test concurrent requests to uncover bottlenecks."
+          ],
+          "references": [
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            },
+            {
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Online Testing & Causal Uplift",
+          "tasks": [
+            "Design A/B tests, shadow deployments, and multi-armed bandits for live ML models",
+            "Measure offline-to-online metric alignment and guardrail regressions",
+            "Build executive dashboards linking model scores to business KPIs"
+          ],
+          "upskilling_instructions": [
+            "Offline AUC improvements do not guarantee online conversion lift—always validate with controlled rollouts.",
+            "Monitor guardrail metrics (latency, error rate, user complaints) alongside primary KPIs.",
+            "Use your analytics background to run clean power calculations."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Monitoring, Drift & Retraining Loops",
+          "tasks": [
+            "Set up Evidently AI checks for feature drift, target shift, and prediction anomalies",
+            "Automate retraining triggers when drift or performance degradation crosses thresholds",
+            "Create incident runbooks for bad data feeds or stale models"
+          ],
+          "upskilling_instructions": [
+            "Alert on upstream schema changes before they silently turn into garbage predictions.",
+            "Log sampled production inputs and predictions for periodic human audit.",
+            "Practice rolling back to the previous model version."
+          ],
+          "references": [
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Responsible ML & Data Governance",
+          "tasks": [
+            "Audit models for demographic bias, proxy variables, and privacy leakage",
+            "Apply PII scrubbing and access controls to training pipelines",
+            "Write model cards and risk documentation aligned with NIST AI RMF"
+          ],
+          "upskilling_instructions": [
+            "Check whether seemingly neutral features (zip code, device type) act as sensitive proxies.",
+            "Ensure training data respects user consent and retention policies.",
+            "Document known failure modes clearly."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Production ML Capstone & Portfolio",
+          "tasks": [
+            "Ship a complete end-to-end ML product from DuckDB/Polars ingestion to FastAPI/vLLM serving and drift monitoring",
+            "Publish a case study detailing business problem, baseline vs final lift, and production architecture",
+            "Prepare for ML Engineer interviews highlighting data rigor, experimentation, and deployment"
+          ],
+          "upskilling_instructions": [
+            "Your analytics background is a major asset: emphasize leakage prevention, metric design, and business impact.",
+            "Make your code modular, tested, and Dockerized.",
+            "Practice explaining trade-offs between classical ML, fine-tuned models, and frontier LLMs."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "XGBoost Documentation",
+              "url": "https://xgboost.readthedocs.io/en/stable/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Product Manager",
+      "target_ai_role": "ML Engineer",
+      "title": "Product Manager to ML Engineer",
+      "summary": "A deep technical 2026 transition from product management into Python engineering, mathematical ML foundations, PyTorch, fine-tuning, and production ML deployment.",
+      "base_difficulty": 88,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Python Programming & Engineering Discipline",
+          "tasks": [
+            "Learn Python syntax, data structures, OOP, and functional patterns with uv",
+            "Practice Git workflows, debugging, and writing pytest unit tests",
+            "Build a tested CLI tool that parses and validates structured datasets"
+          ],
+          "upskilling_instructions": [
+            "Commit to writing code daily and solving data-manipulation problems without relying blindly on copy-paste.",
+            "Use pytest from week one so you build confidence refactoring code.",
+            "Learn to read tracebacks and debug systematically."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Math & Vectorized Data Processing",
+          "tasks": [
+            "Study linear algebra (vectors, matrices, dot products), derivatives, and probability",
+            "Master NumPy, Polars, and DuckDB for fast numerical and tabular workflows",
+            "Implement basic statistical metrics and linear regression from scratch in NumPy"
+          ],
+          "upskilling_instructions": [
+            "Implementing gradient descent and linear regression from scratch makes ML optimization click permanently.",
+            "Focus on matrix dimensions and vectorized operations.",
+            "Verify your scratch math against scikit-learn outputs."
+          ],
+          "references": [
+            {
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
+            },
+            {
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            },
+            {
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Classical Machine Learning",
+          "tasks": [
+            "Build classification and regression pipelines in scikit-learn and XGBoost",
+            "Master cross-validation, regularization, and bias-variance tradeoffs",
+            "Evaluate models using ROC-AUC, PR-AUC, F1, and calibration curves"
+          ],
+          "upskilling_instructions": [
+            "Focus heavily on preventing data leakage and choosing metrics that match real product costs.",
+            "Compare simple linear baselines against tree ensembles.",
+            "Write clear error-analysis notes on misclassified examples."
+          ],
+          "references": [
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            },
+            {
+              "title": "XGBoost Documentation",
+              "url": "https://xgboost.readthedocs.io/en/stable/"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Software Architecture & APIs",
+          "tasks": [
+            "Build modular Python services with FastAPI and Pydantic v2 validation",
+            "Containerize applications with Docker and set up GitHub Actions CI",
+            "Implement structured logging, error handling, and integration tests"
+          ],
+          "upskilling_instructions": [
+            "Learn clean separation between data loading, model inference, and API routing.",
+            "Test edge cases like missing fields, out-of-range inputs, and timeouts.",
+            "Keep environments reproducible with uv lockfiles and Docker."
+          ],
+          "references": [
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Deep Learning & PyTorch",
+          "tasks": [
+            "Learn tensors, autograd, loss functions, and backpropagation in PyTorch",
+            "Train neural networks for tabular, text, and image classification",
+            "Diagnose training curves, learning-rate schedules, and regularization"
+          ],
+          "upskilling_instructions": [
+            "Always run a sanity check by overfitting a tiny batch before launching a full training run.",
+            "Understand how batch size, learning rate, and weight decay interact.",
+            "Track experiments cleanly rather than overwriting model checkpoints."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Transformers & Fine-Tuning",
+          "tasks": [
+            "Understand attention, tokenization, and encoder/decoder Transformer architectures",
+            "Fine-tune a Hugging Face encoder or compact LLM using LoRA/QLoRA",
+            "Compare fine-tuned models against zero-shot API baselines"
+          ],
+          "upskilling_instructions": [
+            "Focus on data quality: 500 clean, diverse examples beat 50,000 noisy ones.",
+            "Measure inference speed and VRAM usage alongside accuracy.",
+            "Keep a strict held-out test set."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Experiment Tracking & Reproducibility",
+          "tasks": [
+            "Set up MLflow to track hyperparameters, datasets, metrics, and model artifacts",
+            "Version data splits and automate evaluation scripts",
+            "Build reproducible training and evaluation workflows"
+          ],
+          "upskilling_instructions": [
+            "Treat every model run as a scientific experiment with a clear hypothesis and control baseline.",
+            "Automate comparison tables across runs.",
+            "Verify reproducibility across random seeds."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Model Serving & Inference Optimization",
+          "tasks": [
+            "Deploy models behind FastAPI and benchmark open-weight LLM serving with vLLM",
+            "Test quantization (FP8/INT4) and batching tradeoffs on latency and cost",
+            "Add health checks, request validation, and fallback logic"
+          ],
+          "upskilling_instructions": [
+            "Measure p95 latency and throughput under concurrent load.",
+            "Verify quantized model accuracy on your eval set before deploying.",
+            "Document hardware and memory requirements clearly."
+          ],
+          "references": [
+            {
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Production Pipelines & Distributed Basics",
+          "tasks": [
+            "Build automated training and batch-scoring pipelines using Ray or scheduled workflows",
+            "Implement data-validation gates before training runs",
+            "Handle retries, checkpointing, and failure alerts"
+          ],
+          "upskilling_instructions": [
+            "Automate data checks so corrupt upstream data never trains a broken model.",
+            "Test pipeline recovery from mid-run failures.",
+            "Track compute cost per training run."
+          ],
+          "references": [
+            {
+              "title": "Ray Distributed ML Docs",
+              "url": "https://docs.ray.io/en/latest/"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Monitoring, Drift & Online Experimentation",
+          "tasks": [
+            "Monitor data drift, prediction distributions, and latency with Evidently AI",
+            "Design shadow deployments and A/B tests to validate online model impact",
+            "Define automated rollback triggers"
+          ],
+          "upskilling_instructions": [
+            "Connect offline ML metrics to real online product metrics.",
+            "Review production prediction samples regularly for silent degradation.",
+            "Practice incident response for model regressions."
+          ],
+          "references": [
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "ML Security, Fairness & Governance",
+          "tasks": [
+            "Audit models for demographic bias and adversarial vulnerabilities",
+            "Apply PII scrubbing and data governance to training pipelines",
+            "Write model cards aligned with NIST AI RMF"
+          ],
+          "upskilling_instructions": [
+            "Combine your PM user-empathy with ML fairness auditing across user segments.",
+            "Document data provenance and known model limitations.",
+            "Review endpoints for input abuse and rate-limit bypasses."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "ML Engineering Capstone",
+          "tasks": [
+            "Build and deploy an end-to-end ML system with reproducible training, MLflow tracking, and FastAPI/vLLM serving",
+            "Publish a technical report covering math/modeling choices, ablations, and serving benchmarks",
+            "Prepare for technical coding and ML system-design interviews"
+          ],
+          "upskilling_instructions": [
+            "Demonstrate deep hands-on fluency in Python, PyTorch, and evaluation rigor.",
+            "Be prepared to explain every line of your training and serving code.",
+            "Highlight how product judgment guided your metric and architecture choices."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "UX Designer",
+      "target_ai_role": "ML Engineer",
+      "title": "UX Designer to ML Engineer",
+      "summary": "An ambitious 2026 transition from UX design into Python software engineering, ML mathematics, PyTorch, multimodal/generative models, and production ML deployment.",
+      "base_difficulty": 92,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Python & Version Control Foundations",
+          "tasks": [
+            "Learn Python fundamentals, data structures, and functions using uv",
+            "Use Git and GitHub daily for version control and code reviews",
+            "Build a small Python CLI that processes and validates text or image metadata"
+          ],
+          "upskilling_instructions": [
+            "Focus on building fluency with code structure, debugging, and reading documentation.",
+            "Write small tests with pytest to verify your functions behave as expected.",
+            "Commit small working increments every day."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Math & Numerical Computing",
+          "tasks": [
+            "Build intuition for vectors, matrices, dot products, gradients, and probability",
+            "Practice NumPy array manipulation and Polars/DuckDB data workflows",
+            "Visualize data distributions and decision boundaries with clear plots"
+          ],
+          "upskilling_instructions": [
+            "Use your visual strengths to plot vectors, loss surfaces, and feature distributions—visual intuition makes ML math click.",
+            "Verify array shapes at every step of a calculation.",
+            "Implement basic linear regression in NumPy."
+          ],
+          "references": [
+            {
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
+            },
+            {
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Classical Machine Learning",
+          "tasks": [
+            "Train classification, clustering, and regression models in scikit-learn and XGBoost",
+            "Master train/validation/test splits and leakage prevention",
+            "Analyze precision, recall, confusion matrices, and error cases"
+          ],
+          "upskilling_instructions": [
+            "Start with simple models and inspect misclassified examples visually to understand why the model struggled.",
+            "Practice explaining model metrics in plain language.",
+            "Save complete preprocessing + model pipelines."
+          ],
+          "references": [
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            },
+            {
+              "title": "XGBoost Documentation",
+              "url": "https://xgboost.readthedocs.io/en/stable/"
+            },
+            {
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Software Engineering & APIs",
+          "tasks": [
+            "Build FastAPI services with Pydantic v2 input/output validation",
+            "Containerize Python applications using Docker",
+            "Add automated pytest suites and GitHub Actions CI"
+          ],
+          "upskilling_instructions": [
+            "Treat your ML backend like a real product: clean error messages, schema validation, and health checks.",
+            "Test your API with malformed inputs and edge cases.",
+            "Keep dependencies locked with uv."
+          ],
+          "references": [
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Deep Learning & PyTorch",
+          "tasks": [
+            "Learn tensors, autograd, layers, and optimization loops in PyTorch",
+            "Train vision or text neural networks and inspect training/validation curves",
+            "Use regularization, dropout, and learning-rate scheduling"
+          ],
+          "upskilling_instructions": [
+            "Run a 32-sample overfit sanity check before full training.",
+            "Visualize feature maps, embeddings (UMAP/t-SNE), and failure examples.",
+            "Log every experiment cleanly."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Multimodal, Vision & Fine-Tuning",
+          "tasks": [
+            "Explore Hugging Face vision-language models, CLIP embeddings, and LoRA fine-tuning",
+            "Fine-tune a compact model on a domain-specific visual or text task",
+            "Evaluate fine-tuned performance against zero-shot baselines"
+          ],
+          "upskilling_instructions": [
+            "Leverage your design eye on multimodal tasks—UI screenshot understanding, visual search, or style classification.",
+            "Curate clean, balanced training datasets and check for label noise.",
+            "Measure inference speed and memory footprint."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Experiment Tracking & Reproducibility",
+          "tasks": [
+            "Track hyperparameters, datasets, metrics, and artifacts in MLflow",
+            "Run systematic ablation studies changing one variable at a time",
+            "Version datasets and evaluation benchmarks"
+          ],
+          "upskilling_instructions": [
+            "Document hypotheses before running experiments so you learn systematically rather than guessing.",
+            "Compare models on both aggregate metrics and hard edge-case slices.",
+            "Automate evaluation reports."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Model Serving & Optimization",
+          "tasks": [
+            "Serve trained models via FastAPI and benchmark open-weight LLM/VLM serving with vLLM",
+            "Measure quantization (FP8/INT4) effects on quality and latency",
+            "Build a lightweight interactive demo UI to test live model behavior"
+          ],
+          "upskilling_instructions": [
+            "Test how latency and streaming affect user perception of model quality.",
+            "Verify quantized models on your held-out test set.",
+            "Set request timeouts and graceful error fallbacks."
+          ],
+          "references": [
+            {
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Data Pipelines & Scaling",
+          "tasks": [
+            "Build automated preprocessing and batch-inference pipelines with Polars and Ray",
+            "Add automated data-quality assertions before training",
+            "Profile bottlenecks in data loading vs model compute"
+          ],
+          "upskilling_instructions": [
+            "Ensure training and inference preprocessing use the exact same code path.",
+            "Test pipeline recovery on partial failures.",
+            "Monitor compute cost per run."
+          ],
+          "references": [
+            {
+              "title": "Ray Distributed ML Docs",
+              "url": "https://docs.ray.io/en/latest/"
+            },
+            {
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Monitoring, Drift & User Feedback Loops",
+          "tasks": [
+            "Monitor input drift and prediction confidence with Evidently AI",
+            "Design human-in-the-loop feedback collection that feeds back into retraining",
+            "Run shadow evaluations before promoting updated models"
+          ],
+          "upskilling_instructions": [
+            "Use UX research skills to inspect real production inputs and spot distribution shifts early.",
+            "Define clear rollback thresholds.",
+            "Track user corrections as a high-signal labeling source."
+          ],
+          "references": [
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Fairness, Interpretability & Responsible ML",
+          "tasks": [
+            "Audit models for demographic bias and visual/textual failure modes",
+            "Use interpretability tools (attention/saliency, SHAP) to explain predictions",
+            "Document model cards aligned with NIST AI RMF"
+          ],
+          "upskilling_instructions": [
+            "Test multimodal models across diverse demographics, lighting, and accessibility edge cases.",
+            "Make model confidence and limitations transparent.",
+            "Protect user privacy in training data."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Full-Stack ML Capstone",
+          "tasks": [
+            "Ship an end-to-end ML product (e.g., multimodal search or fine-tuned classifier) with MLflow, FastAPI/vLLM, and monitoring",
+            "Publish a case study combining visual clarity with rigorous ML benchmarks",
+            "Prepare for ML Engineer interviews covering Python, PyTorch, and ML system design"
+          ],
+          "upskilling_instructions": [
+            "Showcase both your engineering rigor (tests, MLflow, benchmarks) and your product/UX sensibility.",
+            "Practice walking through training code, loss curves, and serving architecture.",
+            "Consider hybrid roles in Multimodal ML or Human-Centered AI Engineering."
+          ],
+          "references": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
             }
           ]
         }
@@ -4489,342 +3454,1722 @@ window.ROADMAP_DATA = {
       "current_role": "Any Role",
       "target_ai_role": "ML Engineer",
       "title": "Default Path to ML Engineer",
-      "summary": "A general fallback path for learning model development, production ML, and MLOps from any starting point.",
-      "base_difficulty": 88,
+      "summary": "A comprehensive 2026 baseline roadmap into ML engineering covering Python data stacks, classical ML, PyTorch 2.x, post-training, vLLM serving, and production monitoring.",
+      "base_difficulty": 86,
       "months": [
         {
           "month": 1,
-          "focus": "JavaScript",
+          "focus": "Python & Engineering Foundations",
           "tasks": [
-            "Practice JavaScript daily",
-            "Learn modules and tests",
-            "Build data scripts"
+            "Set up reproducible Python environments with uv, ruff, and Git",
+            "Master NumPy, Polars, and DuckDB for fast tabular and text data workflows",
+            "Write pytest unit tests and Pydantic v2 data-validation models"
           ],
           "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
+            "Build clean engineering habits early: modular functions, type hints, and automated tests.",
+            "Commit small, working increments to Git every day.",
+            "Validate input schemas at pipeline boundaries."
           ],
           "references": [
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
             },
             {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Math",
+          "focus": "Math & Statistical Foundations",
           "tasks": [
-            "Review linear algebra",
-            "Study probability",
-            "Apply math to model examples"
+            "Review linear algebra, multivariable calculus gradients, and probability distributions",
+            "Implement gradient descent and logistic regression from scratch in NumPy",
+            "Practice hypothesis testing, confidence intervals, and error analysis"
           ],
           "upskilling_instructions": [
-            "Start with a simple baseline model, then improve only after you can explain the target, features, split strategy, and evaluation metric.",
-            "Run at least three model comparisons and record what changed, why it changed, and whether it improved generalization or only training performance.",
-            "Close the month with an error analysis: inspect false positives, false negatives, weak segments, and the next data or feature bet."
+            "Connect mathematical concepts directly to code by implementing simple optimizers yourself.",
+            "Focus on matrix shapes and numerical stability.",
+            "Verify your scratch implementations against scikit-learn."
           ],
           "references": [
             {
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
+            },
+            {
               "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "url": "https://developers.google.com/machine-learning/crash-course"
             },
             {
-              "title": "scikit-learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
-            },
-            {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Data",
+          "focus": "Classical Machine Learning & Tabular Modeling",
           "tasks": [
-            "Clean datasets",
-            "Visualize distributions",
-            "Create train-test splits"
+            "Train and tune scikit-learn and XGBoost models on real datasets",
+            "Master cross-validation, time/group splits, and data-leakage prevention",
+            "Evaluate models with ROC-AUC, PR-AUC, F1, and calibration plots"
           ],
           "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
+            "Always build a fast linear/tree baseline before trying deep learning.",
+            "Audit datasets carefully for target leakage and class imbalance.",
+            "Bundle preprocessing and model weights in a single pipeline."
           ],
           "references": [
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
+              "title": "XGBoost Documentation",
+              "url": "https://xgboost.readthedocs.io/en/stable/"
             },
             {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "Kaggle: Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "Classical ML",
+          "focus": "APIs, Containers & CI",
           "tasks": [
-            "Train baseline models",
-            "Tune hyperparameters",
-            "Analyze errors"
+            "Build typed inference APIs using FastAPI and Pydantic v2",
+            "Containerize training and serving code with Docker",
+            "Automate linting and pytest runs in GitHub Actions"
           ],
           "upskilling_instructions": [
-            "Start with a simple baseline model, then improve only after you can explain the target, features, split strategy, and evaluation metric.",
-            "Run at least three model comparisons and record what changed, why it changed, and whether it improved generalization or only training performance.",
-            "Close the month with an error analysis: inspect false positives, false negatives, weak segments, and the next data or feature bet."
+            "Ensure training and serving environments are identical via Docker and uv lockfiles.",
+            "Write API tests for valid payloads, malformed inputs, and error responses.",
+            "Keep configuration separate from code."
           ],
           "references": [
             {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "scikit-learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Features",
+          "focus": "Deep Learning with PyTorch 2.x",
           "tasks": [
-            "Build preprocessing pipelines",
-            "Avoid leakage",
-            "Version transformations"
+            "Build custom Datasets, DataLoaders, and training loops in PyTorch",
+            "Use mixed precision (BF16) and torch.compile to speed up training",
+            "Diagnose overfitting, gradient instability, and learning-rate schedules"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Always run a tiny-batch overfit sanity check before launching full training.",
+            "Plot training and validation curves for every experiment.",
+            "Profile data-loading vs GPU compute time."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Deep Learning",
+          "focus": "Transformers, Fine-Tuning & Post-Training",
           "tasks": [
-            "Train neural networks",
-            "Use embeddings",
-            "Tune training loops"
+            "Fine-tune Hugging Face encoders and compact open-weight LLMs with LoRA/QLoRA",
+            "Practice DPO and verifiable-reward post-training (GRPO) using TRL",
+            "Evaluate fine-tuned models against zero-shot API baselines"
           ],
           "upskilling_instructions": [
-            "Create a small corpus, generate embeddings, and manually inspect nearest-neighbor results to build intuition for semantic similarity.",
-            "Experiment with chunk size, metadata, filtering, and similarity thresholds; record where retrieval improves and where it becomes noisy.",
-            "Deliver a searchable prototype with evaluation queries, expected matches, and notes on cost, refresh cadence, and privacy boundaries."
+            "Curate clean, deduplicated training data—data quality drives fine-tuning gains more than hyperparameter tweaks.",
+            "Evaluate both target task accuracy and general capability retention.",
+            "Track compute cost per training run."
           ],
           "references": [
             {
-              "title": "OpenAI Embeddings API Reference",
-              "url": "https://platform.openai.com/docs/api-reference/embeddings"
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "OpenAI Embeddings FAQ",
-              "url": "https://openai.com/index/introducing-text-and-code-embeddings/"
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
             },
             {
-              "title": "Google MLCC: Embeddings",
-              "url": "https://developers.google.com/machine-learning/crash-course/embeddings"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "Experiment Tracking",
+          "focus": "Experiment Tracking & Model Registry",
           "tasks": [
-            "Log metrics",
-            "Compare runs",
-            "Create reports"
+            "Track parameters, datasets, metrics, and artifacts in MLflow",
+            "Establish automated promotion gates comparing challenger vs champion models",
+            "Version data splits and evaluation scripts in Git"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Make every experiment reproducible from a single command and git SHA.",
+            "Store slice-level metrics alongside aggregate scores.",
+            "Document why failed experiments did not work."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Serving",
+          "focus": "High-Throughput Model Serving",
           "tasks": [
-            "Build inference APIs",
-            "Package models",
-            "Benchmark latency"
+            "Serve models with FastAPI and benchmark open-weight LLM inference using vLLM",
+            "Test quantization (FP8/AWQ/GGUF) tradeoffs on throughput, TTFT, and accuracy",
+            "Add health checks, batching, and graceful timeouts"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Benchmark under realistic concurrent traffic rather than single-request loops.",
+            "Verify quantized models against your golden eval set before shipping.",
+            "Monitor GPU memory utilization and tail latency (p95/p99)."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Pipelines",
+          "focus": "Distributed Workflows & Ray",
           "tasks": [
-            "Schedule training",
-            "Validate data",
-            "Automate model artifacts"
+            "Scale data preprocessing and hyperparameter tuning with Ray",
+            "Implement checkpointing and fault-tolerant training jobs",
+            "Measure scaling efficiency and GPU cost per run"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Test checkpoint resume early so preemptions never lose training progress.",
+            "Automate data-quality checks before distributed jobs start.",
+            "Profile I/O bottlenecks."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "Ray Distributed ML Docs",
+              "url": "https://docs.ray.io/en/latest/"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "MLOps",
+          "focus": "Monitoring, Drift & Retraining",
           "tasks": [
-            "Create CI checks",
-            "Define promotion gates",
-            "Deploy models"
+            "Monitor input drift, embedding shift, and prediction anomalies with Evidently AI",
+            "Run shadow deployments before routing live traffic to new models",
+            "Build feedback loops for human review and scheduled retraining"
           ],
           "upskilling_instructions": [
-            "Package the app so another person can run it without hidden local assumptions: environment variables, dependency pins, and clear startup commands.",
-            "Add production-minded basics: health checks, logging, secret handling, timeouts, resource limits, and rollback notes.",
-            "Deploy or simulate deployment, then measure startup time, request latency, error behavior, and the steps needed to debug an incident."
+            "Set alerts on upstream schema changes and null spikes.",
+            "Define clear automated rollback triggers.",
+            "Review production error samples weekly."
           ],
           "references": [
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
             },
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
             },
             {
-              "title": "Uvicorn Deployment",
-              "url": "https://www.uvicorn.org/"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Monitoring",
+          "focus": "ML Security, Fairness & Governance",
           "tasks": [
-            "Track drift",
-            "Audit performance",
-            "Create model cards"
+            "Audit models for slice-level bias, data poisoning, and endpoint abuse",
+            "Apply PII scrubbing and access controls to training data",
+            "Write model cards aligned with NIST AI RMF"
           ],
           "upskilling_instructions": [
-            "Turn experiments into auditable runs by logging data versions, parameters, metrics, artifacts, environment details, and model lineage.",
-            "Define promotion gates before training: minimum quality, fairness checks, latency budget, monitoring hooks, and rollback criteria.",
-            "End with a repeatable train-package-serve workflow and a short runbook for retraining, review, approval, and model retirement."
+            "Check performance across demographic and behavioral slices.",
+            "Protect inference endpoints with rate limits and input validation.",
+            "Document intended use, limitations, and retraining cadence."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Quickstart",
-              "url": "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Google MLCC: Production ML Systems",
-              "url": "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+              "title": "Evidently AI Drift & Eval Docs",
+              "url": "https://docs.evidentlyai.com/"
             },
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone",
+          "focus": "Capstone & ML Engineer Interviews",
           "tasks": [
-            "Ship an end-to-end ML system",
-            "Document architecture",
-            "Prepare interviews"
+            "Ship a complete end-to-end ML system with reproducible training, MLflow registry, vLLM/FastAPI serving, and drift monitoring",
+            "Write a technical report detailing baselines, ablations, quantization, and latency benchmarks",
+            "Prepare for ML coding, theory, and production ML system-design interviews"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Lead with measurable engineering results: baseline vs final lift, p95 latency, and cost.",
+            "Make your repository effortless to run and verify.",
+            "Practice explaining tradeoffs between classical ML, fine-tuning, and hosted LLMs."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Software Engineer",
+      "target_ai_role": "AI Product Manager",
+      "title": "Software Engineer to AI Product Manager",
+      "summary": "A 2026 transition from software engineering into AI product strategy, customer discovery, eval-driven PRDs, unit economics, and cross-functional AI shipping.",
+      "base_difficulty": 60,
+      "months": [
+        {
+          "month": 1,
+          "focus": "AI Product Architecture & Paradigm Fluency",
+          "tasks": [
+            "Map 2026 AI capabilities: frontier vs open-weight, reasoning models, context engineering, RAG, fine-tuning/RFT, and MCP agents",
+            "Analyze when deterministic code or classical ML beats an LLM on cost, speed, and reliability",
+            "Write an executive brief translating technical AI tradeoffs into user and business outcomes"
+          ],
+          "upskilling_instructions": [
+            "Resist the urge to solve every problem with an autonomous agent—use the simplest architecture that meets the user reliability bar.",
+            "Compare build, fine-tune, and API-orchestration options using 12-month total cost of ownership.",
+            "Practice explaining model limits without jargon to non-technical stakeholders."
+          ],
+          "references": [
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Customer Discovery & Workflow Friction",
+          "tasks": [
+            "Conduct 10+ structured user interviews focused on existing workarounds and time sinks",
+            "Map end-to-end user workflows to spot where AI removes toil vs where it adds verification overhead",
+            "Validate willingness to pay and trust thresholds before writing a single spec"
+          ],
+          "upskilling_instructions": [
+            "Ask about specific past tasks users hated or abandoned rather than pitching hypothetical AI features.",
+            "Measure the 'verification tax'—if reviewing AI output takes longer than doing the task manually, the feature will fail.",
+            "Document concrete user quotes and workflow bottlenecks."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "AI-Native Value Propositions & Positioning",
+          "tasks": [
+            "Define crisp problem statements, target personas, and non-goals for an AI product",
+            "Benchmark competitors' AI UX, pricing models (seat vs usage vs outcome), and defensibility",
+            "Identify proprietary data loops and MCP workflow integrations that create real moats"
+          ],
+          "upskilling_instructions": [
+            "Avoid generic 'AI wrapper' positioning—anchor value in proprietary context, deep workflow integration, and measurable ROI.",
+            "Test pricing hypotheses against variable token and reasoning compute costs.",
+            "Align sales, design, and engineering on what the product will explicitly refuse to do."
+          ],
+          "references": [
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Eval-Driven PRDs & Acceptance Criteria",
+          "tasks": [
+            "Write an AI PRD specifying golden eval sets, quality thresholds, latency budgets, and human-in-the-loop states",
+            "Define failure-mode fallbacks (low confidence, tool failure, refusal, timeout)",
+            "Align engineering and SMEs on exact grading rubrics before build begins"
+          ],
+          "upskilling_instructions": [
+            "In 2026, evals are the PRD: define 30-50 concrete input/output examples with pass/fail criteria alongside user stories.",
+            "Specify exact human approval gates for any state-changing agent action.",
+            "Include p95 latency and max cost-per-task budgets as hard launch requirements."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Rapid AI Prototyping & Feasibility",
+          "tasks": [
+            "Build interactive AI prototypes yourself using modern coding agents, AI Studio, or Vercel AI SDK",
+            "Test prompt/context strategies on messy real-world user inputs to expose edge cases early",
+            "Run quick usability sessions on live prototypes before committing full sprint capacity"
+          ],
+          "upskilling_instructions": [
+            "Use your engineering background to prototype in hours, not weeks—live models reveal UX flaws static Figma mocks hide.",
+            "Test with messy, ambiguous, and adversarial inputs, not curated demo prompts.",
+            "Hand off clean learnings and eval cases to the delivery team."
+          ],
+          "references": [
+            {
+              "title": "Google Gemini API & AI Studio",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Git & Collaborative Workflows",
+              "url": "https://git-scm.com/doc"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Evaluation Calibration & Quality Governance",
+          "tasks": [
+            "Partner with domain SMEs to label golden datasets and calibrate LLM-as-a-judge rubrics",
+            "Track offline eval pass rates alongside online edit rates and user satisfaction",
+            "Establish a weekly error-triage ritual categorizing retrieval, reasoning, and UX failures"
+          ],
+          "upskilling_instructions": [
+            "Ensure automated judge scores correlate strongly with human SME judgment before relying on them for release gates.",
+            "Separate retrieval failures from generation failures so engineering fixes the right layer.",
+            "Track regressions across every model upgrade."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "AI Economics, Pricing & Cost Modeling",
+          "tasks": [
+            "Build a unit-economics model covering input/output tokens, reasoning tokens, caching, and retrieval",
+            "Design model-routing tiers and prompt-caching strategies to protect gross margins",
+            "Evaluate outcome-based, credit-based, and tiered subscription pricing models"
+          ],
+          "upskilling_instructions": [
+            "Model power-user tails (top 5% of heavy agent users) so flat-rate pricing does not destroy margins.",
+            "Factor in background evals, retries, and guardrail calls when estimating cost per active user.",
+            "Partner with finance to set automated spend alerts."
+          ],
+          "references": [
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Safety, Privacy & Regulatory Compliance",
+          "tasks": [
+            "Define data boundaries, tenant isolation, and zero-data-retention requirements with enterprise buyers",
+            "Map product risks to EU AI Act obligations, NIST AI RMF, and OWASP LLM Top 10",
+            "Design clear incident-response, escalation, and user-reporting workflows"
+          ],
+          "upskilling_instructions": [
+            "Treat enterprise security and compliance questionnaires as product requirements, not last-minute legal hurdles.",
+            "Ensure AI disclosures, citations, and human-override controls are built directly into the UX.",
+            "Run pre-launch red-teaming with security and QA."
+          ],
+          "references": [
+            {
+              "title": "EU AI Act Service Desk & Timeline",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Experimentation & Phased Rollouts",
+          "tasks": [
+            "Design shadow launches, A/B tests, and feature-flagged beta cohorts",
+            "Track primary workflow KPIs alongside guardrail metrics (latency, hallucination reports, support tickets)",
+            "Write enablement guides and internal playbooks for customer success and sales"
+          ],
+          "upskilling_instructions": [
+            "Ship to internal dogfooders and design partners first to capture real-world edge cases safely.",
+            "Define clear go/no-go rollback criteria before expanding traffic.",
+            "Avoid vanity 'AI usage' metrics—measure completed tasks and retained value."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Adoption, Retention & Feedback Flywheels",
+          "tasks": [
+            "Analyze onboarding drop-offs, prompt abandonment, and user edit-distance funnels",
+            "Turn in-product corrections and thumbs-down feedback into curated eval and fine-tuning data",
+            "Prioritize high-leverage UX fixes that reduce user effort per outcome"
+          ],
+          "upskilling_instructions": [
+            "Study why users abandon AI features after week one—usually inconsistent quality or unclear capabilities.",
+            "Make giving feedback effortless and show users when the product improves.",
+            "Balance new capability bets with reliability polish."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "AI Product Strategy & Executive Alignment",
+          "tasks": [
+            "Craft a 12-month AI roadmap balancing quick wins, platform/MCP investments, and R&D bets",
+            "Present build-vs-buy, model-portability, and margin tradeoffs to leadership",
+            "Lead cross-functional planning across engineering, design, data, legal, and GTM"
+          ],
+          "upskilling_instructions": [
+            "Protect roadmap agility—foundation models improve every quarter, so avoid over-investing in brittle workarounds.",
+            "Communicate clearly about uncertainty, eval confidence, and phased milestones.",
+            "Align incentives across teams around shared customer outcomes."
+          ],
+          "references": [
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "EU AI Act Service Desk & Timeline",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "AI PM Portfolio & Leadership Interviews",
+          "tasks": [
+            "Publish 2 deep AI PM case studies showing discovery, eval-driven PRDs, launch metrics, and margin impact",
+            "Practice AI PM product-sense, technical-depth, and execution interviews",
+            "Refine your narrative bridging deep engineering credibility with customer-first product leadership"
+          ],
+          "upskilling_instructions": [
+            "Highlight how your engineering roots let you spot technical feasibility, eval gaps, and latency tradeoffs faster.",
+            "Show real numbers: task completion lift, edit-rate reduction, or gross margin improvement.",
+            "Prepare thoughtful answers on AI safety, build-vs-buy, and agent autonomy."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Data Analyst",
+      "target_ai_role": "AI Product Manager",
+      "title": "Data Analyst to AI Product Manager",
+      "summary": "A 2026 path leveraging analytical and experimentation rigor into AI product management, eval design, AI unit economics, and data-driven launches.",
+      "base_difficulty": 56,
+      "months": [
+        {
+          "month": 1,
+          "focus": "AI Product Landscape & Technical Fluency",
+          "tasks": [
+            "Learn 2026 AI building blocks: reasoning models, RAG, context engineering, fine-tuning, and MCP agents",
+            "Analyze how data quality, retrieval, and model selection shape product reliability",
+            "Write a product teardown of two competing AI tools in your domain"
+          ],
+          "upskilling_instructions": [
+            "Use your data background to look past AI hype and inspect what inputs, context, and metrics actually drive product value.",
+            "Document where classical ML or SQL analytics is superior to generative AI.",
+            "Practice summarizing technical tradeoffs in crisp executive memos."
+          ],
+          "references": [
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Opportunity Sizing & Discovery",
+          "tasks": [
+            "Combine funnel/ticket telemetry with user interviews to identify high-ROI AI opportunities",
+            "Quantify manual hours, error rates, and willingness to adopt AI assistance",
+            "Prioritize use cases using feasibility, data readiness, and business impact"
+          ],
+          "upskilling_instructions": [
+            "Pair quantitative drop-off data with qualitative interviews so you know both what is happening and why.",
+            "Check whether the underlying data needed for RAG or agents actually exists and is clean.",
+            "Avoid low-frequency novelty features."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "User Research & Trust Calibration",
+          "tasks": [
+            "Run structured discovery interviews and concept tests with target users",
+            "Identify trust blockers: hallucinations, opaque reasoning, privacy fears, or slow latency",
+            "Synthesize research into clear user personas and jobs-to-be-done"
+          ],
+          "upskilling_instructions": [
+            "Listen for how users currently double-check colleagues' work—that reveals how they will verify AI outputs.",
+            "Capture exact user language to inform onboarding and UI copy.",
+            "Share synthesized insights with engineering and design."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Eval-Driven PRDs & Success Metrics",
+          "tasks": [
+            "Write an AI PRD defining target workflows, human-in-the-loop checkpoints, and strict quality thresholds",
+            "Design golden evaluation datasets stratified across real user query distributions",
+            "Specify latency, cost-per-task, and fallback requirements"
+          ],
+          "upskilling_instructions": [
+            "Your analytics skill in defining clean metrics and edge-case slices makes you naturally strong at AI PRDs.",
+            "Ensure eval datasets reflect messy real-world traffic, not just clean happy-path examples.",
+            "Define explicit refusal and escalation paths."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Prototyping & Prompt Iteration",
+          "tasks": [
+            "Prototype AI workflows in Google AI Studio, APIs, or coding assistants",
+            "Test structured outputs, retrieval chunks, and prompt variations on real sample data",
+            "Run quick usability checks on live prototype outputs"
+          ],
+          "upskilling_instructions": [
+            "Hands-on prototyping gives you intuition for token limits, context rot, and model quirks.",
+            "Log prototype test results in a spreadsheet or DuckDB to compare prompt versions objectively.",
+            "Identify where retrieval vs reasoning is the bottleneck."
+          ],
+          "references": [
+            {
+              "title": "Google Gemini API & AI Studio",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Evaluation Calibration & Error Analysis",
+          "tasks": [
+            "Lead SME labeling sessions and measure inter-annotator agreement",
+            "Calibrate LLM-as-a-judge metrics against human ground truth",
+            "Build an error-taxonomy dashboard tracking failure modes over time"
+          ],
+          "upskilling_instructions": [
+            "Apply statistical rigor: check sample sizes, slice performance by segment, and watch for Goodhart's Law.",
+            "Turn top failure clusters into prioritized engineering tickets.",
+            "Establish eval gates before every model or prompt release."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "AI Unit Economics & Pricing Strategy",
+          "tasks": [
+            "Model token, reasoning, embedding, and guardrail costs across user tiers in SQL/spreadsheets",
+            "Evaluate prompt caching and model-routing optimizations with engineering",
+            "Recommend sustainable packaging and pricing models"
+          ],
+          "upskilling_instructions": [
+            "Analyze usage skew—power users can drive 10x higher token costs than median users.",
+            "Include evaluation and background agent runs in COGS calculations.",
+            "Simulate margin impact under different adoption scenarios."
+          ],
+          "references": [
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Safety, Privacy & Compliance",
+          "tasks": [
+            "Define PII boundaries, data retention rules, and tenant isolation requirements",
+            "Map product risks to EU AI Act, NIST AI RMF, and OWASP LLM Top 10",
+            "Partner with legal and security on red-teaming and escalation playbooks"
+          ],
+          "upskilling_instructions": [
+            "Use your data-governance experience to audit where sensitive fields might leak into prompts or logs.",
+            "Ensure clear user consent and AI transparency in the interface.",
+            "Document compliance posture for enterprise buyers."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "EU AI Act Service Desk & Timeline",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Experimentation & Controlled Rollouts",
+          "tasks": [
+            "Design A/B tests, shadow deployments, and holdout groups for AI features",
+            "Monitor primary outcome metrics and guardrail metrics (latency, error rate, user edits)",
+            "Coordinate beta enablement, support docs, and GTM readiness"
+          ],
+          "upskilling_instructions": [
+            "Design experiments to measure true incremental value (time saved, retention, conversion), not just clicks on an AI button.",
+            "Set clear statistical stopping and rollback rules.",
+            "Share transparent launch readouts."
+          ],
+          "references": [
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Growth, Retention & Data Flywheels",
+          "tasks": [
+            "Analyze cohort retention, feature stickiness, and edit-distance trends",
+            "Design ethical feedback loops that improve retrieval and evals from real usage",
+            "Prioritize onboarding and workflow integrations (e.g., MCP) that drive habit formation"
+          ],
+          "upskilling_instructions": [
+            "Distinguish initial curiosity spikes from sustained 30-day workflow retention.",
+            "Look for segments where AI fails consistently and fix those workflows first.",
+            "Close the loop between analytics insights and roadmap updates."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "AI Product Strategy & Roadmapping",
+          "tasks": [
+            "Build a 12-month AI product strategy grounded in data moats and customer ROI",
+            "Present build-vs-buy and model-portability recommendations to executives",
+            "Align engineering, design, analytics, and GTM on quarterly OKRs"
+          ],
+          "upskilling_instructions": [
+            "Anchor roadmap pitches in validated metrics and customer evidence rather than AI buzzwords.",
+            "Keep architecture flexible enough to adopt faster, cheaper models as they launch.",
+            "Communicate tradeoffs decisively."
+          ],
+          "references": [
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "AI PM Portfolio & Interview Readiness",
+          "tasks": [
+            "Create 2 end-to-end AI PM case studies highlighting metric design, evals, and launch impact",
+            "Practice product-sense, analytics, and AI system-design interview questions",
+            "Position your data rigor as a rare competitive edge in AI product management"
+          ],
+          "upskilling_instructions": [
+            "Most PMs struggle with probabilistic evals and unit economics—make those the centerpiece of your portfolio.",
+            "Practice walking through an AI PRD and A/B test readout concisely.",
+            "Be ready to critique real AI products on UX, evals, and business model."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Product Manager",
+      "target_ai_role": "AI Product Manager",
+      "title": "Product Manager to AI Product Manager",
+      "summary": "A focused 2026 upskilling path for practicing PMs to master reasoning models, context engineering, MCP ecosystems, eval-driven PRDs, and AI unit economics.",
+      "base_difficulty": 46,
+      "months": [
+        {
+          "month": 1,
+          "focus": "2026 AI Stack & Paradigm Mastery",
+          "tasks": [
+            "Study frontier vs open-weight models, reasoning models, context engineering, RAG, RFT/fine-tuning, and MCP agents",
+            "Map each technical paradigm to product latency, accuracy, and cost characteristics",
+            "Build an internal AI glossary and architecture cheat-sheet for your team"
+          ],
+          "upskilling_instructions": [
+            "Know when a workflow needs simple structured prompting, hybrid RAG, fine-tuning, or a multi-step agent.",
+            "Test multiple frontier and open-weight models hands-on so you feel their real latency and reasoning differences.",
+            "Focus on solving user problems, not shipping AI for its own sake."
+          ],
+          "references": [
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "AI Opportunity Discovery & Prioritization",
+          "tasks": [
+            "Audit core user journeys for high-friction, high-frequency bottlenecks suited to AI",
+            "Evaluate data availability, verification cost, and error tolerance per candidate use case",
+            "Build a scored prioritization matrix with engineering and design leads"
+          ],
+          "upskilling_instructions": [
+            "Avoid high-stakes workflows with zero error tolerance unless human review fits naturally into the flow.",
+            "Assess whether your product already has the context/data needed for accurate responses.",
+            "Validate value before scoping complex agentic architectures."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "AI Discovery & Trust Research",
+          "tasks": [
+            "Run user interviews probing trust, explainability, and willingness to delegate to AI agents",
+            "Test low-fidelity concepts of copilot vs autonomous background workflows",
+            "Document user mental models and privacy concerns"
+          ],
+          "upskilling_instructions": [
+            "Watch where users hesitate to click 'send' or 'apply' on AI suggestions—that is your trust gap.",
+            "Distinguish tasks users want accelerated from tasks they want fully delegated.",
+            "Capture concrete edge cases directly from customer workflows."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Google Gemini API & AI Studio",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Eval-Driven PRDs & Agentic Specs",
+          "tasks": [
+            "Write an AI PRD including golden test cases, quality thresholds, human-in-the-loop states, and fallbacks",
+            "Define permissions, undo/rollback, and escalation rules for tool-calling agents",
+            "Align engineering on p95 latency and cost-per-task SLAs"
+          ],
+          "upskilling_instructions": [
+            "Specify what 'good', 'acceptable', and 'unacceptable' outputs look like with concrete examples.",
+            "Design human approval gates for any irreversible or external action.",
+            "Treat prompt/model behavior specs as living, versioned artifacts."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Hands-On Prototyping & Prompt Testing",
+          "tasks": [
+            "Build working AI prototypes using AI Studio, coding agents, or no-code/low-code tools",
+            "Test prompts against 30+ messy real-world inputs and log failure patterns",
+            "Run rapid usability tests on real, non-scripted model outputs"
+          ],
+          "upskilling_instructions": [
+            "Never judge an AI feature from 3 cherry-picked demo prompts—test the messy middle and edge cases.",
+            "Use prototypes to align design and engineering much faster than long documents.",
+            "Measure how often users have to edit or retry outputs."
+          ],
+          "references": [
+            {
+              "title": "Google Gemini API & AI Studio",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Evaluation Systems & SME Calibration",
+          "tasks": [
+            "Co-design golden datasets and grading rubrics with domain SMEs",
+            "Implement automated evals (deterministic + LLM-as-a-judge) in the release workflow",
+            "Run weekly trace reviews to diagnose retrieval, reasoning, and UX gaps"
+          ],
+          "upskilling_instructions": [
+            "Verify automated judges correlate with human SME ratings before using them as launch gates.",
+            "Track eval scores across every model or prompt change to prevent silent regressions.",
+            "Turn customer bug reports directly into new eval cases."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "AI Unit Economics & Monetization",
+          "tasks": [
+            "Model gross margins across token usage, reasoning compute, caching, and retrieval",
+            "Design smart model-routing and caching tiers with engineering",
+            "Evaluate seat, usage, credit, and outcome-based pricing models"
+          ],
+          "upskilling_instructions": [
+            "Stress-test pricing against heavy agentic power users.",
+            "Factor in evals, retries, and background indexing into total AI COGS.",
+            "Communicate margin levers clearly to leadership."
+          ],
+          "references": [
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Safety, Privacy, EU AI Act & Governance",
+          "tasks": [
+            "Define data residency, zero-retention, and PII handling requirements",
+            "Map product risks to EU AI Act, NIST AI RMF, and OWASP LLM Top 10",
+            "Establish red-teaming, abuse monitoring, and incident escalation playbooks"
+          ],
+          "upskilling_instructions": [
+            "Build trust by making AI provenance, citations, and data boundaries transparent to buyers.",
+            "Ensure enterprise permissioning is enforced in backend retrieval, not just prompts.",
+            "Partner early with legal and InfoSec."
+          ],
+          "references": [
+            {
+              "title": "EU AI Act Service Desk & Timeline",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Beta Rollouts & Online Experimentation",
+          "tasks": [
+            "Plan phased rollouts (internal dogfood -> design partners -> A/B test -> GA)",
+            "Define primary outcome KPIs and safety/latency guardrail metrics",
+            "Create GTM enablement, customer education, and support escalation docs"
+          ],
+          "upskilling_instructions": [
+            "Measure real workflow completion and retention rather than novelty clicks.",
+            "Set clear automated rollback triggers for latency spikes or quality drops.",
+            "Equip support teams with trace-lookup tools for customer issues."
+          ],
+          "references": [
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Adoption, Retention & Ecosystem Integrations",
+          "tasks": [
+            "Analyze onboarding funnels, edit rates, and repeat-usage cohorts",
+            "Leverage MCP integrations to connect your AI product into customers' existing tools",
+            "Build ethical feedback loops that continuously improve evals and context"
+          ],
+          "upskilling_instructions": [
+            "AI features stick when they live inside the user's daily workflow rather than forcing a separate chat tab.",
+            "Fix top abandonment triggers before adding new capabilities.",
+            "Measure time-to-value in the first 5 minutes."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "AI Strategy & Competitive Defensibility",
+          "tasks": [
+            "Define a 12-month AI product vision anchored in proprietary data, workflow lock-in, and eval quality",
+            "Assess build-vs-buy and multi-model portability strategies",
+            "Present roadmap tradeoffs and ROI forecasts to executive stakeholders"
+          ],
+          "upskilling_instructions": [
+            "Assume base models will keep getting faster, cheaper, and smarter—build product moats that compound with model progress.",
+            "Avoid locking into a single model version without an eval-backed migration path.",
+            "Align product, engineering, and GTM on clear quarterly outcomes."
+          ],
+          "references": [
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "AI PM Case Studies & Executive Readiness",
+          "tasks": [
+            "Publish a polished AI PM case study covering discovery, evals, launch metrics, and margin management",
+            "Prepare concrete stories on handling hallucinations, safety, and cross-functional tradeoffs",
+            "Lead AI product initiatives or interview confidently for Senior/Staff AI PM roles"
+          ],
+          "upskilling_instructions": [
+            "Show measurable business outcomes alongside rigorous eval and unit-economics discipline.",
+            "Be ready to whiteboard an AI feature from user problem to eval pipeline and rollout.",
+            "Demonstrate deep fluency in both user empathy and 2026 AI systems."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "EU AI Act Service Desk & Timeline",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "UX Designer",
+      "target_ai_role": "AI Product Manager",
+      "title": "UX Designer to AI Product Manager",
+      "summary": "A 2026 pathway turning UX research and interaction design mastery into AI product management, human-centered evals, AI prototyping, and strategic ownership.",
+      "base_difficulty": 56,
+      "months": [
+        {
+          "month": 1,
+          "focus": "AI Capabilities & Product Architecture",
+          "tasks": [
+            "Learn 2026 AI primitives: reasoning models, RAG, context engineering, multimodal models, and MCP agents",
+            "Map each capability to concrete UX patterns (streaming, generative UI, copilot, background agent)",
+            "Write a product teardown analyzing UX and business tradeoffs of leading AI apps"
+          ],
+          "upskilling_instructions": [
+            "Connect technical primitives directly to user experience: latency, predictability, and error recovery.",
+            "Understand why deterministic UI still beats chat for many structured tasks.",
+            "Practice framing technical constraints in product terms."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Problem Discovery & Opportunity Sizing",
+          "tasks": [
+            "Conduct discovery interviews to uncover high-friction workflows where AI adds real leverage",
+            "Quantify opportunity size, frequency, and user verification overhead",
+            "Prioritize AI bets with engineering and business stakeholders"
+          ],
+          "upskilling_instructions": [
+            "Use your research strengths to spot where users actually struggle vs where they just say they want AI.",
+            "Check data readiness and cost feasibility before committing to a concept.",
+            "Align on measurable success criteria early."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Human-Centered AI & Trust Design",
+          "tasks": [
+            "Define UX patterns for uncertainty, source provenance, confidence cues, and error recovery",
+            "Test copilot vs autonomous agent concepts with users to calibrate control",
+            "Synthesize trust and accessibility requirements into product principles"
+          ],
+          "upskilling_instructions": [
+            "Design for graceful failure: when AI is wrong or unsure, recovery must be effortless.",
+            "Ensure users always feel in control of consequential actions.",
+            "Include accessibility and diverse user needs from day one."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Eval-Driven PRDs & Acceptance Criteria",
+          "tasks": [
+            "Write an AI PRD combining user flows, HITL states, golden eval cases, and quality thresholds",
+            "Define latency, cost, and safety guardrails with engineering",
+            "Specify clear fallback behavior for low-confidence or blocked outputs"
+          ],
+          "upskilling_instructions": [
+            "Translate qualitative UX expectations into concrete eval rubrics and test cases.",
+            "Include edge cases, refusals, and empty states in every AI spec.",
+            "Align engineering, design, and QA around shared release criteria."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Live AI Prototyping & Usability Testing",
+          "tasks": [
+            "Build interactive AI prototypes using AI Studio, v0/coding agents, or Vercel AI SDK",
+            "Run usability tests using live, unscripted model outputs rather than static mocks",
+            "Iterate on prompts, context, and UI framing based on real user reactions"
+          ],
+          "upskilling_instructions": [
+            "Testing static Figma mocks hides latency, streaming awkwardness, and weird model phrasing—always test with real models.",
+            "Observe how users recover when the prototype gives a mediocre answer.",
+            "Feed discovered failure modes into your golden eval set."
+          ],
+          "references": [
+            {
+              "title": "Google Gemini API & AI Studio",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Evaluation Rigor & Quality Loops",
+          "tasks": [
+            "Partner with SMEs to grade outputs and calibrate LLM-as-a-judge rubrics",
+            "Track edit distance, regeneration rate, and eval pass rates together",
+            "Lead weekly quality reviews prioritizing the highest-impact UX and model fixes"
+          ],
+          "upskilling_instructions": [
+            "Combine quantitative eval scores with qualitative trace reading—numbers tell you what broke, traces tell you why.",
+            "Ensure automated metrics reflect real user satisfaction.",
+            "Gate releases on regression checks."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "AI Business Models & Unit Economics",
+          "tasks": [
+            "Learn token, reasoning, and retrieval cost drivers and model product gross margins",
+            "Collaborate with engineering on model routing and caching tradeoffs",
+            "Design pricing and packaging aligned with delivered customer value"
+          ],
+          "upskilling_instructions": [
+            "Understand how UX choices (e.g., auto-triggering vs explicit button, streaming previews) directly impact token spend.",
+            "Account for power users and background agent runs in financial models.",
+            "Tie product investments to clear ROI."
+          ],
+          "references": [
+            {
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            },
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Safety, Privacy & Responsible AI Governance",
+          "tasks": [
+            "Define transparent AI disclosures, data boundaries, and consent flows",
+            "Map product risks to EU AI Act, NIST AI RMF, and OWASP LLM Top 10",
+            "Establish escalation paths and abuse-prevention requirements"
+          ],
+          "upskilling_instructions": [
+            "Make privacy and data-usage boundaries crystal clear in the UI without legalese.",
+            "Design safe confirmation patterns for MCP tools and external actions.",
+            "Partner with security and legal before beta launch."
+          ],
+          "references": [
+            {
+              "title": "EU AI Act Service Desk & Timeline",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Launch Planning & Experimentation",
+          "tasks": [
+            "Design phased beta rollouts and A/B experiments with clear guardrail metrics",
+            "Build onboarding, empty states, and example prompts that teach users what the AI does well",
+            "Prepare enablement materials for support, sales, and customer success"
+          ],
+          "upskilling_instructions": [
+            "Great onboarding is half the battle in AI products—show users realistic high-value starting points.",
+            "Track task completion and retention, not just first-day curiosity.",
+            "Define crisp rollback criteria."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Growth, Retention & Continuous Learning",
+          "tasks": [
+            "Analyze adoption funnels, retention cohorts, and user-edit patterns",
+            "Design non-intrusive feedback mechanisms that improve evals and retrieval",
+            "Expand workflow integration via MCP or embedded product surfaces"
+          ],
+          "upskilling_instructions": [
+            "Move AI out of isolated sidebars into the natural flow of user work.",
+            "Use qualitative follow-ups with churned users to fix trust or utility gaps.",
+            "Iterate rapidly on high-impact friction points."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "AI Product Strategy & Leadership",
+          "tasks": [
+            "Define a 12-month AI product vision balancing UX differentiation, data moats, and margin health",
+            "Present strategic tradeoffs and build-vs-buy decisions to executives",
+            "Lead cross-functional planning across engineering, design, data, and GTM"
+          ],
+          "upskilling_instructions": [
+            "Position human-centered design and eval rigor as your product's core competitive advantage.",
+            "Keep roadmaps adaptable as model capabilities evolve.",
+            "Communicate crisp business rationale behind every bet."
+          ],
+          "references": [
+            {
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "AI PM Portfolio & Transition",
+          "tasks": [
+            "Publish 2 end-to-end AI PM case studies showcasing discovery, live prototyping, evals, and outcomes",
+            "Practice AI PM product-sense, analytics, and execution interviews",
+            "Highlight your unique blend of UX craft, live AI prototyping, and business rigor"
+          ],
+          "upskilling_instructions": [
+            "Show that you own outcomes, metrics, and strategy—not just interface polish.",
+            "Walk interviewers through how you turned user research into eval rubrics and shipped impact.",
+            "Target AI-native product teams that prize design-minded PMs."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             }
           ]
         }
@@ -4834,342 +5179,342 @@ window.ROADMAP_DATA = {
       "current_role": "Any Role",
       "target_ai_role": "AI Product Manager",
       "title": "Default Path to AI Product Manager",
-      "summary": "A general fallback path for AI product discovery, delivery, evaluation, and launch leadership.",
-      "base_difficulty": 64,
+      "summary": "A comprehensive 2026 baseline path into AI Product Management covering AI architecture literacy, discovery, eval-driven PRDs, unit economics, and safe launches.",
+      "base_difficulty": 62,
       "months": [
         {
           "month": 1,
-          "focus": "AI Product Literacy",
+          "focus": "2026 AI Technology & Market Fluency",
           "tasks": [
-            "Study AI product categories",
-            "Learn LLM basics",
-            "Analyze product examples"
+            "Learn core 2026 AI paradigms: LLMs, reasoning models, RAG, context engineering, fine-tuning, and MCP agents",
+            "Analyze real AI products to see how they handle latency, accuracy, and trust",
+            "Build a structured vocabulary brief for engineering and business alignment"
           ],
           "upskilling_instructions": [
-            "Build prompts as versioned artifacts: state the task, audience, context, constraints, examples, output schema, and refusal boundaries.",
-            "Compare prompt variants against the same test set, then measure correctness, format adherence, latency, and failure modes instead of relying on vibes.",
-            "Finish with a small LLM feature that validates structured output and gives users a graceful path when the answer is uncertain."
+            "Test multiple leading AI models hands-on so you understand strengths, failure modes, and cost tiers firsthand.",
+            "Learn when simple rules or classical ML outperform generative AI.",
+            "Focus on user outcomes rather than technology novelty."
           ],
           "references": [
             {
-              "title": "OpenAI Prompt Engineering Best Practices",
-              "url": "https://openai.com/academy/prompting/"
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
             },
             {
-              "title": "OpenAI Text Generation Guide",
-              "url": "https://platform.openai.com/docs/guides/text-generation"
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "Google MLCC: Large Language Models",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Discovery",
+          "focus": "Use Case Selection & Prioritization",
           "tasks": [
-            "Run user interviews",
-            "Map problems",
-            "Prioritize opportunities"
+            "Identify high-friction workflows where AI creates measurable time or quality gains",
+            "Score opportunities on user value, data readiness, error tolerance, and unit economics",
+            "Define clear non-goals and out-of-scope boundaries"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Avoid automating high-stakes tasks without a natural human-review step.",
+            "Verify that required source data is accessible, clean, and permissioned.",
+            "Start with narrow, high-frequency workflows."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Technical Fluency",
+          "focus": "Customer Discovery & Trust Validation",
           "tasks": [
-            "Learn RAG and agents",
-            "Understand evaluation",
-            "Document model tradeoffs"
+            "Conduct structured user interviews focused on current workflows and pain points",
+            "Validate willingness to rely on AI outputs and identify trust blockers",
+            "Synthesize findings into target personas and jobs-to-be-done"
           ],
           "upskilling_instructions": [
-            "Start with one tool and one narrow task; define exactly when the model may call the tool, what arguments are allowed, and what requires confirmation.",
-            "Test agent behavior with success cases, ambiguous requests, malicious instructions, missing data, and tool failures.",
-            "Ship a constrained workflow with audit logs, permission checks, tool output validation, and a human handoff path."
+            "Listen for how much manual verification users will tolerate before abandoning an AI tool.",
+            "Capture real examples of messy inputs users work with daily.",
+            "Share research recordings and insights with engineering and design."
           ],
           "references": [
             {
-              "title": "OpenAI Function Calling Help",
-              "url": "https://openai.com/index/function-calling-and-other-api-updates/"
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
             },
             {
-              "title": "OpenAI File Search Guide",
-              "url": "https://platform.openai.com/docs/guides/assistants/tools/file-search"
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "OWASP LLM Top 10",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "Google Gemini API & AI Studio",
+              "url": "https://ai.google.dev/gemini-api/docs"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "PRDs",
+          "focus": "Eval-Driven PRDs & Specifications",
           "tasks": [
-            "Write specs",
-            "Define MVP",
-            "Set launch gates"
+            "Write an AI PRD with golden test cases, quality thresholds, latency/cost budgets, and HITL states",
+            "Define fallback behaviors for refusals, low confidence, and tool errors",
+            "Align engineering, design, and QA on release gates"
           ],
           "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
+            "Include 30+ concrete input-output examples in your PRD so ambiguity is eliminated early.",
+            "Require explicit user confirmation before any irreversible agent action.",
+            "Treat eval criteria as living product requirements."
           ],
           "references": [
             {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Metrics",
+          "focus": "Hands-On AI Prototyping",
           "tasks": [
-            "Define success metrics",
-            "Add quality measures",
-            "Create dashboard plans"
+            "Build a working AI prototype using AI Studio, coding agents, or low-code tools",
+            "Test prompts and context setups against messy real-world inputs",
+            "Run quick usability sessions with live model outputs"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Prototyping yourself builds intuition for context limits, latency, and edge-case failures.",
+            "Log failure cases from prototype testing directly into your eval set.",
+            "Iterate quickly before locking in engineering specs."
           ],
           "references": [
             {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+              "title": "Google Gemini API & AI Studio",
+              "url": "https://ai.google.dev/gemini-api/docs"
             },
             {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             },
             {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Prototype",
+          "focus": "Evaluation & Quality Operations",
           "tasks": [
-            "Build or guide a prototype",
-            "Run usability tests",
-            "Capture failure modes"
+            "Co-create golden datasets and grading rubrics with domain SMEs",
+            "Set up automated eval tracking with Langfuse or Promptfoo",
+            "Run weekly error-triage sessions to categorize and fix top failure modes"
           ],
           "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
+            "Calibrate automated LLM judges against human SME scores.",
+            "Track quality regressions across every prompt, retrieval, or model update.",
+            "Separate retrieval issues from reasoning or UX issues."
           ],
           "references": [
             {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
+              "title": "Promptfoo LLM Evaluation",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "Evaluation",
+          "focus": "AI Unit Economics & Pricing",
           "tasks": [
-            "Create rubrics",
-            "Review outputs",
-            "Set human review loops"
+            "Model COGS across tokens, reasoning compute, caching, retrieval, and evals",
+            "Explore model routing and prompt caching to improve gross margins",
+            "Design pricing (tiered, usage, credits, or outcome-based) aligned with customer value"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Stress-test financial models against heavy power users and agent loops.",
+            "Monitor cost per completed user task, not just cost per API call.",
+            "Partner with engineering on cost-saving architecture choices."
           ],
           "references": [
             {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Risk",
+          "focus": "Safety, Privacy & Compliance",
           "tasks": [
-            "Assess privacy",
-            "Plan misuse prevention",
-            "Write escalation paths"
+            "Define data privacy boundaries, PII handling, and tenant isolation",
+            "Map product risks to EU AI Act, NIST AI RMF, and OWASP LLM Top 10",
+            "Create abuse-prevention, red-teaming, and escalation playbooks"
           ],
           "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
+            "Make AI disclosures, citations, and data controls clear to both users and enterprise buyers.",
+            "Enforce access controls in backend data layers, not just prompts.",
+            "Review compliance early with legal and security."
           ],
           "references": [
             {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "EU AI Act Service Desk & Timeline",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Launch",
+          "focus": "Beta Launch & Experimentation",
           "tasks": [
-            "Plan beta release",
-            "Create messaging",
-            "Gather feedback"
+            "Plan phased rollouts (dogfood -> beta -> A/B test -> GA) with clear rollback triggers",
+            "Define outcome KPIs alongside latency, safety, and quality guardrails",
+            "Prepare customer onboarding, enablement, and support playbooks"
           ],
           "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
+            "Measure real workflow completion and retention over novelty usage.",
+            "Use shadow or canary rollouts when swapping underlying models.",
+            "Equip support teams with clear troubleshooting guides."
           ],
           "references": [
             {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
+              "title": "Evidently AI Evaluation Concepts",
+              "url": "https://docs.evidentlyai.com/"
             },
             {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
             },
             {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Experimentation",
+          "focus": "Adoption, Retention & Feedback Loops",
           "tasks": [
-            "Design A/B tests",
-            "Interpret results",
-            "Prioritize iterations"
+            "Analyze onboarding drop-offs, user edit rates, and 30-day cohort retention",
+            "Integrate AI into existing user workflows via APIs or MCP connectors",
+            "Turn user feedback and edits into continuous eval improvements"
           ],
           "upskilling_instructions": [
-            "Treat this month as engineering hygiene: isolate environments, use Git intentionally, and keep every exercise reproducible from a clean checkout.",
-            "Write small tests before changing behavior, then refactor code into modules so future AI or ML work can be maintained outside notebooks.",
-            "End with a checklist covering setup, tests, linting, debugging notes, and the decisions you made while organizing the project."
+            "Focus on reducing friction to first value within the user's first session.",
+            "Fix recurring quality gaps before expanding scope.",
+            "Keep feedback loops lightweight and respectful of user privacy."
           ],
           "references": [
             {
-              "title": "JavaScript Modules",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "pytest Get Started",
-              "url": "https://docs.pytest.org/en/stable/getting-started.html"
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
             },
             {
-              "title": "Pro Git Book",
-              "url": "https://git-scm.com/book/en/v2"
+              "title": "DuckDB Analytics SQL",
+              "url": "https://duckdb.org/docs/"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Strategy",
+          "focus": "AI Product Strategy & Stakeholder Alignment",
           "tasks": [
-            "Create product vision",
-            "Analyze market",
-            "Present roadmap"
+            "Create a 12-month AI roadmap anchored in defensible data and workflow moats",
+            "Present build-vs-buy and multi-model portability tradeoffs to leadership",
+            "Align engineering, design, data, and GTM on measurable quarterly goals"
           ],
           "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
+            "Design roadmaps that benefit as foundation models get faster and cheaper.",
+            "Communicate uncertainty and eval-backed confidence honestly.",
+            "Stay grounded in customer ROI."
           ],
           "references": [
             {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
+              "title": "Anthropic Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
             },
             {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
+              "title": "OpenAI Platform & Evals Docs",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Portfolio",
+          "focus": "AI PM Portfolio & Interview Prep",
           "tasks": [
-            "Publish an AI PM case study",
-            "Show measurable impact",
-            "Prepare interviews"
+            "Publish 2 comprehensive AI PM case studies showing discovery, evals, launch metrics, and economics",
+            "Practice product-sense, metrics, and technical AI PM interviews",
+            "Demonstrate fluency across user empathy, eval rigor, and business impact"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Show concrete before/after metrics and real lessons from failed prototypes or evals.",
+            "Be ready to walk through an end-to-end AI PRD on a whiteboard.",
+            "Keep up with model, protocol (MCP), and regulatory shifts."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "EU AI Act Service Desk & Timeline",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
             }
           ]
         }
@@ -5179,342 +5524,342 @@ window.ROADMAP_DATA = {
       "current_role": "Any Role",
       "target_ai_role": "AI Generalist",
       "title": "General AI Career Roadmap",
-      "summary": "A broad default roadmap when no close role match exists.",
-      "base_difficulty": 70,
+      "summary": "A 2026 foundation roadmap for professionals from any background to build practical AI fluency: modern Python, ML basics, context engineering, MCP workflows, evals, and shipping an AI project.",
+      "base_difficulty": 68,
       "months": [
         {
           "month": 1,
-          "focus": "AI Landscape",
+          "focus": "2026 AI Landscape & Core Concepts",
           "tasks": [
-            "Learn core AI terminology",
-            "Study common AI roles",
-            "Pick a working direction"
+            "Learn core 2026 AI concepts: LLMs, reasoning models, embeddings, RAG, fine-tuning, and MCP agents",
+            "Compare major AI career tracks (AI Engineer, ML Engineer, Agentic AI Engineer, AI PM, AI UX)",
+            "Audit your current domain strengths to pick a high-leverage direction"
           ],
           "upskilling_instructions": [
-            "Spend the first week rebuilding fundamentals with short daily coding sessions, then convert one familiar work task into reusable JavaScript.",
-            "By mid-month, practice reading files, transforming data, handling errors, and writing functions that can be tested without manual setup.",
-            "Finish with a small repo that includes a README, sample input data, and evidence that the app logic works on more than one case."
+            "Use multiple frontier and open-weight models daily to build intuition for what they solve well and where they hallucinate.",
+            "Focus on practical capabilities and limitations rather than hype.",
+            "Write a short 1-page plan mapping your existing skills to 2 target roles."
           ],
           "references": [
             {
-              "title": "JavaScript Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "NumPy Absolute Beginners Guide",
-              "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "JavaScript Basics",
+          "focus": "Python & Git Foundations",
           "tasks": [
-            "Practice JavaScript",
-            "Use notebooks",
-            "Automate a small task"
+            "Set up Python with uv and learn Git version control basics",
+            "Practice variables, functions, JSON handling, and calling REST APIs",
+            "Build a small automation script that summarizes or organizes local files"
           ],
           "upskilling_instructions": [
-            "Spend the first week rebuilding fundamentals with short daily coding sessions, then convert one familiar work task into reusable JavaScript.",
-            "By mid-month, practice reading files, transforming data, handling errors, and writing functions that can be tested without manual setup.",
-            "Finish with a small repo that includes a README, sample input data, and evidence that the app logic works on more than one case."
+            "Code a little every day and commit small working steps to Git.",
+            "Use AI coding assistants to explain syntax, but verify every script by running it yourself.",
+            "Keep API keys in environment variables, never inside code."
           ],
           "references": [
             {
-              "title": "JavaScript Guide",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "NumPy Absolute Beginners Guide",
-              "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+              "title": "Git Reference Manual",
+              "url": "https://git-scm.com/doc"
             },
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Data Skills",
+          "focus": "Data Literacy & Exploration",
           "tasks": [
-            "Clean data",
-            "Create visual summaries",
-            "Explain insights"
+            "Clean, filter, and aggregate real CSV/JSON datasets using Polars or DuckDB",
+            "Create clear summary charts and spot missing values, outliers, and biases",
+            "Write a short data brief explaining what the dataset can and cannot support"
           ],
           "upskilling_instructions": [
-            "Use a messy dataset and document every cleaning decision, including missing values, outliers, leakage risks, and assumptions about the source.",
-            "Create repeatable transforms instead of one-off notebook cells, then compare raw and processed data with summary statistics and visual checks.",
-            "Finish with a data quality report that names what is trustworthy, what is questionable, and what must be collected before modeling."
+            "Always inspect raw records before trusting aggregate averages.",
+            "Document every cleaning assumption so results are reproducible.",
+            "Practice explaining data findings clearly to non-technical teammates."
           ],
           "references": [
             {
-              "title": "pandas Getting Started",
-              "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
             },
             {
-              "title": "Google MLCC: Numerical Data",
-              "url": "https://developers.google.com/machine-learning/crash-course/numerical-data"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "scikit-learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "ML Fundamentals",
+          "focus": "Machine Learning Fundamentals",
           "tasks": [
-            "Train simple models",
-            "Compare metrics",
-            "Document limitations"
+            "Learn supervised vs unsupervised learning, train/test splits, and evaluation metrics",
+            "Train simple scikit-learn classifiers and regressors on tabular data",
+            "Compare classical ML models against zero-shot LLM prompts"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Understand why simple classical models often beat LLMs on structured tabular prediction.",
+            "Check precision, recall, and confusion matrices rather than raw accuracy alone.",
+            "Watch out for data leakage between training and test splits."
           ],
           "references": [
             {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
-            },
-            {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
               "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "url": "https://developers.google.com/machine-learning/crash-course"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "LLM Basics",
+          "focus": "Context Engineering & Structured Outputs",
           "tasks": [
-            "Write effective prompts",
-            "Test structured outputs",
-            "Study failure modes"
+            "Design clear system prompts, few-shot examples, and strict JSON Schema outputs",
+            "Learn when to use fast models vs reasoning models with thinking budgets",
+            "Test prompts systematically across tricky and ambiguous inputs"
           ],
           "upskilling_instructions": [
-            "Build prompts as versioned artifacts: state the task, audience, context, constraints, examples, output schema, and refusal boundaries.",
-            "Compare prompt variants against the same test set, then measure correctness, format adherence, latency, and failure modes instead of relying on vibes.",
-            "Finish with a small LLM feature that validates structured output and gives users a graceful path when the answer is uncertain."
+            "Treat prompts like structured specifications—give clear roles, constraints, and edge-case instructions.",
+            "Validate structured JSON outputs with Pydantic instead of fragile regex parsing.",
+            "Log token usage and response latency."
           ],
           "references": [
             {
-              "title": "OpenAI Prompt Engineering Best Practices",
-              "url": "https://openai.com/academy/prompting/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "OpenAI Text Generation Guide",
-              "url": "https://platform.openai.com/docs/guides/text-generation"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "Google MLCC: Large Language Models",
-              "url": "https://developers.google.com/machine-learning/crash-course/llm"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "AI Prototyping",
+          "focus": "Rapid AI Prototyping",
           "tasks": [
-            "Build a small AI workflow",
-            "Collect user feedback",
-            "Improve the prototype"
+            "Build a working AI workflow or web demo using FastAPI or AI Studio",
+            "Share the prototype with 3-5 real users and watch where they get stuck",
+            "Iterate on UX, error states, and prompt context based on feedback"
           ],
           "upskilling_instructions": [
-            "Anchor the month in discovery: define the user, job-to-be-done, current workaround, measurable pain, and why AI is necessary.",
-            "Convert research into product bets with clear assumptions, MVP scope, success metrics, quality guardrails, and launch risks.",
-            "End with a short PRD or case study that connects customer evidence, technical feasibility, business value, and responsible AI considerations."
+            "Test with messy, unscripted user inputs rather than idealized examples.",
+            "Add clear loading states and helpful error messages.",
+            "Record what failed so you can turn it into automated tests."
           ],
           "references": [
             {
-              "title": "Atlassian Product Discovery",
-              "url": "https://www.atlassian.com/agile/product-management/discovery"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Atlassian Customer Interview Play",
-              "url": "https://www.atlassian.com/team-playbook/plays/customer-interview"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             },
             {
-              "title": "Google People + AI Guidebook",
-              "url": "https://pair.withgoogle.com/guidebook/"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "Retrieval",
+          "focus": "Embeddings & Retrieval (RAG)",
           "tasks": [
-            "Use embeddings",
-            "Build search",
-            "Add citations"
+            "Generate text embeddings and build semantic + keyword hybrid search with Qdrant or pgvector",
+            "Chunk documents cleanly while preserving headings and page metadata",
+            "Return grounded answers with clickable source citations"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Inspect retrieved chunks whenever a RAG answer is wrong—retrieval quality drives answer quality.",
+            "Include 'I do not have enough information in the provided sources' fallback handling.",
+            "Test how your system handles tables and multi-page documents."
           ],
           "references": [
             {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Evaluation",
+          "focus": "Evaluation & Regression Testing",
           "tasks": [
-            "Create test cases",
-            "Score outputs",
-            "Track regressions"
+            "Create a 30-50 case golden eval set covering normal queries and edge cases",
+            "Score outputs automatically with Promptfoo or Langfuse",
+            "Track quality regressions whenever you update prompts, models, or retrieval"
           ],
           "upskilling_instructions": [
-            "Create a small but representative evaluation set with ideal answers, unacceptable answers, edge cases, and realistic user phrasing.",
-            "Score quality with multiple signals: task success, factuality, retrieval relevance, format validity, latency, cost, and human review notes.",
-            "Make the eval repeatable so future prompt, model, data, or pipeline changes can be compared against the same baseline."
+            "Never rely on 'vibe checks' alone—measure pass rates across a repeatable test set.",
+            "Turn every bug or hallucination into a new permanent eval case.",
+            "Track quality, latency, and cost together."
           ],
           "references": [
             {
-              "title": "OpenAI Evals Guide",
-              "url": "https://github.com/openai/evals"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Google ML Testing and Debugging",
-              "url": "https://developers.google.com/machine-learning/testing-debugging/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "scikit-learn Model Evaluation",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Deployment Basics",
+          "focus": "MCP & Workflow Automation",
           "tasks": [
-            "Package an app",
-            "Deploy a demo",
-            "Monitor usage"
+            "Connect an AI assistant to local tools or APIs using Model Context Protocol (MCP)",
+            "Add human-in-the-loop approval before any external write or send action",
+            "Measure task completion rate and tool-call accuracy"
           ],
           "upskilling_instructions": [
-            "Package the app so another person can run it without hidden local assumptions: environment variables, dependency pins, and clear startup commands.",
-            "Add production-minded basics: health checks, logging, secret handling, timeouts, resource limits, and rollback notes.",
-            "Deploy or simulate deployment, then measure startup time, request latency, error behavior, and the steps needed to debug an incident."
+            "Keep tool permissions minimal and read-only wherever possible.",
+            "Require explicit user confirmation for irreversible actions.",
+            "Log every tool call so you can audit what the agent did."
           ],
           "references": [
             {
-              "title": "Docker Get Started",
-              "url": "https://docs.docker.com/get-started/"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "Uvicorn Deployment",
-              "url": "https://www.uvicorn.org/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Responsible AI",
+          "focus": "Deployment & Operations Basics",
           "tasks": [
-            "Study privacy and bias",
-            "Add safeguards",
-            "Document risks"
+            "Package your AI app in Docker and deploy a live demo",
+            "Add health checks, rate limiting, and spend alerts",
+            "Monitor logs, latency, and error rates in production"
           ],
           "upskilling_instructions": [
-            "Threat-model the AI workflow from user input to model output, including prompt injection, sensitive data exposure, unsafe actions, and over-trust.",
-            "Add practical controls: input boundaries, output validation, least-privilege tools, red-team prompts, monitoring, and escalation procedures.",
-            "Finish with a risk register that names severity, likelihood, mitigations, owners, and what must be revisited before launch."
+            "Set daily/monthly API spend caps before sharing any public demo.",
+            "Keep staging and production configs clean via environment variables.",
+            "Test graceful error handling when an upstream API times out."
           ],
           "references": [
             {
-              "title": "OWASP Top 10 for LLM Applications",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Responsible AI, Privacy & Security",
+          "tasks": [
+            "Learn OWASP Top 10 LLM risks including prompt injection and sensitive data exposure",
+            "Apply PII redaction and access controls before sending data to external APIs",
+            "Document limitations, bias risks, and privacy boundaries using NIST AI RMF"
+          ],
+          "upskilling_instructions": [
+            "Never paste confidential customer or company data into unapproved public tools.",
+            "Treat retrieved external content as untrusted input that could contain prompt injections.",
+            "Be transparent with users about when they are interacting with AI."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI",
-              "url": "https://support.microsoft.com/en-us/topic/what-is-responsible-ai-33fc14be-15ea-4c2c-903b-aa493f5b8d92"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "Career Positioning",
-          "tasks": [
-            "Choose target roles",
-            "Tailor your portfolio",
-            "Network with practitioners"
-          ],
-          "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
-          ],
-          "references": [
-            {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
-            },
-            {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
-            },
-            {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone",
+          "focus": "Capstone & Career Positioning",
           "tasks": [
-            "Ship a complete AI project",
-            "Write a case study",
-            "Prepare interview examples"
+            "Ship a complete, documented AI project solving a real problem in your domain",
+            "Publish a case study explaining architecture, eval results, and lessons learned",
+            "Tailor your resume and portfolio for your chosen AI role and network with practitioners"
           ],
           "upskilling_instructions": [
-            "Package the work as evidence: problem, constraints, approach, architecture, results, failures, tradeoffs, and what you would improve next.",
-            "Polish the repo or case study so a hiring manager can understand the value in five minutes and inspect the technical depth afterward.",
-            "Prepare three interview stories using the same project: technical implementation, product judgment, and learning from failure."
+            "Your existing domain expertise combined with real AI building skills is your strongest differentiator.",
+            "Show concrete metrics (time saved, eval accuracy, cost) rather than generic demos.",
+            "Make your project easy to run and inspect."
           ],
           "references": [
             {
-              "title": "GitHub Pages Documentation",
-              "url": "https://www.uvicorn.org/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "GitHub README Guide",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google Technical Writing Courses",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         }
@@ -5524,305 +5869,305 @@ window.ROADMAP_DATA = {
       "current_role": "Data Engineer",
       "target_ai_role": "AI Generalist",
       "title": "Data Engineer to AI Generalist",
-      "summary": "Learn how to build feature stores, orchestrate clean data pipelines for machine learning models, and serve AI applications at scale.",
-      "base_difficulty": 65,
+      "summary": "A 2026 path turning data-pipeline and lakehouse expertise into multimodal ETL for RAG, hybrid vector indexing, AI data governance, and production AI workflows.",
+      "base_difficulty": 62,
       "months": [
         {
           "month": 1,
-          "focus": "Python for AI Data Pipelines",
+          "focus": "Modern Python AI Stack & Lakehouse Interop",
           "tasks": [
-            "Set up standard virtual environments and dependencies",
-            "Practice advanced Pandas, NumPy and Polars for fast transformations",
-            "Build a pipeline script that ingests, cleans, and structures raw text data"
+            "Standardize Python AI pipelines with uv, ruff, and Pydantic v2",
+            "Process large structured and unstructured datasets with Polars, DuckDB, and Apache Iceberg",
+            "Build tested ingestion scripts converting messy logs and documents into clean Parquet/Iceberg tables"
           ],
           "upskilling_instructions": [
-            "Configure poetry or pipenv for reproducible pipelines.",
-            "Write clean, vectorized operations instead of slow for-loops.",
-            "Implement robust unit testing for raw data cleaning functions."
+            "Combine Polars and DuckDB for blazing-fast local/single-node AI data prep before spinning up heavy clusters.",
+            "Enforce strict Pydantic schemas at ingestion boundaries.",
+            "Version raw and processed datasets cleanly."
           ],
           "references": [
             {
-              "title": "Polars Documentation",
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "Polars User Guide",
               "url": "https://docs.pola.rs/"
             },
             {
-              "title": "Pandas Vectorization",
-              "url": "https://pandas.pydata.org/docs/user_guide/enhancingperf.html"
-            },
-            {
-              "title": "PyTest Quickstart",
-              "url": "https://docs.pytest.org/"
+              "title": "Apache Iceberg Documentation",
+              "url": "https://iceberg.apache.org/docs/latest/"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "EDA and Feature Engineering",
+          "focus": "EDA & Feature Engineering for AI",
           "tasks": [
-            "Conduct Exploratory Data Analysis (EDA) on a tabular dataset",
-            "Implement feature scaling, encoding, and imputation transformations",
-            "Build a automated feature validation script"
+            "Profile text, tabular, and metadata distributions with DuckDB SQL",
+            "Build deterministic, leakage-free feature transforms",
+            "Automate data-quality checks for nulls, duplicates, and schema drift"
           ],
           "upskilling_instructions": [
-            "Use Scikit-Learn pipelines to group imputation and scaling into one step.",
-            "Establish dataset sanity checks: check null counts, data types, and value distributions.",
-            "Document data leakage vectors and write checks to prevent them."
+            "Deduplicate near-identical documents before embedding—duplicate chunks pollute RAG retrieval.",
+            "Verify online-offline feature parity.",
+            "Log data quality metrics on every pipeline run."
           ],
           "references": [
             {
-              "title": "Scikit-Learn Pipelines",
-              "url": "https://scikit-learn.org/stable/modules/compose.html"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "Kaggle Feature Engineering Course",
-              "url": "https://www.kaggle.com/learn/feature-engineering"
+              "title": "Evidently AI Monitoring & Evals",
+              "url": "https://docs.evidentlyai.com/"
             },
             {
-              "title": "Data Leakage Guide",
-              "url": "https://scikit-learn.org/stable/common_obstacles.html#data-leakage"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Classical ML for Data Pipelines",
+          "focus": "Classical ML in Data Pipelines",
           "tasks": [
-            "Train baseline classification and regression models using Scikit-Learn",
-            "Implement cross-validation and hyperparameter tuning in a pipeline",
-            "Deploy a model locally and verify its predictions on new records"
+            "Train scikit-learn baselines for classification, routing, and anomaly detection",
+            "Run time-aware cross-validation and hyperparameter sweeps",
+            "Package preprocessing + model inference into reproducible batch jobs"
           ],
           "upskilling_instructions": [
-            "Utilize GridSearchCV or RandomizedSearchCV to find optimal hyper-parameters.",
-            "Use cross-validation fold splits rather than a simple single test split.",
-            "Expose predictions through a lightweight CLI tool."
+            "Use lightweight classical models inside ETL pipelines for cheap tagging and filtering before calling LLMs.",
+            "Audit splits carefully for temporal leakage.",
+            "Track feature importance."
           ],
           "references": [
             {
-              "title": "Scikit-Learn Cross-Validation",
-              "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
-              "title": "Tuning Hyperparameters",
-              "url": "https://scikit-learn.org/stable/modules/grid_search.html"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             },
             {
-              "title": "Scikit-Learn Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "Deep Learning & Tensors",
+          "focus": "Deep Learning & Embedding Mechanics",
           "tasks": [
-            "Understand multi-dimensional arrays, tensors, and gradient descent",
-            "Train a basic PyTorch multi-layer perceptron on tabular data",
-            "Graph training and validation loss curves to identify overfitting"
+            "Learn PyTorch tensor basics, batching, and GPU-accelerated embedding generation",
+            "Benchmark open-weight embedding and reranker models on your domain corpus",
+            "Optimize batch sizes and sequence lengths for high-throughput vectorization"
           ],
           "upskilling_instructions": [
-            "Learn tensor operations: reshaping, transposing, and matrix multiplications.",
-            "Build custom PyTorch Dataset and DataLoader instances for structured data.",
-            "Apply dropout and L2 regularization to correct overfitting curves."
+            "Measure tokens/sec and VRAM usage when running local embedding models.",
+            "Compare general embeddings against domain-tuned or multilingual models.",
+            "Cache embeddings keyed by content hash to avoid recomputing unchanged docs."
           ],
           "references": [
             {
-              "title": "PyTorch Learn the Basics",
-              "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html"
+              "title": "PyTorch Tutorials",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "PyTorch Datasets & DataLoaders",
-              "url": "https://pytorch.org/tutorials/beginner/basics/data_tutorial.html"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "Google MLCC: Neural Networks",
-              "url": "https://developers.google.com/machine-learning/crash-course/neural-networks"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "LLMs and Prompt Data Workflows",
+          "focus": "Batch LLM Extraction & Async Pipelines",
           "tasks": [
-            "Interact with commercial or open-weight models via API calls",
-            "Build structured prompt templates and implement JSON schema validation",
-            "Design a pipeline that processes thousands of rows via async API calls"
+            "Build async Python pipelines calling LLM APIs with structured JSON outputs",
+            "Implement rate-limit backoff, checkpointing, and dead-letter queues for failed rows",
+            "Compare real-time vs batch API pricing for large-scale enrichment"
           ],
           "upskilling_instructions": [
-            "Specify strict JSON schemas inside model parameters or prompt templates.",
-            "Add exponential backoff retries to manage rate limits and network errors.",
-            "Implement concurrency controls to avoid overloading API quotas."
+            "Always checkpoint completed batches to Parquet/DuckDB so long runs resume cleanly.",
+            "Use batch APIs and prompt caching to cut enrichment costs by 50%+.",
+            "Validate every LLM-extracted record with Pydantic."
           ],
           "references": [
             {
-              "title": "OpenAI Structured Outputs",
-              "url": "https://openai.com/index/introducing-structured-outputs-in-the-api/"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "Asyncio in Python Guide",
-              "url": "https://docs.python.org/3/library/asyncio.html"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "Tenacity Retrying Library",
-              "url": "https://tenacity.readthedocs.io/"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Semantic Indexing & Vector Search",
+          "focus": "Multimodal Document Parsing & Chunking",
           "tasks": [
-            "Generate document embeddings using local sentence-transformers models",
-            "Set up a local instance of a vector database (Chroma, Qdrant, or PGVector)",
-            "Perform semantic similarity queries and compare performance to keywords"
+            "Parse complex PDFs, tables, and slide decks using vision-language models (VLMs) and layout parsers",
+            "Implement structure-aware chunking preserving headers, tables, and source URLs",
+            "Store rich metadata for hybrid filtering"
           ],
           "upskilling_instructions": [
-            "Choose an appropriate embedding model from the MTEB leaderboard.",
-            "Install and configure ChromaDB or Qdrant inside a local Docker container.",
-            "Compare cosine similarity, L2 distance, and dot product search metrics."
+            "Stop relying solely on naive PDF text extraction—tables and charts require layout-aware or VLM parsing.",
+            "Attach document ACLs, timestamps, and section titles to every chunk.",
+            "Test chunking on your ugliest real enterprise documents."
           ],
           "references": [
             {
-              "title": "Sentence Transformers on HF",
-              "url": "https://huggingface.co/sentence-transformers"
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
             },
             {
-              "title": "Qdrant Quickstart",
-              "url": "https://qdrant.tech/documentation/quickstart/"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Pinecone Embedding Guide",
-              "url": "https://www.pinecone.io/learn/vector-embeddings/"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "RAG Data Pipelines & ETL",
+          "focus": "Hybrid Vector Indexing & Incremental ETL",
           "tasks": [
-            "Build a document parsing pipeline using PyPDF, Markdown, or HTML parsers",
-            "Implement recursive and semantic text chunking strategies",
-            "Create an incremental vector ETL pipeline that only indexes modified files"
+            "Build hybrid search indexes (BM25 + dense vectors + reranking) in Qdrant or pgvector",
+            "Implement incremental CDC-style syncs that handle inserts, updates, and deletes cleanly",
+            "Measure retrieval recall@k and latency across index configurations"
           ],
           "upskilling_instructions": [
-            "Analyze chunk sizes (250 vs 500 vs 1000 tokens) on retrieval relevance.",
-            "Add overlapping windows to prevent semantic truncation at chunk boundaries.",
-            "Write hash-based delta checkers to track changed files and prevent redundant embeddings."
+            "Stale or deleted documents in a vector DB are a top enterprise AI bug—test deletes and permission updates.",
+            "Benchmark HNSW/quantization settings for memory vs recall tradeoffs.",
+            "Monitor index freshness SLAs."
           ],
           "references": [
             {
-              "title": "LlamaIndex Data Connectors",
-              "url": "https://docs.llamaindex.ai/en/stable/module_guides/loading/connector/"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "LangChain Text Splitters",
-              "url": "https://python.langchain.com/docs/how_to/#text-splitters"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "Pinecone Chunking Strategies",
-              "url": "https://www.pinecone.io/learn/chunking-strategies/"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Model Evaluation & Drift Data",
+          "focus": "Data Quality & RAG Evaluation",
           "tasks": [
-            "Create a golden test suite of 100 question-answer-context evaluation pairs",
-            "Score RAG pipelines on faithfulness, answer relevance, and context precision",
-            "Evaluate inference latency and token usage budgets"
+            "Build a golden 100-query evaluation dataset grounded in your indexed corpus",
+            "Score retrieval precision, faithfulness, and answer relevance with Langfuse or Promptfoo",
+            "Trace bad answers back to specific ETL, chunking, or staleness bugs"
           ],
           "upskilling_instructions": [
-            "Set up Ragas or TruLens evaluation libraries in your project.",
-            "Configure LLM-as-a-judge patterns to score answer quality automatically.",
-            "Compute cost per 1k tokens and document budget thresholds."
+            "Run retrieval evals automatically whenever your chunking or embedding pipeline changes.",
+            "Slice eval scores by document type (PDFs vs wikis vs tickets).",
+            "Track token and storage cost per 1,000 indexed documents."
           ],
           "references": [
             {
-              "title": "Ragas Documentation",
-              "url": "https://docs.ragas.io/"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "TruLens Evaluation Guide",
-              "url": "https://www.trulens.org/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "OpenAI Evals",
-              "url": "https://github.com/openai/evals"
+              "title": "Evidently AI Monitoring & Evals",
+              "url": "https://docs.evidentlyai.com/"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Feature Stores & Pipelines",
+          "focus": "Context Pipelines & MCP Data Connectors",
           "tasks": [
-            "Install Feast or Hopsworks locally and write an feature definition file",
-            "Build a batch feature ingestion pipeline that writes to an offline store",
-            "Simulate real-time serving by pulling feature vectors with low latency"
+            "Build MCP servers exposing curated warehouse tables, semantic metrics, and document search",
+            "Design read-only query sandboxes with row limits and query timeouts",
+            "Provide agents with clean schema descriptions and example queries"
           ],
           "upskilling_instructions": [
-            "Define entities, features, and sources inside a Feast repository.",
-            "Connect parquet files as the offline historical feature source.",
-            "Configure Redis or SQLite as the online low-latency feature provider."
+            "Data Engineers are uniquely positioned to build reliable MCP data connectors that prevent hallucinated SQL.",
+            "Enforce permissions at the warehouse/query layer, never in prompts.",
+            "Log every agent-generated query for auditability."
           ],
           "references": [
             {
-              "title": "Feast Quickstart Guide",
-              "url": "https://docs.feast.dev/getting-started/quickstart"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Hopsworks Academy",
-              "url": "https://www.hopsworks.ai/"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "Feature Stores for ML",
-              "url": "https://www.featurestore.org/"
+              "title": "Apache Iceberg Documentation",
+              "url": "https://iceberg.apache.org/docs/latest/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Model Hosting & Serving",
+          "focus": "Serving Data & AI Microservices",
           "tasks": [
-            "Build a model inference microservice using FastAPI",
-            "Add input request validation schemas using Pydantic",
-            "Implement batch inference logic to handle multiple requests concurrently"
+            "Expose retrieval and scoring endpoints via FastAPI + Pydantic v2",
+            "Containerize pipelines and services with Docker and CI via GitHub Actions",
+            "Add OpenTelemetry GenAI traces and latency/throughput monitoring"
           ],
           "upskilling_instructions": [
-            "Write asynchronous route handlers in FastAPI for fast IO operations.",
-            "Define strict input schemas and output formats using Pydantic models.",
-            "Expose standard Prometheus metrics (/metrics) for monitoring throughput."
+            "Ensure batch and online feature/context logic share the same tested code.",
+            "Set timeouts, retries, and health checks on all serving endpoints.",
+            "Load-test concurrent retrieval queries."
           ],
           "references": [
             {
-              "title": "FastAPI Deployment Docs",
-              "url": "https://fastapi.tiangolo.com/deployment/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Pydantic Documentation",
-              "url": "https://docs.pydantic.dev/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Prometheus Python Client",
-              "url": "https://github.com/prometheus/client_python"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Data Governance & Privacy",
+          "focus": "AI Data Governance, Privacy & Lineage",
           "tasks": [
-            "Implement Personally Identifiable Information (PII) scrubbing in text data",
-            "Anonymize dataset variables before model training",
-            "Audit dataset composition for class and gender representation biases"
+            "Scrub PII from unstructured text and embeddings using Microsoft Presidio",
+            "Enforce row-level and document-level ACLs across lakehouse and vector stores",
+            "Audit data lineage and compliance with NIST AI RMF"
           ],
           "upskilling_instructions": [
-            "Integrate Microsoft Presidio to scrub names, emails, and phone numbers.",
-            "Use k-anonymity or differential privacy techniques for tabular exports.",
-            "Write statistical bias reports on target labels across demographics."
+            "Remember that embeddings can leak sensitive information—strip PII before embedding.",
+            "Maintain full lineage from source file to vector ID so GDPR/deletion requests are instant.",
+            "Document data retention and third-party API boundaries."
           ],
           "references": [
             {
-              "title": "Microsoft Presidio",
+              "title": "Microsoft Presidio PII Anonymization",
               "url": "https://microsoft.github.io/presidio/"
             },
             {
@@ -5830,36 +6175,36 @@ window.ROADMAP_DATA = {
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Google Responsible AI Practices",
-              "url": "https://ai.google/responsibility/principles/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone Project: Real-Time Feature & Scoring Pipeline",
+          "focus": "Capstone: Enterprise AI Data & RAG Platform",
           "tasks": [
-            "Develop a pipeline that updates Feast online features from a data source",
-            "Serve real-time predictions via a containerized FastAPI app",
-            "Write a case study documenting architecture, metrics, and deployment instructions"
+            "Ship an end-to-end incremental multimodal ETL -> hybrid vector/MCP -> FastAPI service with CI evals",
+            "Publish architecture diagrams, freshness SLAs, retrieval metrics, and governance controls",
+            "Position yourself for AI Data Engineer, AI Engineer, or Forward Deployed AI Engineer roles"
           ],
           "upskilling_instructions": [
-            "Combine Feast, Redis, FastAPI, and Docker into one docker-compose stack.",
-            "Conduct load testing using Locust and verify latencies under load.",
-            "Host the repository on GitHub with detailed setup instructions."
+            "Highlight what most AI devs lack: rock-solid incremental pipelines, ACL enforcement, and clean unstructured data.",
+            "Show measurable retrieval and cost improvements.",
+            "Keep the repo reproducible with Docker and uv."
           ],
           "references": [
             {
-              "title": "Docker Compose Get Started",
-              "url": "https://docs.docker.com/compose/gettingstarted/"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Locust Load Testing",
-              "url": "https://docs.locust.io/"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "GitHub README Best Practices",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         }
@@ -5869,342 +6214,342 @@ window.ROADMAP_DATA = {
       "current_role": "DevOps Engineer",
       "target_ai_role": "AI Generalist",
       "title": "DevOps Engineer to AI Generalist",
-      "summary": "Master the art of managing machine learning hardware infrastructure, GPU workloads, orchestration, and automated model release cycles.",
-      "base_difficulty": 68,
+      "summary": "A 2026 roadmap leveraging cloud, Kubernetes, and SRE expertise into GPU/vLLM inference infrastructure, AI gateways, OpenTelemetry GenAI observability, and secure AI platforms.",
+      "base_difficulty": 64,
       "months": [
         {
           "month": 1,
-          "focus": "Python and Scripting for AI",
+          "focus": "Python & Modern AI Runtime Basics",
           "tasks": [
-            "Develop complex administration scripts in Python using subprocess and os modules",
-            "Write automated environment validators for AI software dependencies",
-            "Develop a structured backup script for deep learning weight artifacts"
+            "Standardize Python tooling with uv, ruff, and Pydantic v2",
+            "Understand LLM inference mechanics: tokens, KV-cache, context length, and VRAM sizing",
+            "Build a CLI tool that queries model APIs and benchmarks latency/token throughput"
           ],
           "upskilling_instructions": [
-            "Replace standard bash administration scripts with clean, modular Python.",
-            "Write unit tests for shell command invokers.",
-            "Incorporate graceful error handling, signal traps, and color-coded logger outputs."
+            "Learn how KV-cache scales with batch size and sequence length—this drives GPU memory planning.",
+            "Keep all tooling reproducible with uv lockfiles.",
+            "Track TTFT (time-to-first-token) and inter-token latency separately."
           ],
           "references": [
             {
-              "title": "Python Scripting",
-              "url": "https://docs.python.org/3/tutorial/"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "Subprocess Module Docs",
-              "url": "https://docs.python.org/3/library/subprocess.html"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             },
             {
-              "title": "Logging in Python",
-              "url": "https://docs.python.org/3/library/logging.html"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Linux, CUDA and GPU Setup",
+          "focus": "AI APIs, Gateways & Routing",
           "tasks": [
-            "Configure CUDA and cuDNN on a Linux machine",
-            "Monitor GPU memory, power, and temperatures using nvidia-smi",
-            "Build a custom Docker image featuring GPU access"
+            "Build or configure an AI gateway handling multi-provider routing, retries, and fallbacks",
+            "Implement per-team API keys, token rate limiting, and semantic/exact caching",
+            "Enforce strict payload validation and timeout budgets at the gateway"
           ],
           "upskilling_instructions": [
-            "Install NVIDIA container toolkit to pass GPU acceleration to Docker containers.",
-            "Set up GPU memory limits within Docker configuration scripts.",
-            "Troubleshoot common driver conflicts and mismatch errors."
+            "Centralize provider keys, spend caps, and fallback routing in an AI gateway so app teams stay decoupled from vendors.",
+            "Test circuit breakers against simulated 429 and 503 provider outages.",
+            "Log token usage per team and environment."
           ],
           "references": [
             {
-              "title": "NVIDIA Container Toolkit",
-              "url": "https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "nvidia-smi Commands Guide",
-              "url": "https://developer.nvidia.com/nvidia-system-management-interface"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             },
             {
-              "title": "CUDA Installation Guide",
-              "url": "https://docs.nvidia.com/cuda/cuda-installation-guide-linux/"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Intro to ML & Deep Learning Concepts",
+          "focus": "ML Lifecycle & Experiment Infrastructure",
           "tasks": [
-            "Train a basic classifier using PyTorch on a standard GPU server",
-            "Practice loading datasets into GPU memory using .to('cuda')",
-            "Measure and compare training speed differences between CPU and GPU runs"
+            "Understand ML training, evaluation, and model-registry workflows",
+            "Deploy an internal artifact/model registry and object-storage pipeline",
+            "Automate reproducible container builds for Python ML workloads"
           ],
           "upskilling_instructions": [
-            "Understand backpropagation, batch optimization, and learning rates.",
-            "Write PyTorch scripts that target cpu or cuda dynamically based on device availability.",
-            "Profile memory bottlenecks in the training loop."
+            "Treat model weights, prompt templates, and eval datasets as versioned artifacts.",
+            "Pin base CUDA/Python images and verify checksums.",
+            "Separate dev, staging, and prod model buckets."
           ],
           "references": [
             {
-              "title": "PyTorch CUDA Semantics",
-              "url": "https://pytorch.org/docs/stable/notes/cuda.html"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "PyTorch Profiler Tutorial",
-              "url": "https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             },
             {
-              "title": "3Blue1Brown Neural Networks",
-              "url": "https://www.3blue1brown.com/topics/neural-networks"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "Model Deployment Basics",
+          "focus": "Containerizing GPU & Inference Workloads",
           "tasks": [
-            "Containerize a Python-based model serving app using lightweight Docker base images",
-            "Configure multi-stage Docker builds to reduce image sizes",
-            "Host containerized model on a local network and perform test curl requests"
+            "Build lean, multi-stage CUDA-ready Docker images for AI services",
+            "Configure NVIDIA Container Toolkit, health checks, and model-weight caching",
+            "Eliminate cold-start bottlenecks when pulling multi-gigabyte weights"
           ],
           "upskilling_instructions": [
-            "Utilize lightweight python-slim or alpine-based images.",
-            "Split packaging steps to ensure compiler tools are left out of final release layers.",
-            "Implement container health checks (`HEALTHCHECK`) targeting the inference endpoint."
+            "Never bake 15GB model weights into application Docker images—mount pre-warmed volumes or fast object-store caches.",
+            "Configure startup probes tuned for model loading times.",
+            "Scan images for CVEs in CI."
           ],
           "references": [
             {
-              "title": "Docker Multi-Stage Builds",
-              "url": "https://docs.docker.com/build/building/multi-stage/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Dockerizing Python Apps",
-              "url": "https://docs.docker.com/language/python/containerize/"
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
             },
             {
-              "title": "FastAPI Web Application",
-              "url": "https://fastapi.tiangolo.com/"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Container Orchestration for AI",
+          "focus": "High-Throughput Serving with vLLM",
           "tasks": [
-            "Install a local Kubernetes cluster (Minikube, Kind, or MicroK8s)",
-            "Deploy a model serving deployment with pod horizontal autoscalers (HPA)",
-            "Define resource limits for CPU and GPU in deployment manifests"
+            "Deploy open-weight models using vLLM with continuous batching and PagedAttention",
+            "Benchmark FP8/AWQ quantization tradeoffs across throughput and GPU memory",
+            "Load-test concurrent streaming requests to find saturation points"
           ],
           "upskilling_instructions": [
-            "Install the NVIDIA device plugin inside the Kubernetes cluster.",
-            "Establish custom limits and requests for nvidia.com/gpu resources.",
-            "Define readiness and liveness probes tailored to model cold-starts."
+            "Measure tokens/sec and p95 TTFT under realistic concurrent prompt/output length distributions.",
+            "Verify quantized models against quality evals before shipping.",
+            "Tune max-model-len and gpu-memory-utilization carefully."
           ],
           "references": [
             {
-              "title": "K8s GPU Scheduling",
-              "url": "https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/"
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
             },
             {
-              "title": "NVIDIA GPU Operator",
-              "url": "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/index.html"
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "Minikube Setup",
-              "url": "https://minikube.sigs.k8s.io/docs/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "High-Throughput Model Serving",
+          "focus": "Kubernetes for AI & GPU Scheduling",
           "tasks": [
-            "Install Triton Inference Server or vLLM locally",
-            "Deploy an open LLM (e.g. Llama-3-8B) on a serving framework",
-            "Configure batching parameters to optimize concurrent request throughput"
+            "Configure GPU node pools, device plugins, and resource quotas in Kubernetes",
+            "Explore fractional GPUs (MIG / time-slicing) and autoscaling on inference queue depth",
+            "Test zero-downtime rolling updates for heavy inference pods"
           ],
           "upskilling_instructions": [
-            "Define model repository structures expected by Triton.",
-            "Analyze latency metrics: Time-to-First-Token (TTFT) and inter-token latency.",
-            "Set up dynamic batching intervals to group incoming requests."
+            "Autoscale inference pods on active request/KV-cache queue depth, not just CPU utilization.",
+            "Separate latency-sensitive online inference from preemptible batch/eval jobs on spot GPUs.",
+            "Practice node drain and pod eviction drills."
           ],
           "references": [
             {
-              "title": "Triton Server Architecture",
-              "url": "https://github.com/triton-inference-server/server/blob/main/docs/user_guide/architecture.md"
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
             },
             {
               "title": "vLLM Documentation",
-              "url": "https://docs.vllm.ai/en/latest/"
+              "url": "https://docs.vllm.ai/"
             },
             {
-              "title": "Hugging Face Models",
-              "url": "https://huggingface.co/models"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "CI/CD for Machine Learning",
+          "focus": "AI CI/CD & Automated Eval Gates",
           "tasks": [
-            "Set up DVC (Data Version Control) to version model weights separately from git",
-            "Configure a GitHub Action that triggers testing on pull requests",
-            "Automate docker image compilation and registry push on code merges"
+            "Integrate Promptfoo or pytest eval suites into GitHub Actions",
+            "Gate prompt, retrieval, and model-version promotions on automated quality/latency checks",
+            "Implement canary/shadow traffic splitting for new model rollouts"
           ],
           "upskilling_instructions": [
-            "Configure local, AWS S3, or Google Cloud storage backends for DVC.",
-            "Write CI test scripts to assert model interface formats and inputs.",
-            "Leverage cache actions to speed up docker layer construction in workflows."
+            "Apply GitOps discipline to prompts, guardrail configs, and model routing rules.",
+            "Run fast deterministic checks on every PR and full LLM evals on release candidates.",
+            "Keep instant rollback paths ready."
           ],
           "references": [
             {
-              "title": "DVC Get Started",
-              "url": "https://dvc.org/doc/start"
-            },
-            {
-              "title": "GitHub Actions Docs",
+              "title": "GitHub Actions Documentation",
               "url": "https://docs.github.com/en/actions"
             },
             {
-              "title": "Docker Hub Registry",
-              "url": "https://docs.docker.com/docker-hub/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Experiment and Model Registries",
+          "focus": "OpenTelemetry GenAI Observability",
           "tasks": [
-            "Host an MLflow server instance with an database backend",
-            "Register model training runs, parameters, metrics, and weight outputs",
-            "Create a promotion pipeline that moves models from Staging to Production"
+            "Instrument AI services with OpenTelemetry GenAI semantic conventions",
+            "Build Prometheus & Grafana dashboards for TTFT, token burn, error rates, and GPU utilization",
+            "Connect trace IDs to Langfuse for prompt/context debugging"
           ],
           "upskilling_instructions": [
-            "Use PostgreSQL as backend storage and AWS S3 as an artifact store.",
-            "Incorporate mlflow.log_model commands to track specific model types.",
-            "Implement webhook listeners to automate pipeline steps on status transitions."
+            "Correlate infrastructure metrics (GPU memory, KV-cache usage) with application metrics (TTFT, cost/request).",
+            "Set alerts on token-spend spikes and tail-latency regressions.",
+            "Scrub PII from trace payloads before storing logs."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Server",
-              "url": "https://mlflow.org/docs/latest/tracking/server.html"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             },
             {
-              "title": "MLflow Model Registry",
-              "url": "https://mlflow.org/docs/latest/model-registry.html"
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
             },
             {
-              "title": "AWS S3 Setup",
-              "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Distributed Training Infrastructure",
+          "focus": "RAG & Vector Database Operations",
           "tasks": [
-            "Learn standard data-parallel and model-parallel paradigms",
-            "Configure a local multi-node or multi-GPU training environment using PyTorch DDP",
-            "Troubleshoot inter-node communication errors and connection timeouts"
+            "Deploy, back up, and monitor Qdrant or pgvector in production",
+            "Plan memory/disk sizing, HNSW indexing tuning, and zero-downtime re-indexing",
+            "Automate backup/restore drills for vector and metadata stores"
           ],
           "upskilling_instructions": [
-            "Understand NCCL, GLOO, and MPI communication runtimes.",
-            "Configure torchrun with master address, port, and node counts.",
-            "Set up logging configurations to track specific networking drops."
+            "Test restoring a vector collection from snapshot and verify query latency afterward.",
+            "Monitor index memory pressure and disk IOPS.",
+            "Separate staging and production vector namespaces."
           ],
           "references": [
             {
-              "title": "PyTorch DDP Tutorial",
-              "url": "https://pytorch.org/tutorials/intermediate/ddp_tutorial.html"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "NCCL Technical Guide",
-              "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html"
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
             },
             {
-              "title": "Torchrun Documentation",
-              "url": "https://pytorch.org/docs/stable/elastic/run.html"
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Logging, Metrics and Observability",
+          "focus": "Agent Sandboxing & MCP Infrastructure",
           "tasks": [
-            "Expose model prediction latency and count metrics to Prometheus",
-            "Build a custom Grafana dashboard showing CPU, GPU, memory, and error rates",
-            "Establish alert definitions to catch spike patterns in model error codes"
+            "Deploy isolated execution sandboxes for agent code-running and tool workloads",
+            "Configure secure internal MCP server hosting, auth, and network egress rules",
+            "Enforce strict CPU, memory, and timeout caps on agentic tasks"
           ],
           "upskilling_instructions": [
-            "Expose standard metrics via fastapi middleware integration.",
-            "Connect Prometheus scrape jobs targeting container IP addresses.",
-            "Establish notification routes targeting Slack or email gateways."
+            "Never run agent-generated code on shared application nodes—use isolated microVMs or hardened containers.",
+            "Restrict outbound network egress from agent sandboxes by default.",
+            "Audit MCP server credentials and scopes."
           ],
           "references": [
             {
-              "title": "Prometheus Getting Started",
-              "url": "https://prometheus.io/docs/introduction/first_steps/"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Grafana Setup Guide",
-              "url": "https://grafana.com/docs/grafana/latest/getting-started/get-started-grafana-prometheus/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Evidently AI Monitoring",
-              "url": "https://www.evidentlyai.com/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Security, IAM, and Resource Management",
+          "focus": "AI Security, FinOps & Governance",
           "tasks": [
-            "Configure secure IAM roles for model instances",
-            "Encrypt weight files in transit and at rest",
-            "Configure token validation middlewares on serving endpoints"
+            "Implement secrets rotation, zero-retention provider configs, and OWASP LLM controls",
+            "Build GPU/API FinOps dashboards tracking cost per team, feature, and environment",
+            "Document reliability and security compliance aligned with NIST AI RMF"
           ],
           "upskilling_instructions": [
-            "Enforce least-privilege policies for S3 model access roles.",
-            "Set up KMS or equivalent key services to manage model decryptions.",
-            "Validate OAuth2 or JWT signatures on gateway controllers."
+            "Right-size models and GPU instances regularly—idle GPUs burn budgets fast.",
+            "Enforce automated spend circuit breakers.",
+            "Run chaos/outage drills for model API failures."
           ],
           "references": [
             {
-              "title": "AWS IAM Best Practices",
-              "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
-              "title": "OAuth 2.0 Framework",
-              "url": "https://oauth.net/2/"
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "NIST Cloud Security Guide",
-              "url": "https://www.nist.gov/publications/nist-cloud-computing-security-reference-architecture"
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone Project: Autoscaling Model Cluster",
+          "focus": "Capstone: Production AI Platform Stack",
           "tasks": [
-            "Deploy an autoscaling Triton server in Kubernetes using GitOps",
-            "Integrate Prometheus monitoring and Grafana visualization dashboard configs",
-            "Document standard incident response steps for OOM and connection drops"
+            "Deliver a reproducible Kubernetes/Docker AI platform with vLLM, AI gateway, OpenTelemetry/Grafana, and CI eval gates",
+            "Publish architecture diagrams, load-test results, FinOps benchmarks, and runbooks",
+            "Position yourself for MLOps Engineer, AI Platform Engineer, or AI Systems Engineer roles"
           ],
           "upskilling_instructions": [
-            "Create GitOps manifests targeting ArgoCD or Flux.",
-            "Implement KEDA scaling rules based on queue depth metrics.",
-            "Run performance profiles using locust to prove target scalability."
+            "Showcase real infra numbers: cold-start time, p95 TTFT under load, GPU utilization, and cost per 1M tokens.",
+            "Include clean Terraform/Helm/Compose manifests.",
+            "Prepare incident-response stories for GPU OOMs and provider outages."
           ],
           "references": [
             {
-              "title": "ArgoCD Documentation",
-              "url": "https://argo-cd.readthedocs.io/en/stable/"
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
             },
             {
-              "title": "KEDA Autoscaling Guides",
-              "url": "https://keda.sh/docs/latest/scalers/"
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
             },
             {
-              "title": "Locust Load Tester",
-              "url": "https://locust.io/"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         }
@@ -6214,342 +6559,1032 @@ window.ROADMAP_DATA = {
       "current_role": "QA Engineer",
       "target_ai_role": "AI Generalist",
       "title": "QA Engineer to AI Generalist",
-      "summary": "Calibrate your quality assurance expertise for AI systems, mastering model validation, automated evaluations, security fuzzing, and compliance testing.",
-      "base_difficulty": 62,
+      "summary": "A 2026 roadmap transforming QA and test-automation skills into probabilistic AI evaluation, Promptfoo/Inspect AI harnesses, agent trajectory testing, and LLM red-teaming.",
+      "base_difficulty": 60,
       "months": [
         {
           "month": 1,
-          "focus": "Python for Automation & Testing",
+          "focus": "Modern Python Test Automation",
           "tasks": [
-            "Write Python scripts that automate API interactions and validate JSON payloads",
-            "Build testing workflows using PyTest and generate HTML test reports",
-            "Implement parameterization tests to cover diverse input data variants"
+            "Set up Python test projects with uv, ruff, and pytest",
+            "Build parameterized pytest suites validating async LLM API wrappers and Pydantic schemas",
+            "Generate structured test reports in GitHub Actions"
           ],
           "upskilling_instructions": [
-            "Replace GUI automation scripts with lightweight API validation harnesses.",
-            "Configure pytest-cov to track testing paths and coverage stats.",
-            "Utilize pytest.mark.parametrize to reduce duplicated testing logic."
+            "Leverage your QA mindset: test boundary inputs, empty strings, Unicode, huge payloads, and timeouts.",
+            "Use Pydantic v2 to assert strict structural contracts on AI outputs.",
+            "Keep test suites fast and deterministic where possible."
           ],
           "references": [
             {
-              "title": "PyTest Documentation",
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "pytest Documentation",
               "url": "https://docs.pytest.org/en/stable/"
             },
             {
-              "title": "Requests Library Guide",
-              "url": "https://requests.readthedocs.io/en/latest/"
-            },
-            {
-              "title": "Python Testing Course",
-              "url": "https://realpython.com/python-testing/"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Statistical Validation & Metrics",
+          "focus": "Statistical & Probabilistic Testing",
           "tasks": [
-            "Review basic probability distributions and statistical hypothesis testing",
-            "Calculate precision, recall, F1, and confusion matrices for classification models",
-            "Implement automated statistical sanity checks on raw dataset variables"
+            "Learn why AI outputs are non-deterministic and how to test distributions instead of single exact strings",
+            "Compute precision, recall, F1, confidence intervals, and pass@k metrics",
+            "Design repeatable test runs with temperature=0 and multi-trial pass rates"
           ],
           "upskilling_instructions": [
-            "Write functions that compute ML metrics from raw predictions.",
-            "Apply chi-square or t-tests to identify demographic differences in predictions.",
-            "Document performance limitations under imbalanced test slices."
+            "Replace brittle string-equality assertions with semantic, structural, and statistical thresholds.",
+            "Track variance across multiple runs so flaky prompts are caught before release.",
+            "Slice pass rates by input category."
           ],
           "references": [
             {
-              "title": "Scikit-Learn Classification Metrics",
-              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
-              "title": "StatQuest ML Metrics",
-              "url": "https://statquest.org/"
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course"
             },
             {
-              "title": "Hypothesis Testing Guide",
-              "url": "https://www.khanacademy.org/math/statistics-probability"
+              "title": "Evidently AI Monitoring & Evals",
+              "url": "https://docs.evidentlyai.com/"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Machine Learning Testing Basics",
+          "focus": "ML Testing & Data Drift Checks",
           "tasks": [
-            "Train baseline scikit-learn models and write unit tests for their predictors",
-            "Perform testing for concept and data drift over simulated batches",
-            "Implement boundary value testing for model inputs and target shapes"
+            "Write unit and invariant tests for classical ML models (monotonicity, invariance, null handling)",
+            "Detect data drift and schema violations using Evidently AI",
+            "Verify preprocessing parity between training and inference"
           ],
           "upskilling_instructions": [
-            "Utilize mock libraries to isolate model API dependency behaviors.",
-            "Use Great Expectations to assert structured schema bounds.",
-            "Write assertions to verify NaN behaviors are gracefully managed."
+            "Test metamorphic properties: e.g., changing a harmless synonym or formatting should not flip a classification.",
+            "Automate data-quality gates before models run.",
+            "Document clear failure severity levels."
           ],
           "references": [
             {
-              "title": "Great Expectations Docs",
-              "url": "https://docs.greatexpectations.io/docs/"
+              "title": "Evidently AI Monitoring & Evals",
+              "url": "https://docs.evidentlyai.com/"
             },
             {
-              "title": "Testing ML Models Guide",
-              "url": "https://martinfowler.com/articles/articles-ml-testing.html"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
-              "title": "Mocking in Python Guide",
-              "url": "https://docs.python.org/3/library/unittest.mock.html"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "Testing Deep Learning Models",
+          "focus": "LLM APIs & Output Contract Testing",
           "tasks": [
-            "Train a small PyTorch model and write verification tests for model weights",
-            "Implement neural network gradient checks and shape assertions",
-            "Track model performance across epochs using weights and biases"
+            "Test structured JSON outputs, tool-call schemas, and refusal handling across model providers",
+            "Verify graceful fallback when models return truncated, malformed, or rate-limited responses",
+            "Compare standard vs reasoning models on consistency and edge-case adherence"
           ],
           "upskilling_instructions": [
-            "Add shape check assertions (`assert tensor.shape == (...)`) inside model layers.",
-            "Write checks to detect vanishing or exploding gradients.",
-            "Compare validation curve outputs to catch training regression steps."
+            "Build a mock/replay harness for fast CI unit tests alongside live-model integration suites.",
+            "Test how the system handles model refusals and safety triggers.",
+            "Log token counts and latency per test case."
           ],
           "references": [
             {
-              "title": "PyTorch Shapes & Operations",
-              "url": "https://pytorch.org/docs/stable/tensors.html"
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
             },
             {
-              "title": "Weights & Biases Track Guide",
-              "url": "https://docs.wandb.ai/guides/track"
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
             },
             {
-              "title": "Stanford CS230 DL Cheatsheet",
-              "url": "https://stanford.edu/~shervine/teaching/cs-230/"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "LLM Vulnerability & Security Testing",
+          "focus": "Golden Datasets & Eval Harnesses",
           "tasks": [
-            "Design test prompts targeting prompt injection vectors",
-            "Audit LLM outputs for leakage of system prompts and secret keys",
-            "Establish automated filters that flag unsafe generation outputs"
+            "Curate versioned golden datasets covering happy paths, edge cases, and regression bugs",
+            "Build automated eval suites using Promptfoo and Inspect AI",
+            "Implement deterministic code graders alongside calibrated LLM-as-a-judge rubrics"
           ],
           "upskilling_instructions": [
-            "Red-team prompts for alignment bypass and roleplay attacks.",
-            "Design system instruction constraints and verify refusal behaviors.",
-            "Integrate regex-based validation scanners to prevent credential leaks."
+            "Every production bug or weird user screenshot should become a permanent golden test case.",
+            "Calibrate LLM judges against human QA labels so scores are trustworthy.",
+            "Keep eval datasets versioned in Git."
           ],
           "references": [
             {
-              "title": "OWASP Top 10 for LLMs",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Prompt Injection Vectors",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+              "title": "Inspect AI Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
             },
             {
-              "title": "Llama Guard Safety Guide",
-              "url": "https://huggingface.co/meta-llama/Llama-Guard-3"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Golden Datasets & Ground Truth",
+          "focus": "RAG & Groundedness QA",
           "tasks": [
-            "Collect and curate a set of 100 benchmark test prompts and target outputs",
-            "Implement automated format check tests on LLM outputs",
-            "Develop a grading script that evaluates correct string targets"
+            "Test retrieval recall, citation accuracy, and hallucination rates in RAG pipelines",
+            "Create adversarial queries where the answer is NOT in the knowledge base to verify honest 'I don't know' behavior",
+            "Audit document parsing on messy tables, PDFs, and multi-column layouts"
           ],
           "upskilling_instructions": [
-            "Include target edge cases, extreme inputs, and bad formatting syntax.",
-            "Incorporate pydantic validation parser tools within grading pipelines.",
-            "Establish exact, partial, and semantically valid comparison metrics."
+            "Separate retrieval QA from generation QA so devs know whether the search or the LLM failed.",
+            "Verify every inline citation actually supports the sentence it is attached to.",
+            "Test permission boundaries so unauthorized docs never leak into answers."
           ],
           "references": [
             {
-              "title": "Kaggle: Intro to ML",
-              "url": "https://www.kaggle.com/learn/intro-to-machine-learning"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             },
             {
-              "title": "Scikit-Learn: Getting Started",
-              "url": "https://scikit-learn.org/stable/getting_started.html"
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
             },
             {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course/"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "RAG Evaluation Metrics",
+          "focus": "Agent Trajectory & MCP Tool Testing",
           "tasks": [
-            "Install and configure the Ragas or TruLens evaluation libraries",
-            "Score test cases on faithfulness, answer relevance, and context precision",
-            "Identify and catalog retrieval failures and model hallucination rates"
+            "Test multi-step tool-calling agents for tool-selection accuracy, argument validity, and loop termination",
+            "Build sandboxed mock MCP servers to test agent error recovery and retry logic",
+            "Verify human-in-the-loop approval gates trigger on all state-changing actions"
           ],
           "upskilling_instructions": [
-            "Generate test datasets using local document vector structures.",
-            "Establish automated workflows to rank retrieve contexts.",
-            "Construct classification labels for model hallucination symptoms."
+            "Assert on both final outcome AND the intermediate tool trajectory (e.g., no redundant or unauthorized calls).",
+            "Simulate tool timeouts, 500 errors, and malformed tool responses.",
+            "Verify step-budget caps prevent infinite agent loops."
           ],
           "references": [
             {
-              "title": "Ragas Metrics Guide",
-              "url": "https://docs.ragas.io/en/stable/concepts/metrics/index.html"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "TruLens RAG Triad",
-              "url": "https://www.trulens.org/trulens_eval/core_concepts/rag_triad/"
+              "title": "Inspect AI Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
             },
             {
-              "title": "LlamaIndex Evaluation Guide",
-              "url": "https://docs.llamaindex.ai/en/stable/module_guides/evaluating/"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Performance & Latency Benchmarking",
+          "focus": "Adversarial Red-Teaming & Security QA",
           "tasks": [
-            "Build an automated performance load testing suite using Locust",
-            "Measure time-to-first-token (TTFT) and throughput latencies on models",
-            "Profile memory consumption profiles during batch generation tasks"
+            "Design automated red-team suites for direct and indirect prompt injection",
+            "Test for system-prompt leakage, PII exposure, and MCP tool poisoning",
+            "Run automated adversarial scans with Promptfoo aligned to OWASP LLM Top 10"
           ],
           "upskilling_instructions": [
-            "Configure locust task classes simulating concurrent API users.",
-            "Track percentile metrics (p95, p99) to establish performance boundaries.",
-            "Monitor GPU resources during intensive batch processes."
+            "Think like an attacker: hide instructions inside uploaded PDFs, emails, or web pages retrieved by the app.",
+            "Verify PII redaction and output sanitization (XSS/markdown injection) before UI rendering.",
+            "Document reproducible exploit steps for every finding."
           ],
           "references": [
             {
-              "title": "Locust Documentation",
-              "url": "https://docs.locust.io/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
-              "title": "vLLM Benchmarking Utilities",
-              "url": "https://github.com/vllm-project/vllm/tree/main/benchmarks"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             },
             {
-              "title": "Triton Performance Analyzer",
-              "url": "https://github.com/triton-inference-server/client/blob/main/src/python/library/tritonclient/utils/perf_analyzer"
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "CI Integration & Regression Testing",
+          "focus": "Performance, Latency & Cost Benchmarking",
           "tasks": [
-            "Integrate evaluation runs into GitHub Actions workflows",
-            "Write assertions that cause build steps to fail on model regressions",
-            "Automate performance dashboard generations on release merges"
+            "Benchmark TTFT, tokens/sec, and concurrency under load",
+            "Test streaming UI behavior under slow networks and mid-stream drops",
+            "Add cost-regression assertions so prompt bloat fails CI"
           ],
           "upskilling_instructions": [
-            "Execute evaluations in CI using cached small Golden Datasets.",
-            "Compare scores against production branch baseline benchmarks.",
-            "Establish notification outputs highlighting test results."
+            "Monitor p95 and p99 latency—averages hide terrible tail experiences.",
+            "Catch accidental context-window bloat early in PR checks.",
+            "Test provider failover behavior."
           ],
           "references": [
             {
-              "title": "GitHub Actions Runners",
-              "url": "https://docs.github.com/en/actions/using-github-hosted-runners"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             },
             {
-              "title": "PyTest CI/CD Integration",
-              "url": "https://docs.pytest.org/en/stable/how-to/ci.html"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Weights & Biases CI Utilities",
-              "url": "https://docs.wandb.ai/guides/data-lineage"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Security & Bias Auditing",
+          "focus": "CI/CD Eval Gates & Observability",
           "tasks": [
-            "Conduct systemic prompt jailbreak testing targeting target models",
-            "Audit target responses for demographic bias using test lists",
-            "Verify adherence to standard local privacy and encryption requirements"
+            "Wire Promptfoo / pytest evals into GitHub Actions with clear pass/fail thresholds",
+            "Inspect production traces in Langfuse to discover new failure clusters",
+            "Build release-readiness scorecards for product and engineering leads"
           ],
           "upskilling_instructions": [
-            "Utilize jailbreak testing repositories (e.g. Fuzzing frameworks).",
-            "Write demographic slice validation checks across specific groups.",
-            "Review credentials and encryption parameters inside release builds."
+            "Run fast deterministic checks on every commit and full eval suites nightly or on release candidates.",
+            "Pin model versions during regression comparisons.",
+            "Turn production trace anomalies into new test cases."
           ],
           "references": [
             {
-              "title": "Gandalf Prompt Sandbox",
-              "url": "https://gandalf.lakera.ai/"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Bias, Accessibility & Compliance Auditing",
+          "tasks": [
+            "Test AI outputs across demographic slices, languages, and edge-case personas",
+            "Verify AI UIs meet accessibility standards (keyboard, screen-reader live regions)",
+            "Map QA evidence to NIST AI RMF and EU AI Act documentation needs"
+          ],
+          "upskilling_instructions": [
+            "Check for subtle tone or refusal disparities across user demographics.",
+            "Ensure streaming responses are accessible to assistive technologies.",
+            "Maintain auditable test evidence for enterprise compliance."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Evidently AI Monitoring & Evals",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "Inspect AI Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Capstone: Automated AI Quality & Red-Team Suite",
+          "tasks": [
+            "Deliver a complete CI-integrated AI evaluation and red-teaming framework for a RAG/agent app",
+            "Publish a quality scorecard covering accuracy, trajectory safety, latency, and injection resilience",
+            "Position yourself for AI QA Lead, AI Evaluation Engineer, or AI Safety Engineer roles"
+          ],
+          "upskilling_instructions": [
+            "AI Evaluation Engineering is one of the fastest-growing specialties in 2026—your QA rigor is a direct superpower.",
+            "Show real failure modes you caught and how your harness prevented regressions.",
+            "Make the suite easy to run via `uv run` and GitHub Actions."
+          ],
+          "references": [
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Inspect AI Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Frontend Engineer",
+      "target_ai_role": "AI Generalist",
+      "title": "Frontend Engineer to AI Generalist",
+      "summary": "A 2026 roadmap helping frontend engineers adopt AI across their workflow: TypeScript AI SDKs, streaming/generative UI, WebGPU local models, MCP integrations, and evals.",
+      "base_difficulty": 58,
+      "months": [
+        {
+          "month": 1,
+          "focus": "AI-Native Frontend Engineering",
+          "tasks": [
+            "Master AI-assisted coding workflows with repo context, rules, and spec-driven verification",
+            "Learn 2026 AI fundamentals: tokens, context windows, reasoning models, RAG, and MCP",
+            "Build a TypeScript utility calling LLM APIs with strict Zod validation"
+          ],
+          "upskilling_instructions": [
+            "Use AI coding agents to accelerate boilerplate while keeping strict code review, type safety, and test coverage.",
+            "Never ship unreviewed AI-generated code—verify accessibility, bundle size, and edge cases.",
+            "Keep API keys strictly server-side."
+          ],
+          "references": [
+            {
+              "title": "TypeScript Handbook",
+              "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+            },
+            {
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
+            },
+            {
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Streaming UI & Vercel AI SDK",
+          "tasks": [
+            "Build streaming chat and structured-object interfaces using SSE and Vercel AI SDK",
+            "Design responsive loading, thinking, cancellation, and retry states",
+            "Render streamed markdown and code blocks without layout shift or jank"
+          ],
+          "upskilling_instructions": [
+            "Optimize perceived latency with immediate optimistic updates and smooth token rendering.",
+            "Support AbortController cancellation on every streaming request.",
+            "Ensure ARIA live regions announce updates cleanly for screen readers."
+          ],
+          "references": [
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "TypeScript Handbook",
+              "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+            },
+            {
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Generative UI & Structured Components",
+          "tasks": [
+            "Map typed LLM tool calls and JSON outputs directly to interactive React/Web components",
+            "Design inline editing, diff previews, and one-click undo for AI-assisted actions",
+            "Validate all dynamic component props with Zod before rendering"
+          ],
+          "upskilling_instructions": [
+            "Go beyond plain chat boxes—render rich tables, forms, charts, and action cards where appropriate.",
+            "Always give users a deterministic manual control alongside AI suggestions.",
+            "Handle partial/incomplete streamed objects gracefully."
+          ],
+          "references": [
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
+            },
+            {
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Browser & On-Device AI with WebGPU",
+          "tasks": [
+            "Run small embeddings, classifiers, or local LLMs in the browser via WebGPU / Transformers.js",
+            "Cache model weights cleanly in IndexedDB/Cache API with progress indicators",
+            "Build a hybrid local-first feature that falls back to cloud APIs when needed"
+          ],
+          "upskilling_instructions": [
+            "Keep initial page load fast by lazy-loading AI weights only when the user opts in.",
+            "Test fallback paths on browsers or devices without WebGPU.",
+            "Highlight privacy benefits of local inference."
+          ],
+          "references": [
+            {
+              "title": "MDN WebGPU API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API"
+            },
+            {
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "TypeScript Handbook",
+              "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Python & Backend AI Literacy",
+          "tasks": [
+            "Set up Python with uv to run embedding, data, and evaluation scripts",
+            "Build a simple FastAPI endpoint and understand vector search fundamentals",
+            "Connect your TypeScript frontend cleanly to Python AI microservices"
+          ],
+          "upskilling_instructions": [
+            "Being comfortable across both TypeScript UIs and Python AI backends makes you far more versatile.",
+            "Define shared OpenAPI/JSON schemas between backend and frontend.",
+            "Log end-to-end request IDs across both layers."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "RAG Interfaces & Citation UX",
+          "tasks": [
+            "Connect a frontend to a hybrid search / RAG backend (pgvector or Qdrant)",
+            "Build inline citation chips, hover previews, and split-pane source verification",
+            "Display honest uncertainty when sources do not contain the answer"
+          ],
+          "upskilling_instructions": [
+            "Users trust AI products when verifying a claim takes one click.",
+            "Highlight exact retrieved passages inside the source viewer.",
+            "Test long multi-document queries."
+          ],
+          "references": [
+            {
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
+            },
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Frontend Evals & UI Regression Testing",
+          "tasks": [
+            "Write Promptfoo evals for your prompts and structured UI schemas",
+            "Add end-to-end tests covering streaming states, error banners, and cancellation",
+            "Run automated checks in GitHub Actions on every PR"
+          ],
+          "upskilling_instructions": [
+            "Mock model streams in fast UI unit tests, and run live Promptfoo evals on prompt changes.",
+            "Verify visual stability (CLS) during token streaming.",
+            "Track prompt regressions over time."
+          ],
+          "references": [
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "MCP Integrations & Agentic UX",
+          "tasks": [
+            "Connect your app to MCP servers and surface live tool-execution progress in the UI",
+            "Build clear human-in-the-loop confirmation dialogs for external actions",
+            "Persist multi-step agent state across page refreshes"
+          ],
+          "upskilling_instructions": [
+            "Show exact parameters before executing any destructive or external tool call.",
+            "Make long-running background agents resumable and inspectable.",
+            "Avoid trapping users in opaque spinners."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Multimodal & Voice Web Experiences",
+          "tasks": [
+            "Add screenshot/image paste, drag-and-drop, and multimodal prompt flows",
+            "Experiment with real-time browser audio/voice interactions and live transcripts",
+            "Optimize client-side image resizing before upload to save bandwidth and tokens"
+          ],
+          "upskilling_instructions": [
+            "Always offer keyboard and text alternatives alongside voice or camera UI.",
+            "Show clear microphone and recording indicators.",
+            "Test across mobile and desktop viewports."
+          ],
+          "references": [
+            {
+              "title": "Google Gemini API Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "MDN WebGPU API",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Observability, Caching & Cost Control",
+          "tasks": [
+            "Trace frontend-to-LLM latency and user feedback events in Langfuse",
+            "Use prompt caching and fast models for instant UI helpers (autocomplete, titles)",
+            "Implement per-user rate limits and graceful quota messages"
+          ],
+          "upskilling_instructions": [
+            "Connect UI thumbs-up/down and edit events directly to backend trace IDs.",
+            "Measure real TTFT from click to first visible token.",
+            "Set clear spend alerts."
+          ],
+          "references": [
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Frontend AI Security & Accessibility",
+          "tasks": [
+            "Sanitize all LLM-generated markdown, HTML, and URLs to prevent XSS",
+            "Defend against indirect prompt injection in user-uploaded content",
+            "Audit AI interfaces for WCAG accessibility and transparent AI labeling"
+          ],
+          "upskilling_instructions": [
+            "Never use `dangerouslySetInnerHTML` on raw model output—use strict markdown sanitizers and safe link policies.",
+            "Verify keyboard-only navigation through citations, tool approvals, and streaming regions.",
+            "Follow OWASP LLM Top 10 guidance."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Fairlearn Documentation",
-              "url": "https://fairlearn.org/"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "Human-in-the-Loop Validation Pipelines",
-          "tasks": [
-            "Design a web-based human annotation form for prompt evaluations",
-            "Calculate inter-annotator agreement metrics (Kappa) across team reviews",
-            "Integrate human grading feedback streams into training datasets"
-          ],
-          "upskilling_instructions": [
-            "Establish clear scoring rules, rubrics, and feedback guidelines.",
-            "Calculate Cohen's kappa score on double-graded prompt cases.",
-            "Set up automated feedback pipelines targeting training buckets."
-          ],
-          "references": [
-            {
-              "title": "Label Studio Documentation",
-              "url": "https://labelstud.io/"
-            },
-            {
-              "title": "Statsmodels Cohen's Kappa",
-              "url": "https://www.statsmodels.org/stable/generated/statsmodels.stats.inter_rater.fleiss_kappa.html"
-            },
-            {
-              "title": "Google Technical Writing Course",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone Project: Automated AI Eval Suite",
+          "focus": "Capstone: AI-Native Web Application",
           "tasks": [
-            "Deploy an automated LLM assessment microservice on local infrastructure",
-            "Configure scheduled evaluation sweeps triggering on golden test cases",
-            "Draft an official test assessment summarizing reliability, security, and accuracy"
+            "Ship a polished full-stack AI web app with Generative UI, citations, MCP tools, and CI evals",
+            "Write a case study highlighting UX latency, eval pass rates, and security hardening",
+            "Position yourself for Full-Stack AI Engineer, AI UX Engineer, or Frontend AI roles"
           ],
           "upskilling_instructions": [
-            "Integrate Docker, PyTest, and Ragas into one automated testing setup.",
-            "Expose evaluation progress results via an visual web page dashboard.",
-            "Present key statistics, metrics, and failures in a final report."
+            "Your strength is turning raw model capabilities into fast, trustworthy, delightful user interfaces.",
+            "Include a live demo and crisp technical walkthrough.",
+            "Highlight measurable improvements in user task speed and accuracy."
           ],
           "references": [
             {
-              "title": "Docker Compose Setup Guide",
-              "url": "https://docs.docker.com/compose/"
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
             },
             {
-              "title": "Python Markdown Library",
-              "url": "https://github.com/Python-Markdown/markdown"
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             },
             {
-              "title": "Google Technical Writing Best Practices",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Security Engineer",
+      "target_ai_role": "AI Generalist",
+      "title": "Security Engineer to AI Generalist",
+      "summary": "A 2026 roadmap applying AppSec, CloudSec, and threat-modeling expertise to AI systems: OWASP LLM/Agentic risks, MCP security, agent sandboxing, red-teaming, and AI governance.",
+      "base_difficulty": 60,
+      "months": [
+        {
+          "month": 1,
+          "focus": "AI Architecture & Threat Surface Basics",
+          "tasks": [
+            "Learn 2026 AI architectures: LLMs, reasoning models, RAG, fine-tuning, and MCP agents",
+            "Map the AI attack surface across prompts, retrieval stores, tool connectors, and model weights",
+            "Set up a reproducible Python workspace with uv for security testing scripts"
+          ],
+          "upskilling_instructions": [
+            "Translate classic AppSec concepts (untrusted input, confused deputy, SSRF, privilege escalation) into LLM and agent contexts.",
+            "Run local and API models hands-on to see how system prompts and tool calls work.",
+            "Build a threat-model template for AI features."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "OWASP Top 10 for LLM & Agentic Apps",
+          "tasks": [
+            "Study prompt injection, sensitive information disclosure, supply-chain risks, and excessive agency",
+            "Audit sample AI apps for missing authorization, unsafe output handling, and unbounded consumption",
+            "Write security review checklists for engineering teams shipping AI features"
+          ],
+          "upskilling_instructions": [
+            "Remember: system prompts are NOT security boundaries—enforce access control in code and databases.",
+            "Identify where LLM outputs flow into SQL, shell, HTML, or API calls without sanitization.",
+            "Prioritize findings by exploitability and blast radius."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "RAG & Data-Layer Security",
+          "tasks": [
+            "Audit vector databases (Qdrant, pgvector) for tenant isolation and ACL enforcement",
+            "Test indirect prompt injection hidden inside retrieved PDFs, tickets, or web pages",
+            "Implement PII detection and redaction with Microsoft Presidio before indexing or API calls"
+          ],
+          "upskilling_instructions": [
+            "Verify document-level permissions are filtered inside the vector query before chunks reach the prompt.",
+            "Test what happens when a malicious document is uploaded to a shared knowledge base.",
+            "Track data lineage for deletion and compliance."
+          ],
+          "references": [
+            {
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
+            },
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            },
+            {
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "MCP & Tool-Use Security",
+          "tasks": [
+            "Threat-model Model Context Protocol (MCP) servers, tool descriptions, and OAuth scopes",
+            "Test for tool poisoning, rug-pull schema mutations, and cross-server data exfiltration",
+            "Enforce least-privilege credentials and human-in-the-loop approval for sensitive tools"
+          ],
+          "upskilling_instructions": [
+            "Pin and audit third-party MCP server versions just like npm or PyPI dependencies.",
+            "Never grant an agent broad admin tokens when read-only or scoped tokens suffice.",
+            "Log every tool invocation with caller identity and arguments."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Anthropic Claude Docs",
+              "url": "https://docs.anthropic.com/en/docs/welcome"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Automated Red-Teaming & Eval Harnesses",
+          "tasks": [
+            "Build automated adversarial test suites using Promptfoo and Inspect AI",
+            "Test jailbreaks, multi-turn persuasion, encoding bypasses, and secret-leakage probes",
+            "Integrate security regression suites into GitHub Actions CI"
+          ],
+          "upskilling_instructions": [
+            "Automate repeatable red-team suites in CI rather than relying on one-off manual pentests.",
+            "Measure attack success rate (ASR) before and after adding mitigations.",
+            "Keep exploit payloads versioned internally."
+          ],
+          "references": [
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Inspect AI Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Sandboxing Agent Code & Execution",
+          "tasks": [
+            "Isolate agent-executed code, browsers, and shell tools in hardened containers/microVMs",
+            "Enforce strict CPU, memory, filesystem, and outbound-network egress policies",
+            "Test container escape, SSRF, and metadata-service access from inside agent sandboxes"
+          ],
+          "upskilling_instructions": [
+            "Treat any code written or executed by an AI agent as untrusted code.",
+            "Block access to cloud metadata endpoints (169.254.169.254) and internal VPC subnets by default.",
+            "Use ephemeral, single-use sandboxes."
+          ],
+          "references": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "AI Supply Chain & Model Integrity",
+          "tasks": [
+            "Audit open-weight model artifacts (safetensors vs unsafe pickle files) and dataset provenance",
+            "Verify container signatures, SBOMs, and dependency lockfiles in AI pipelines",
+            "Assess third-party model API terms (zero-data-retention, training opt-outs, residency)"
+          ],
+          "upskilling_instructions": [
+            "Ban unsafe pickle deserialization in ML pipelines—require safetensors.",
+            "Treat Hugging Face repos and community LoRA adapters with the same scrutiny as open-source packages.",
+            "Verify vendor DPAs and SOC2/ISO posture."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Input/Output Guardrails & Abuse Prevention",
+          "tasks": [
+            "Evaluate guardrail models and deterministic policy checks at the AI gateway",
+            "Implement rate limiting, token-exhaustion (denial-of-wallet) protection, and anomaly alerts",
+            "Measure false-positive impact on legitimate users and latency overhead"
+          ],
+          "upskilling_instructions": [
+            "Layer deterministic controls (auth, schema validation, allowlists) underneath probabilistic guardrail models.",
+            "Monitor for automated scraping or model-extraction patterns.",
+            "Tune guardrails so they do not break normal workflows."
+          ],
+          "references": [
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "AI Observability & Incident Response",
+          "tasks": [
+            "Instrument OpenTelemetry GenAI traces without logging raw secrets or PII",
+            "Build detection rules for prompt-injection spikes, unusual tool calls, and data exfiltration",
+            "Write an AI incident-response playbook covering compromised prompts, poisoned indexes, and rogue agents"
+          ],
+          "upskilling_instructions": [
+            "Ensure security teams can trace a suspicious action back to the exact user, prompt, retrieved chunk, and tool call.",
+            "Practice tabletop exercises for AI-specific incidents.",
+            "Redact sensitive fields at log ingestion."
+          ],
+          "references": [
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            },
+            {
+              "title": "Langfuse LLM Observability & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "AI Governance, EU AI Act & NIST AI RMF",
+          "tasks": [
+            "Map enterprise AI inventories to EU AI Act risk tiers and NIST AI RMF functions",
+            "Build lightweight AI risk-assessment workflows that unblock teams safely",
+            "Partner with legal, privacy, and product on model cards and vendor reviews"
+          ],
+          "upskilling_instructions": [
+            "Be an enabler with clear guardrails ('paved roads'), not a blanket blocker—teams will otherwise use shadow AI.",
+            "Keep governance checklists practical and tied to technical controls.",
+            "Maintain an up-to-date registry of approved models and MCP servers."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "AI-Assisted Security Operations",
+          "tasks": [
+            "Build safe internal AI workflows for triage, threat-model drafting, and code-review assistance",
+            "Evaluate AI security assistants rigorously for hallucinated CVEs or false negatives",
+            "Keep humans in the loop for all remediation and blocking decisions"
+          ],
+          "upskilling_instructions": [
+            "Use AI to accelerate repetitive SecOps triage while verifying every finding deterministically.",
+            "Never auto-merge AI-generated security patches without tests and review.",
+            "Measure false-positive and false-negative rates."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "OpenAI API & Responses Guide",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Capstone: AI Security & Red-Team Framework",
+          "tasks": [
+            "Ship an end-to-end AI security assessment toolkit: Promptfoo/Inspect red-team suite, MCP scanner, and hardened sandbox template",
+            "Publish a threat model and remediation report with measured attack-success-rate reductions",
+            "Position yourself for AI Security Engineer, AI Safety Engineer, or Product Security Lead roles"
+          ],
+          "upskilling_instructions": [
+            "AI security is one of the highest-leverage gaps in 2026 enterprises—pair deep security fundamentals with hands-on AI fluency.",
+            "Show concrete before/after exploit mitigation results.",
+            "Share practical paved-road templates engineers can adopt immediately."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             }
           ]
         }
@@ -6559,34 +7594,34 @@ window.ROADMAP_DATA = {
       "current_role": "Any Role",
       "target_ai_role": "MLOps Engineer",
       "title": "Any Role to MLOps Engineer",
-      "summary": "The master career path to MLOps Engineering. Build, scale, monitor, and coordinate industrial-grade machine learning pipelines.",
+      "summary": "A 2026 MLOps and LLMOps roadmap covering uv, Polars/DuckDB, MLflow, Ray orchestration, vLLM serving, Kubernetes/KServe, GitOps, OpenTelemetry, and GPU FinOps.",
       "base_difficulty": 78,
       "months": [
         {
           "month": 1,
-          "focus": "Python & Bash for MLOps",
+          "focus": "Python, uv & Linux Automation for MLOps",
           "tasks": [
-            "Configure standard virtual environments, locks, and package registries",
-            "Develop automation utilities for raw file transfers and logs parsing",
-            "Write unit tests asserting script logic paths using PyTest"
+            "Standardize reproducible Python projects with uv lockfiles, ruff, and pyproject.toml",
+            "Write Bash and Python automation utilities for dataset transfers, checksums, and log parsing",
+            "Test pipeline utilities thoroughly with pytest in GitHub Actions"
           ],
           "upskilling_instructions": [
-            "Incorporate Poetry to manage stable package environments.",
-            "Replace bash pipelines with clean, maintainable Python utilities.",
-            "Write tests targeting system utility operations."
+            "Eliminate 'works on my machine' issues by locking Python versions and CUDA wheels via uv.",
+            "Make CLI scripts idempotent so re-running a failed step never corrupts artifacts.",
+            "Log structured JSON output for easy ingestion by log aggregators."
           ],
           "references": [
             {
-              "title": "Poetry Package Manager",
-              "url": "https://python-poetry.org/"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "Bash Scripting Guide",
-              "url": "https://tldp.org/LDP/abs/html/"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             },
             {
-              "title": "PyTest Guidelines",
-              "url": "https://docs.pytest.org/"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         },
@@ -6594,195 +7629,195 @@ window.ROADMAP_DATA = {
           "month": 2,
           "focus": "Data Wrangling & Validation at Scale",
           "tasks": [
-            "Build high-throughput ingestion pipelines using Pandas and Polars",
-            "Establish automated schema assertions using Great Expectations",
-            "Design statistical validation checks targeting data distributions"
+            "Build high-throughput ingestion and feature prep pipelines using Polars and DuckDB",
+            "Enforce automated schema, null, and distribution assertions with Pydantic and Evidently",
+            "Version training datasets cleanly in object storage / Parquet"
           ],
           "upskilling_instructions": [
-            "Compare memory behaviors of Polars and Pandas on large raw datasets.",
-            "Integrate schema checks within raw data landing zones.",
-            "Track null metrics and outlier values dynamically."
+            "Fail pipelines loudly on schema drift before bad data wastes expensive GPU training hours.",
+            "Benchmark Polars lazy evaluation vs eager transforms on multi-gigabyte files.",
+            "Track dataset hashes alongside every training run."
           ],
           "references": [
             {
-              "title": "Polars Ingestion Guide",
+              "title": "Polars User Guide",
               "url": "https://docs.pola.rs/"
             },
             {
-              "title": "Great Expectations Quickstart",
-              "url": "https://docs.greatexpectations.io/docs/"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "Scikit-Learn Preprocessing",
-              "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+              "title": "Evidently AI Monitoring & Evals",
+              "url": "https://docs.evidentlyai.com/"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Core ML and Experiment Tracking",
+          "focus": "Core ML & Experiment Tracking",
           "tasks": [
-            "Train baseline scikit-learn models and write verification tests",
-            "Register model parameters, runs, metrics and weights using MLflow",
-            "Construct comparison dashboards to rank different experiment outputs"
+            "Train baseline scikit-learn models and write automated verification tests",
+            "Log parameters, git SHAs, datasets, metrics, and model artifacts in MLflow",
+            "Implement automated champion-vs-challenger promotion gates"
           ],
           "upskilling_instructions": [
-            "Isolate models from data splits before metrics calculation.",
-            "Add mlflow.log_model commands to record models.",
-            "Compare precision, recall, and ROC-AUC curves in dashboard views."
+            "Ensure any registered model can be traced back to the exact commit, dataset hash, and hyperparameters.",
+            "Store slice-level metrics and calibration curves in MLflow, not just overall accuracy.",
+            "Automate smoke-test inference before registering a model."
           ],
           "references": [
             {
-              "title": "MLflow Tracking Server",
-              "url": "https://mlflow.org/docs/latest/tracking.html"
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
             },
             {
-              "title": "Scikit-Learn Model Selection",
-              "url": "https://scikit-learn.org/stable/modules/classes.html#module-sklearn.model_selection"
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
             },
             {
-              "title": "Kaggle Model Validation",
-              "url": "https://www.kaggle.com/code/dansbecker/model-validation"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "Model Packaging & Containerization",
+          "focus": "Model Packaging & Lean Containers",
           "tasks": [
-            "Develop lightweight Docker files to host inference operations",
-            "Configure multi-stage compile chains to minimize file overheads",
-            "Configure local containers and assert health checks on startup"
+            "Build multi-stage Docker images for FastAPI + Pydantic v2 inference services",
+            "Configure NVIDIA Container Toolkit for GPU workloads without bloating image layers",
+            "Implement startup/readiness probes and graceful shutdown for active requests"
           ],
           "upskilling_instructions": [
-            "Adopt multi-stage builds to yield narrow final images.",
-            "Run container processes using non-root system users for security.",
-            "Add container HEALTHCHECK instructions targeting the inference route."
+            "Never bake multi-gigabyte model weights into Docker layers—mount pre-warmed caches or stream from object storage.",
+            "Pin base image digests and run container vulnerability scans in CI.",
+            "Verify health checks wait until weights are fully loaded into VRAM."
           ],
           "references": [
             {
-              "title": "Docker Multi-Stage Builds",
-              "url": "https://docs.docker.com/build/building/multi-stage/"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             },
             {
-              "title": "Docker Security Best Practices",
-              "url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/"
-            },
-            {
-              "title": "FastAPI Setup Guide",
+              "title": "FastAPI Documentation",
               "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Orchestrating ML Pipelines",
+          "focus": "Orchestrating ML & Data Pipelines with Ray",
           "tasks": [
-            "Develop structured pipelines using Apache Airflow or Prefect",
-            "Design DAG flows linking data check, training, and registry jobs",
-            "Incorporate error retry parameters inside specific pipeline nodes"
+            "Build distributed preprocessing, training, and batch-inference pipelines using Ray",
+            "Configure retries, checkpointing, and dead-letter queues for failed pipeline tasks",
+            "Schedule recurring retraining and evaluation workflows cleanly"
           ],
           "upskilling_instructions": [
-            "Adopt standard task frameworks to structure job schedules.",
-            "Map inputs and outputs between consecutive tasks securely.",
-            "Configure email or Slack notices on task pipeline failures."
+            "Design pipeline stages as pure, restartable tasks so spot-instance preemptions recover seamlessly.",
+            "Separate CPU data-prep workers from GPU training/inference workers.",
+            "Monitor task queue depth and worker utilization."
           ],
           "references": [
             {
-              "title": "Apache Airflow Getting Started",
-              "url": "https://airflow.apache.org/docs/apache-airflow/stable/start.html"
+              "title": "Ray & KubeRay Documentation",
+              "url": "https://docs.ray.io/en/latest/"
             },
             {
-              "title": "Prefect Architecture Guide",
-              "url": "https://docs.prefect.io/"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
-              "title": "Kubeflow Pipeline Specs",
-              "url": "https://www.kubeflow.org/docs/components/pipelines/"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             }
           ]
         },
         {
           "month": 6,
-          "focus": "Feature Stores & Real-Time Features",
+          "focus": "Feature & Context Pipelines",
           "tasks": [
-            "Deploy a Feast store locally and configure features definitions",
-            "Build pipelines converting historical data into Feast offline stores",
-            "Pull feature vectors at low-latency under simulated test runs"
+            "Build low-latency online feature and vector-context lookup services",
+            "Guarantee online-offline feature parity by sharing transformation code",
+            "Add incremental document/embedding syncs with freshness SLAs"
           ],
           "upskilling_instructions": [
-            "Define schemas, sources, and entities inside Feast structures.",
-            "Connect parquet files as offline source directories.",
-            "Configure Redis target directories as online feature providers."
+            "Eliminate training-serving skew by running the exact same feature transform module in batch and online paths.",
+            "Measure p99 feature-retrieval latency under simulated traffic.",
+            "Monitor embedding/index staleness."
           ],
           "references": [
             {
-              "title": "Feast Quickstart Guide",
-              "url": "https://docs.feast.dev/getting-started/quickstart"
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
             },
             {
-              "title": "Redis Getting Started",
-              "url": "https://redis.io/docs/latest/get-started/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
             },
             {
-              "title": "Feature Stores Reference",
-              "url": "https://www.featurestore.org/"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "High-Performance Model Serving",
+          "focus": "High-Performance Model & LLM Serving",
           "tasks": [
-            "Deploy model targets using Triton Inference Server or vLLM",
-            "Expose endpoint interfaces and validate schemas via Pydantic",
-            "Fine-tune concurrent batch parameters to maximize throughput speeds"
+            "Serve open-weight LLMs with vLLM using continuous batching and PagedAttention",
+            "Benchmark FP8/AWQ quantization tradeoffs across throughput, TTFT, and eval accuracy",
+            "Front serving backends with an AI gateway handling auth, rate limits, and routing"
           ],
           "upskilling_instructions": [
-            "Adopt high-speed frameworks like Triton or vLLM.",
-            "Utilize Pydantic to ensure input schemas are correct.",
-            "Adjust dynamic batching queues to optimize request throughput."
+            "Test serving under realistic concurrent distributions of short and long contexts.",
+            "Verify quantized models against your golden eval suite before promoting.",
+            "Tune KV-cache memory allocation to prevent OOMs under burst load."
           ],
           "references": [
             {
-              "title": "Triton Server Architecture",
-              "url": "https://github.com/triton-inference-server/server/blob/main/docs/user_guide/architecture.md"
-            },
-            {
               "title": "vLLM Documentation",
-              "url": "https://docs.vllm.ai/en/latest/"
+              "url": "https://docs.vllm.ai/"
             },
             {
-              "title": "Pydantic Documentation",
-              "url": "https://docs.pydantic.dev/"
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Production Kubernetes & KServe",
+          "focus": "Kubernetes, KServe & KubeRay",
           "tasks": [
-            "Configure model deployments inside local Kubernetes clusters",
-            "Enable GPU configurations and schedules for model servers",
-            "Configure deployment manifests containing replica autoscaling limits"
+            "Deploy model servers on Kubernetes using KServe and KubeRay",
+            "Configure GPU node pools, NVIDIA device plugins, and queue-based autoscaling",
+            "Test zero-downtime rolling updates and canary traffic splitting"
           ],
           "upskilling_instructions": [
-            "Install the NVIDIA container scheduling operator inside clusters.",
-            "Allocate nvidia.com/gpu resources limits inside deployment pods.",
-            "Define specific readiness and liveness tests."
+            "Autoscale inference pods on active request/KV-cache queue metrics rather than CPU percentage.",
+            "Configure PodDisruptionBudgets and anti-affinity rules for high availability.",
+            "Practice node drain and pod eviction drills."
           ],
           "references": [
             {
-              "title": "K8s Scheduling GPUs",
-              "url": "https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/"
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
             },
             {
-              "title": "NVIDIA GPU Operator",
-              "url": "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/index.html"
-            },
-            {
-              "title": "KServe Documentation",
+              "title": "KServe Model Serving on Kubernetes",
               "url": "https://kserve.github.io/website/"
+            },
+            {
+              "title": "Ray & KubeRay Documentation",
+              "url": "https://docs.ray.io/en/latest/"
             }
           ]
         },
@@ -6790,111 +7825,111 @@ window.ROADMAP_DATA = {
           "month": 9,
           "focus": "Continuous Delivery & GitOps",
           "tasks": [
-            "Establish automated deployment pipelines using ArgoCD or Flux",
-            "Maintain Kubernetes state configurations inside versioned Git channels",
-            "Implement zero-downtime rolling releases for serving containers"
+            "Manage Kubernetes ML manifests and model-routing configs via Argo CD GitOps",
+            "Automate container builds, eval gates, and staging promotions in GitHub Actions",
+            "Implement instant rollback workflows for bad model or prompt releases"
           ],
           "upskilling_instructions": [
-            "Set up GitOps mechanisms to sync cluster configurations.",
-            "Maintain cluster manifest states inside distinct Git trees.",
-            "Configure rolling update parameters (`maxSurge` / `maxUnavailable`)."
+            "Keep every cluster change declarative in Git—never `kubectl edit` production state manually.",
+            "Separate fast unit/smoke checks on PRs from heavier GPU evals on release branches.",
+            "Verify rollback speed under simulated bad-model deployments."
           ],
           "references": [
             {
-              "title": "ArgoCD Getting Started",
-              "url": "https://argo-cd.readthedocs.io/en/stable/getting_started/"
+              "title": "Argo CD GitOps Documentation",
+              "url": "https://argo-cd.readthedocs.io/en/stable/"
             },
             {
-              "title": "GitOps Overview",
-              "url": "https://www.gitops.tech/"
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
             },
             {
-              "title": "K8s Deployments Rolling Updates",
-              "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment"
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Monitoring, Metrics and Drift",
+          "focus": "Observability, Drift & Eval Monitoring",
           "tasks": [
-            "Expose serving throughput and latency metrics to Prometheus collectors",
-            "Build custom Dashboards in Grafana visualizing system stats",
-            "Implement evidently AI drift detection checks over inference inputs"
+            "Instrument OpenTelemetry GenAI traces alongside Prometheus and Grafana dashboards",
+            "Track TTFT, tokens/sec, error rates, GPU utilization, and Evidently AI data/prediction drift",
+            "Trigger automated alerts and shadow evaluations on drift spikes"
           ],
           "upskilling_instructions": [
-            "Define middleware endpoints logging model latency metrics.",
-            "Add Prometheus collectors scraping target metrics.",
-            "Write scheduled checks logging input drift changes."
+            "Correlate infrastructure metrics (GPU memory, thermal throttling) with application SLOs (p95 latency, eval score).",
+            "Redact PII before storing inference payloads for drift analysis.",
+            "Set actionable alert thresholds to avoid pager fatigue."
           ],
           "references": [
             {
-              "title": "Prometheus Scrape Configs",
-              "url": "https://prometheus.io/docs/prometheus/latest/configuration/configuration/"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             },
             {
-              "title": "Grafana Setup Guide",
-              "url": "https://grafana.com/docs/grafana/latest/getting-started/get-started-grafana-prometheus/"
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
             },
             {
-              "title": "Evidently AI Monitoring Docs",
-              "url": "https://docs.evidentlyai.com/"
+              "title": "Grafana Documentation",
+              "url": "https://grafana.com/docs/"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Compute Optimization & Cost Control",
+          "focus": "GPU FinOps, Scheduling & Cost Control",
           "tasks": [
-            "Configure GPU sharing and fractional GPU slicing workloads",
-            "Analyze model inference latency against compute cost rates",
-            "Draft budget limit guidelines for development pipelines"
+            "Configure fractional GPUs (MIG / time-slicing) for small models and dev environments",
+            "Route batch/eval workloads to spot GPUs with checkpointing",
+            "Build cost-per-1M-tokens and cost-per-training-run dashboards with budget alerts"
           ],
           "upskilling_instructions": [
-            "Adopt NVIDIA Multi-Instance GPU (MIG) for hardware optimization.",
-            "Profile cost trends per 1M model predictions.",
-            "Implement automatic sandbox timeouts on idle servers."
+            "Identify idle GPU pods and right-size instance types weekly.",
+            "Compare self-hosted vLLM unit economics vs managed API pricing at your actual traffic profile.",
+            "Enforce namespace resource quotas and automated dev-pod shutdowns."
           ],
           "references": [
             {
-              "title": "NVIDIA MIG Guide",
-              "url": "https://docs.nvidia.com/datacenter/tesla/mig-user-guide/index.html"
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
             },
             {
-              "title": "Kubernetes Resource Quotas",
-              "url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
             },
             {
-              "title": "Google Cloud FinOps",
-              "url": "https://cloud.google.com/finops"
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone Project: Enterprise MLOps Pipeline",
+          "focus": "Capstone: Enterprise MLOps & LLMOps Platform",
           "tasks": [
-            "Build an end-to-end Airflow-MLflow-FastAPI-K8s GitOps deployment",
-            "Integrate evidently AI drift alerts and Grafana dashboards",
-            "Draft system operations instructions covering OOM recovery rules"
+            "Deliver an end-to-end GitOps MLOps stack: Ray/Polars pipeline -> MLflow registry -> vLLM/KServe on K8s -> Argo CD -> Prometheus/Grafana/Evidently",
+            "Publish architecture diagrams, load-test benchmarks, FinOps analysis, and OOM recovery runbooks",
+            "Prepare for MLOps/LLMOps Engineer interviews covering Kubernetes, serving optimization, and reliability"
           ],
           "upskilling_instructions": [
-            "Group Feast, Airflow, MLflow, and Kubernetes operators in one GitOps configuration.",
-            "Run performance profiles using locust to prove deployment scalability.",
-            "Expose system operations status on a simple dashboard."
+            "Highlight real operational metrics: cold-start time, p95 TTFT under load, and GPU utilization.",
+            "Make local reproduction effortless via Kind/Minikube or Docker Compose.",
+            "Be ready to walk through incident runbooks for drift, OOMs, and bad rollouts."
           ],
           "references": [
             {
-              "title": "Locust Performance Tool",
-              "url": "https://locust.io/"
+              "title": "KServe Model Serving on Kubernetes",
+              "url": "https://kserve.github.io/website/"
             },
             {
-              "title": "Helm Package Manager",
-              "url": "https://helm.sh/"
+              "title": "Argo CD GitOps Documentation",
+              "url": "https://argo-cd.readthedocs.io/en/stable/"
             },
             {
-              "title": "GitHub README Best Practices",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
             }
           ]
         }
@@ -6904,342 +7939,687 @@ window.ROADMAP_DATA = {
       "current_role": "Any Role",
       "target_ai_role": "AI Safety Engineer",
       "title": "Any Role to AI Safety Engineer",
-      "summary": "Master the critical disciplines of AI safety, alignment engineering, alignment validation, guardrails, red-teaming, and compliance.",
-      "base_difficulty": 75,
+      "summary": "A 2026 AI Safety & Alignment Engineering roadmap covering Python, post-training (RLHF/DPO/GRPO), automated red-teaming, Inspect AI evals, sandboxing, mechanistic interpretability, and EU AI Act / NIST compliance.",
+      "base_difficulty": 76,
       "months": [
         {
           "month": 1,
-          "focus": "Python & Ethical AI Principles",
+          "focus": "Python Tooling & AI Safety Foundations",
           "tasks": [
-            "Configure standard virtual environments and dependencies using Python",
-            "Review core AI alignment guidelines and safety literature",
-            "Write Python validators that catch offensive words in input strings"
+            "Set up reproducible Python environments with uv, ruff, and pytest",
+            "Study core AI safety domains: specification gaming, alignment faking, misuse, and systemic risk",
+            "Build deterministic input/output policy validators with Pydantic v2"
           ],
           "upskilling_instructions": [
-            "Adopt Poetry to maintain clean, isolated Python dependencies.",
-            "Read fundamental publications from Anthropic, OpenAI, and DeepMind on alignment.",
-            "Implement robust regular-expression search rules for unsafe terms."
+            "Distinguish between robustness (reliability under shift), security (adversarial misuse), and alignment (intent/values).",
+            "Write clean, tested Python harnesses for running repeatable safety probes.",
+            "Document assumptions and threat models clearly."
           ],
           "references": [
             {
-              "title": "Anthropic Core Views",
-              "url": "https://www.anthropic.com/news/core-views-on-ai-safety"
-            },
-            {
-              "title": "DeepMind Alignment Research",
-              "url": "https://deepmind.google/discover/blog/alignment-research/"
-            },
-            {
-              "title": "Poetry Installation",
-              "url": "https://python-poetry.org/"
-            }
-          ]
-        },
-        {
-          "month": 2,
-          "focus": "Fine-Tuning & Safety Guards",
-          "tasks": [
-            "Deploy open weights model sizes using Hugging Face",
-            "Structure prompt guidelines that enforce safe system behavior",
-            "Expose endpoint interfaces and assert output structures"
-          ],
-          "upskilling_instructions": [
-            "Configure Hugging Face transformers parameters locally.",
-            "Design system instructions and test refusal responses.",
-            "Integrate validation parsers to catch schema non-compliance."
-          ],
-          "references": [
-            {
-              "title": "Hugging Face Transformers Quickstart",
-              "url": "https://huggingface.co/docs/transformers/index"
-            },
-            {
-              "title": "Llama Guard Safety Models",
-              "url": "https://huggingface.co/meta-llama/Llama-Guard-3"
-            },
-            {
-              "title": "FastAPI Web Application Docs",
-              "url": "https://fastapi.tiangolo.com/"
-            }
-          ]
-        },
-        {
-          "month": 3,
-          "focus": "Alignment Foundations",
-          "tasks": [
-            "Study Reinforcement Learning from Human Feedback (RLHF) mechanics",
-            "Train a basic reward classifier on PyTorch",
-            "Review Direct Preference Optimization (DPO) frameworks"
-          ],
-          "upskilling_instructions": [
-            "Compare reward models, policy models, and reference models.",
-            "Construct classification loss pipelines scoring preference pairs.",
-            "Map parameter updates under DPO loss equations."
-          ],
-          "references": [
-            {
-              "title": "Hugging Face TRL Library",
-              "url": "https://huggingface.co/docs/trl/index"
-            },
-            {
-              "title": "DPO Publication Reference",
-              "url": "https://arxiv.org/abs/2305.18290"
-            },
-            {
-              "title": "PyTorch Basic Tutorials",
-              "url": "https://pytorch.org/tutorials/"
-            }
-          ]
-        },
-        {
-          "month": 4,
-          "focus": "Red Teaming and Attacks",
-          "tasks": [
-            "Design complex adversarial prompt injection tests",
-            "Execute roleplay and system instruction bypass attacks on local models",
-            "Catalog model vulnerabilities and leakage frequencies"
-          ],
-          "upskilling_instructions": [
-            "Fuzz local models using diverse jailbreak vectors.",
-            "Attempt to force model extraction of hidden system guidelines.",
-            "Create vulnerability scores summarizing model robust levels."
-          ],
-          "references": [
-            {
-              "title": "OWASP Top 10 LLM Security Risks",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
-            },
-            {
-              "title": "Jailbreaking Research Literature",
-              "url": "https://arxiv.org/abs/2307.15043"
-            },
-            {
-              "title": "Gandalf Prompt Jailbreak Game",
-              "url": "https://gandalf.lakera.ai/"
-            }
-          ]
-        },
-        {
-          "month": 5,
-          "focus": "Guardrail Frameworks",
-          "tasks": [
-            "Install Llama Guard or NeMo Guardrails packages",
-            "Build safety gate routes that inspect user inputs before model calls",
-            "Benchmark the latency overhead added by safety wrappers"
-          ],
-          "upskilling_instructions": [
-            "Define safety rules and boundaries in NeMo configurations.",
-            "Implement high-speed input-output screening middlewares.",
-            "Profile Latency margins added by additional safety validation steps."
-          ],
-          "references": [
-            {
-              "title": "NeMo Guardrails GitHub",
-              "url": "https://github.com/NVIDIA/NeMo-Guardrails"
-            },
-            {
-              "title": "Llama Guard HF Reference",
-              "url": "https://huggingface.co/meta-llama/Llama-Guard-3"
-            },
-            {
-              "title": "FastAPI Middlewares Guide",
-              "url": "https://fastapi.tiangolo.com/tutorial/middleware/"
-            }
-          ]
-        },
-        {
-          "month": 6,
-          "focus": "Evaluations for Factuality & Hallucination",
-          "tasks": [
-            "Set up automated grading pipelines using Ragas or TruLens",
-            "Score model generations on faithfulness, context precision, and hallucination rates",
-            "Design golden evaluation prompts that trigger model hallucinations"
-          ],
-          "upskilling_instructions": [
-            "Utilize Ragas metrics to measure factual consistency.",
-            "Configure LLM-as-a-judge classifiers to grade output compliance.",
-            "Map edge cases where semantic references contain conflicting claims."
-          ],
-          "references": [
-            {
-              "title": "Ragas Evaluation Documentation",
-              "url": "https://docs.ragas.io/"
-            },
-            {
-              "title": "TruLens Evaluation Tools",
-              "url": "https://www.trulens.org/"
-            },
-            {
-              "title": "OpenAI Evals Framework",
-              "url": "https://github.com/openai/evals"
-            }
-          ]
-        },
-        {
-          "month": 7,
-          "focus": "Sandboxing & Execution Security",
-          "tasks": [
-            "Deploy model execution runtimes inside secure, restricted sandboxes",
-            "Implement resource usage caps (memory, CPU) for inference runs",
-            "Verify docker configuration isolation configurations"
-          ],
-          "upskilling_instructions": [
-            "Adopt micro-VM tools or container runtimes like gVisor.",
-            "Restrict process execution paths within target sandbox limits.",
-            "Run container processes using non-root system users."
-          ],
-          "references": [
-            {
-              "title": "gVisor Container Sandbox",
-              "url": "https://gvisor.dev/"
-            },
-            {
-              "title": "Docker Sandboxing Best Practices",
-              "url": "https://docs.docker.com/engine/security/"
-            },
-            {
-              "title": "Kubernetes Pod Security Standards",
-              "url": "https://kubernetes.io/docs/concepts/security/pod-security-standards/"
-            }
-          ]
-        },
-        {
-          "month": 8,
-          "focus": "Data Privacy & Anonymization",
-          "tasks": [
-            "Integrate Microsoft Presidio to scrub PII from training datasets",
-            "Apply differential privacy algorithms on raw tabular records",
-            "Audit dataset caches for credit card and social security variables"
-          ],
-          "upskilling_instructions": [
-            "Design automated PII sanitization pipelines.",
-            "Add noise bounds to satisfy differential privacy standards.",
-            "Establish regex-based checkers in raw data storage layers."
-          ],
-          "references": [
-            {
-              "title": "Microsoft Presidio",
-              "url": "https://microsoft.github.io/presidio/"
-            },
-            {
-              "title": "Differential Privacy Overview",
-              "url": "https://github.com/google/differential-privacy"
-            },
-            {
-              "title": "GDPR Compliance Checklists",
-              "url": "https://gdpr.eu/checklist/"
-            }
-          ]
-        },
-        {
-          "month": 9,
-          "focus": "Bias and Fairness Auditing",
-          "tasks": [
-            "Install and configure the Fairlearn bias auditing library",
-            "Identify performance variance slices across demographic groups",
-            "Mitigate demographic prediction disparities using fair preprocessing"
-          ],
-          "upskilling_instructions": [
-            "Calculate metric disparities across protected groups.",
-            "Document bias rates inside standard Model Card reports.",
-            "Apply preprocessing transformations to achieve equalized odds."
-          ],
-          "references": [
-            {
-              "title": "Fairlearn Documentation",
-              "url": "https://fairlearn.org/"
-            },
-            {
-              "title": "Hugging Face Model Cards",
-              "url": "https://huggingface.co/docs/hub/model-cards"
-            },
-            {
-              "title": "Google MLCC: Fairness",
-              "url": "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias"
-            }
-          ]
-        },
-        {
-          "month": 10,
-          "focus": "Explainability & Interpretability",
-          "tasks": [
-            "Calculate variable contributions using SHAP or LIME frameworks",
-            "Plot integrated gradients maps highlighting LLM input weightings",
-            "Build interactive feature dashboards for model explainability reports"
-          ],
-          "upskilling_instructions": [
-            "Generate SHAP explanation values on classification models.",
-            "Expose token probability weights in generated outputs.",
-            "Incorporate explainability maps in review tool dashboards."
-          ],
-          "references": [
-            {
-              "title": "SHAP Documentation",
-              "url": "https://shap.readthedocs.io/en/latest/"
-            },
-            {
-              "title": "Captum PyTorch Interpretability",
-              "url": "https://captum.ai/"
-            },
-            {
-              "title": "LIME Documentation",
-              "url": "https://github.com/marcotcr/lime"
-            }
-          ]
-        },
-        {
-          "month": 11,
-          "focus": "AI Governance & Compliance Standards",
-          "tasks": [
-            "Map model deployment parameters to EU AI Act requirement lists",
-            "Conduct compliance reviews based on the NIST AI Risk Management Framework",
-            "Draft risk mitigation registries outlining fallback plan guides"
-          ],
-          "upskilling_instructions": [
-            "Categorize model deployment risks (Unacceptable, High, Limited, Minimal).",
-            "Incorporate NIST AI RMF metrics within testing phases.",
-            "Document escalation paths for model failures in production."
-          ],
-          "references": [
-            {
-              "title": "EU AI Act Compliance Guide",
-              "url": "https://artificialintelligenceact.eu/"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             },
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework"
             },
             {
-              "title": "Microsoft Responsible AI Standards",
-              "url": "https://www.microsoft.com/en-us/ai/responsible-ai"
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Open-Weight Models & Inference Controls",
+          "tasks": [
+            "Deploy and inspect open-weight models using Hugging Face Transformers and vLLM",
+            "Analyze system-prompt adherence, refusal calibration, and false-positive over-refusals",
+            "Expose typed FastAPI endpoints logging safety-relevant metadata"
+          ],
+          "upskilling_instructions": [
+            "Measure both safety (blocking harmful requests) and helpfulness (not refusing benign requests).",
+            "Understand how chat templates and special tokens affect model behavior.",
+            "Keep test environments isolated."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "vLLM Documentation",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Alignment & Post-Training Mechanics",
+          "tasks": [
+            "Study RLHF, Constitutional AI, Direct Preference Optimization (DPO), and GRPO",
+            "Train a small reward/preference classifier in PyTorch and run a DPO experiment with TRL",
+            "Investigate reward hacking and sycophancy in preference-tuned models"
+          ],
+          "upskilling_instructions": [
+            "Inspect failure modes where optimizing a proxy reward degrades truthfulness or encourages sycophancy.",
+            "Compare SFT vs DPO on safety-vs-capability tradeoffs.",
+            "Track capability regressions on standard benchmarks."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Adversarial Red-Teaming & Agentic Attacks",
+          "tasks": [
+            "Design red-team suites for direct/indirect prompt injection, multi-turn jailbreaks, and roleplay bypasses",
+            "Test agentic attack vectors: MCP tool poisoning, confused-deputy exfiltration, and excessive agency",
+            "Automate adversarial scans using Promptfoo and measure attack success rate (ASR)"
+          ],
+          "upskilling_instructions": [
+            "Focus heavily on indirect prompt injection hidden inside retrieved documents, emails, or tool outputs.",
+            "Quantify ASR across attack categories rather than relying on anecdotal screenshots.",
+            "Maintain reproducible exploit test cases."
+          ],
+          "references": [
+            {
+              "title": "Promptfoo Red Teaming & Evals",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Guardrail Architectures & Defense-in-Depth",
+          "tasks": [
+            "Integrate open-weight safety classifiers (e.g., Llama Guard) alongside deterministic policy gates",
+            "Build input/output guardrail proxies and measure latency overhead and false-positive rates",
+            "Enforce strict schema validation and allowlists beneath model-based guardrails"
+          ],
+          "upskilling_instructions": [
+            "Never rely on a single LLM guardrail alone—layer deterministic auth, schema checks, and classifiers.",
+            "Benchmark p95 latency added by guardrail calls.",
+            "Test whether attackers can bypass output filters using encoding or partial streaming."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Safety Evaluations & Inspect AI",
+          "tasks": [
+            "Build reproducible safety and capability evaluations using Inspect AI",
+            "Measure hallucination rates, dangerous-capability uplift, and cyber/agentic risk benchmarks",
+            "Create golden evaluation suites that distinguish genuine safety from superficial keyword refusal"
+          ],
+          "upskilling_instructions": [
+            "Use Inspect AI tasks and solvers to make safety evals modular, shareable, and auditable.",
+            "Verify eval grading logic with human spot-checks to prevent grader gaming.",
+            "Run evals across multiple model temperatures and system prompts."
+          ],
+          "references": [
+            {
+              "title": "Inspect AI Safety Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
+            },
+            {
+              "title": "Promptfoo Red Teaming & Evals",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Agent Sandboxing & Execution Containment",
+          "tasks": [
+            "Run agent-generated code and browser/shell tools inside hardened, ephemeral sandboxes",
+            "Enforce strict CPU, memory, filesystem, and outbound-network egress restrictions",
+            "Test sandbox escape, SSRF, and privilege-escalation vectors"
+          ],
+          "upskilling_instructions": [
+            "Assume an agent executing untrusted instructions will eventually attempt unsafe commands—contain the blast radius.",
+            "Block internal VPC/metadata endpoints from agent containers by default.",
+            "Require human approval for high-impact external actions."
+          ],
+          "references": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Data Privacy, PII & Unlearning",
+          "tasks": [
+            "Integrate Microsoft Presidio to detect and scrub PII from training corpora, RAG indexes, and traces",
+            "Audit training datasets and model outputs for memorization and secret leakage",
+            "Implement data-lineage and deletion workflows for compliance"
+          ],
+          "upskilling_instructions": [
+            "Scrub PII before data enters embeddings or third-party APIs.",
+            "Test for canary-string memorization when fine-tuning open-weight models.",
+            "Document privacy guarantees and residual risks."
+          ],
+          "references": [
+            {
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Bias, Fairness & Societal Impact Auditing",
+          "tasks": [
+            "Audit model outputs and classifiers across demographic, linguistic, and accessibility slices",
+            "Measure both disparate accuracy and disparate refusal rates",
+            "Design mitigation strategies (balanced data, threshold calibration, post-processing)"
+          ],
+          "upskilling_instructions": [
+            "Check intersectional slices rather than single attributes alone.",
+            "Avoid 'fairness through unawareness'—proxy features often encode protected attributes.",
+            "Document known disparities transparently in model cards."
+          ],
+          "references": [
+            {
+              "title": "Evidently AI Monitoring & Evals",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Mechanistic Interpretability & Monitoring",
+          "tasks": [
+            "Explore representation engineering, activation steering, and Sparse Autoencoders (SAEs) on open models",
+            "Inspect internal feature activations to detect deception, refusal circuits, or concept representations",
+            "Compare black-box behavioral evals against white-box interpretability probes"
+          ],
+          "upskilling_instructions": [
+            "Use mechanistic interpretability to understand *why* a model behaves unsafely, not just *that* it did.",
+            "Verify steering interventions do not silently degrade general reasoning.",
+            "Follow open-source interp tooling and reproducible notebooks."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "arXiv Computer Science (cs.LG / cs.CL)",
+              "url": "https://arxiv.org/list/cs.LG/recent"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "AI Governance, EU AI Act & Frontier Frameworks",
+          "tasks": [
+            "Map system architectures and evals to EU AI Act GPAI/high-risk obligations and NIST AI RMF",
+            "Draft model cards, system cards, and risk-mitigation registries with concrete fallback triggers",
+            "Design incident-response and responsible-disclosure playbooks"
+          ],
+          "upskilling_instructions": [
+            "Translate regulatory requirements into concrete engineering artifacts: eval logs, data lineage, and kill switches.",
+            "Define clear deployment-halting thresholds if safety evals regress.",
+            "Partner across legal, security, and product teams."
+          ],
+          "references": [
+            {
+              "title": "EU AI Act Regulatory Framework",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Inspect AI Safety Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone Project: Safe LLM Proxy Guardrail",
+          "focus": "Capstone: End-to-End Safe AI Proxy & Eval Suite",
           "tasks": [
-            "Develop a secure LLM serving proxy incorporating input and output guardrails",
-            "Integrate anonymization, jailbreak checkers, and hallucination scoring",
-            "Write a case study detailing safety architecture, cost, and latency overheads"
+            "Ship a hardened LLM/agent gateway combining PII scrubbing, MCP permission checks, sandboxed tools, and an Inspect AI + Promptfoo safety suite",
+            "Publish a system card documenting attack-success-rate reductions, latency overhead, and compliance mapping",
+            "Prepare for AI Safety Engineer and AI Security Engineer interviews"
           ],
           "upskilling_instructions": [
-            "Integrate Presidio, NeMo Guardrails, Ragas, and FastAPI in a single proxy docker container.",
-            "Run performance profiles using locust to prove safety scaling capabilities.",
-            "Host the repository on GitHub with detailed setup guides."
+            "Demonstrate empirical rigor: show exact ASR, false-refusal, and latency numbers before and after your defenses.",
+            "Make your safety harness reproducible with one command.",
+            "Articulate both near-term AppSec/agentic risks and longer-term alignment challenges."
           ],
           "references": [
             {
-              "title": "Docker Compose Setup Guide",
-              "url": "https://docs.docker.com/compose/"
+              "title": "Inspect AI Safety Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
             },
             {
-              "title": "Locust Performance Tool",
-              "url": "https://locust.io/"
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
             },
             {
-              "title": "GitHub README Best Practices",
-              "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+              "title": "EU AI Act Regulatory Framework",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Security Engineer",
+      "target_ai_role": "AI Safety Engineer",
+      "title": "Security Engineer to AI Safety Engineer",
+      "summary": "An accelerated 2026 transition from AppSec/CloudSec into AI Safety & Alignment Engineering: adversarial ML, agentic/MCP red-teaming, sandboxing, Inspect AI evals, and AI governance.",
+      "base_difficulty": 66,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Python ML Stack & AI Safety Landscape",
+          "tasks": [
+            "Set up reproducible Python AI workspaces with uv, ruff, and pytest",
+            "Bridge classic AppSec threat modeling to AI safety: alignment, robustness, and adversarial misuse",
+            "Run open-weight models locally with Hugging Face and vLLM"
+          ],
+          "upskilling_instructions": [
+            "Use your security threat-modeling instincts to map trust boundaries across prompts, RAG, weights, and tools.",
+            "Understand how probabilistic model behavior differs from deterministic software bugs.",
+            "Build clean, typed Python evaluation scripts."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Alignment & Post-Training Mechanics",
+          "tasks": [
+            "Study RLHF, Constitutional AI, DPO, and verifiable-reward RL (GRPO)",
+            "Run a small DPO safety-alignment experiment using PyTorch and TRL",
+            "Analyze reward hacking, sycophancy, and jailbreak generalization"
+          ],
+          "upskilling_instructions": [
+            "Understand how safety behavior is trained into weights—and why superficial refusal tuning is brittle.",
+            "Measure both safety improvements and benign-task over-refusal.",
+            "Inspect training data poisoning vectors."
+          ],
+          "references": [
+            {
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Adversarial Prompting & Indirect Injection",
+          "tasks": [
+            "Build automated attack suites for direct/indirect prompt injection and multi-turn jailbreaks",
+            "Test data exfiltration via markdown images, tool arguments, and retrieved documents",
+            "Quantify attack success rates using Promptfoo"
+          ],
+          "upskilling_instructions": [
+            "Treat every untrusted document, webpage, or email entering context as a potential injection payload.",
+            "Automate attack suites in CI so regressions are caught immediately.",
+            "Document clear severity ratings and mitigations."
+          ],
+          "references": [
+            {
+              "title": "Promptfoo Red Teaming & Evals",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "MCP & Agentic System Security",
+          "tasks": [
+            "Audit MCP servers for tool poisoning, rug-pull schema changes, and confused-deputy privilege escalation",
+            "Design least-privilege OAuth scopes, tool allowlists, and human-approval gates",
+            "Test multi-agent workflows for cascading instruction hijacking"
+          ],
+          "upskilling_instructions": [
+            "Apply strict supply-chain and zero-trust principles to external MCP tools and skills.",
+            "Enforce authorization in backend services, never in system prompts.",
+            "Log every tool call with caller identity and parameters."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Execution Sandboxing & Containment",
+          "tasks": [
+            "Harden agent code-execution environments using isolated containers/microVMs",
+            "Enforce seccomp, read-only rootfs, resource caps, and strict egress firewalls",
+            "Pentest sandboxes for SSRF, metadata-service access, and container escapes"
+          ],
+          "upskilling_instructions": [
+            "Your CloudSec/container-hardening background is a huge asset here—treat agent code as hostile.",
+            "Use ephemeral single-task sandboxes with zero persistent secrets.",
+            "Automate sandbox security checks in CI."
+          ],
+          "references": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Safety Evals with Inspect AI",
+          "tasks": [
+            "Build modular capability and safety evaluations using Inspect AI",
+            "Test cyber-offense uplift, dangerous-knowledge, and autonomous-replication proxies",
+            "Verify eval integrity against grader gaming and prompt sensitivity"
+          ],
+          "upskilling_instructions": [
+            "Design evals that measure real-world risk uplift rather than trivial keyword matching.",
+            "Run evals across multiple seeds and elicitation strategies.",
+            "Publish clear, reproducible eval logs."
+          ],
+          "references": [
+            {
+              "title": "Inspect AI Safety Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
+            },
+            {
+              "title": "Promptfoo Red Teaming & Evals",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Guardrail Proxies & Defense-in-Depth",
+          "tasks": [
+            "Deploy input/output guardrail classifiers alongside deterministic policy engines",
+            "Measure latency overhead, false-positive refusal rates, and streaming-filter edge cases",
+            "Implement denial-of-wallet protections (token caps, rate limits, anomaly detection)"
+          ],
+          "upskilling_instructions": [
+            "Remember that streaming responses can leak partial unsafe tokens before a post-hoc filter catches them—buffer or scan chunks smartly.",
+            "Layer deterministic controls underneath model-based guards.",
+            "Track guardrail bypasses in production telemetry."
+          ],
+          "references": [
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Privacy, PII & Model Extraction Defense",
+          "tasks": [
+            "Deploy Microsoft Presidio for PII redaction across RAG pipelines and observability logs",
+            "Audit open-weight and fine-tuned models for training-data memorization",
+            "Defend inference APIs against model-extraction and membership-inference probing"
+          ],
+          "upskilling_instructions": [
+            "Ensure observability traces do not become a secondary PII/secret leak.",
+            "Ban unsafe pickle model formats in favor of safetensors.",
+            "Verify zero-data-retention terms with model providers."
+          ],
+          "references": [
+            {
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Bias, Fairness & Adversarial Robustness",
+          "tasks": [
+            "Audit classifiers and LLMs for demographic disparities and adversarial perturbations",
+            "Test evasion and data-poisoning attacks on classical ML and embedding models",
+            "Build continuous monitoring alerts for anomalous input distributions"
+          ],
+          "upskilling_instructions": [
+            "Connect adversarial ML robustness to real-world fraud and abuse evasion.",
+            "Evaluate fairness across user cohorts and languages.",
+            "Document residual risks clearly."
+          ],
+          "references": [
+            {
+              "title": "Evidently AI Monitoring & Evals",
+              "url": "https://docs.evidentlyai.com/"
+            },
+            {
+              "title": "scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Mechanistic Interpretability for Safety",
+          "tasks": [
+            "Explore activation probing, Sparse Autoencoders (SAEs), and circuit analysis in PyTorch",
+            "Test white-box anomaly detectors for jailbreak or deception detection",
+            "Evaluate where interpretability complements black-box red-teaming"
+          ],
+          "upskilling_instructions": [
+            "Focus on practical safety applications of interpretability: monitoring, unlearning verification, and red-team diagnostics.",
+            "Verify probes generalize across diverse prompts.",
+            "Keep experiments reproducible."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
+            },
+            {
+              "title": "arXiv Computer Science (cs.LG / cs.CL)",
+              "url": "https://arxiv.org/list/cs.LG/recent"
+            },
+            {
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "EU AI Act, NIST RMF & AI Incident Response",
+          "tasks": [
+            "Map technical controls and evals to EU AI Act and NIST AI RMF requirements",
+            "Build an AI incident-response playbook (poisoned RAG, rogue agent, compromised MCP)",
+            "Run tabletop security exercises with engineering and legal teams"
+          ],
+          "upskilling_instructions": [
+            "Turn high-level governance frameworks into concrete engineering gates and runbooks.",
+            "Define pre-agreed kill-switch and rollback authority.",
+            "Maintain auditable evidence trails."
+          ],
+          "references": [
+            {
+              "title": "EU AI Act Regulatory Framework",
+              "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Inspect AI Safety Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Capstone: Hardened Agentic Gateway & Safety Eval Suite",
+          "tasks": [
+            "Ship a production-grade AI security & safety gateway with MCP policy enforcement, sandboxing, PII scrubbing, and Inspect AI evals",
+            "Publish a full threat model, benchmarked attack-success-rate drop, and system card",
+            "Target AI Safety Engineer, Frontier Red-Team Engineer, or AI Security Architect roles"
+          ],
+          "upskilling_instructions": [
+            "Your security background gives you immediate credibility on sandboxing, threat modeling, and adversarial thinking.",
+            "Highlight empirical eval results and working code.",
+            "Share reproducible defenses the community or employers can inspect."
+          ],
+          "references": [
+            {
+              "title": "Inspect AI Safety Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
             }
           ]
         }
@@ -7249,146 +8629,146 @@ window.ROADMAP_DATA = {
       "current_role": "Any Role",
       "target_ai_role": "Research Scientist",
       "title": "Any Role to Research Scientist",
-      "summary": "The advanced mathematical and architectural pathway to becoming an AI Research Scientist. Formulate architectures, train networks from scratch, and optimize training dynamics.",
+      "summary": "A rigorous 2026 ML/AI Research Scientist roadmap covering math foundations, modern Transformer internals (RoPE/RMSNorm/GQA), pretraining, RLVR/GRPO post-training, distributed FSDP2, multimodal architectures, and mechanistic interpretability.",
       "base_difficulty": 88,
       "months": [
         {
           "month": 1,
-          "focus": "Mathematics for Machine Learning",
+          "focus": "Mathematics for Modern ML Research",
           "tasks": [
-            "Review linear algebra: matrix operations, eigenvalues, eigenvectors, SVD",
-            "Review calculus: partial derivatives, gradients, Jacobians, and Hessians",
-            "Review probability: random variables, expectation, joint distributions, Bayes theorem"
+            "Master linear algebra (SVD, eigenvalues, matrix calculus), multivariable gradients, and Jacobians",
+            "Review probability theory, information theory (KL divergence, cross-entropy), and concentration bounds",
+            "Translate core equations into clean, vectorized NumPy implementations"
           ],
           "upskilling_instructions": [
-            "Solve foundational math problems on paper and verify numerically using NumPy.",
-            "Write analytical gradient equations for multi-variable equations.",
-            "Write conditional probability simulators to verify Bayes theorem outcomes."
+            "Verify every analytical gradient numerically with finite differences.",
+            "Build fluency reading paper derivations and mapping symbols to tensor dimensions.",
+            "Keep a personal derivation notebook."
           ],
           "references": [
             {
-              "title": "Mathematics for Machine Learning Book",
-              "url": "https://mml-book.github.io/"
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
             },
             {
-              "title": "MIT Linear Algebra Course",
-              "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "NumPy Reference Guides",
-              "url": "https://numpy.org/doc/stable/reference/"
+              "title": "arXiv Computer Science (cs.LG / cs.CL)",
+              "url": "https://arxiv.org/list/cs.LG/recent"
             }
           ]
         },
         {
           "month": 2,
-          "focus": "Optimization Theory & Loss Functions",
+          "focus": "Optimization Theory & Loss Landscapes",
           "tasks": [
-            "Implement gradient descent, stochastic gradient descent (SGD), and Adam from scratch in Python",
-            "Study convex optimization, duality, and saddle points in loss landscapes",
-            "Implement custom loss functions (e.g. contrastive loss, Huber loss) in PyTorch"
+            "Implement SGD, Momentum, AdamW, and Muon/second-order intuition in Python",
+            "Study convex optimization, saddle points, loss sharpness, and learning-rate warmup/decay",
+            "Implement custom losses (InfoNCE contrastive loss, focal loss, label smoothing) in PyTorch"
           ],
           "upskilling_instructions": [
-            "Write standard optimization updates using raw NumPy arrays.",
-            "Write gradient updates manually for simple classification objectives.",
-            "Construct training loops validating loss curves under custom loss constraints."
+            "Test how weight decay, gradient clipping, and learning rate scaling interact across model widths.",
+            "Log gradient norms and parameter update ratios during training.",
+            "Compare convergence speed across optimizers on a controlled benchmark."
           ],
           "references": [
             {
-              "title": "Stanford Convex Optimization Book",
-              "url": "https://web.stanford.edu/~boyd/cvxbook/"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "PyTorch Custom Loss Guide",
-              "url": "https://pytorch.org/docs/stable/nn.html#loss-functions"
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
             },
             {
-              "title": "Adam Optimizer Publication",
-              "url": "https://arxiv.org/abs/1412.6980"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             }
           ]
         },
         {
           "month": 3,
-          "focus": "Neural Network Architectures from Scratch",
+          "focus": "Neural Architectures from Scratch",
           "tasks": [
-            "Build and train a fully-connected deep neural network with backpropagation from scratch using only NumPy",
-            "Implement vector initialization rules (Xavier, He) and study vanishing/exploding gradients",
-            "Add batch normalization and dropout layers to your custom NumPy network"
+            "Build and train a multi-layer network with manual backpropagation in pure NumPy",
+            "Implement Xavier/He initialization, residual connections, and normalization layers",
+            "Verify your NumPy gradients match PyTorch autograd to floating-point precision"
           ],
           "upskilling_instructions": [
-            "Derive gradient update steps on paper for every network layer.",
-            "Compare convergence speeds under He initialization vs zero-state configurations.",
-            "Assert forward and backward shape alignments between all network nodes."
+            "Implementing backprop by hand once cements tensor shapes and chain-rule debugging forever.",
+            "Inspect activation and gradient histograms across layers to spot dead neurons or explosions.",
+            "Write unit tests asserting gradient correctness."
           ],
           "references": [
             {
-              "title": "Stanford CS231n Neural Networks",
-              "url": "https://cs231n.github.io/neural-networks-1/"
+              "title": "NumPy Documentation",
+              "url": "https://numpy.org/doc/stable/"
             },
             {
-              "title": "Deep Learning Book - Bengio et al.",
-              "url": "https://www.deeplearningbook.org/"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "NumPy Matrix Operations Reference",
-              "url": "https://numpy.org/doc/stable/reference/routines.linalg.html"
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
             }
           ]
         },
         {
           "month": 4,
-          "focus": "Deep Learning Theory & Convergence",
+          "focus": "Deep Learning Theory & Scaling Laws",
           "tasks": [
-            "Study generalization error bounds, Rademacher complexity, and VC dimension",
-            "Investigate double descent phenomenon by training models of varying capacities",
-            "Plot weight distributions and activations across network layers during training"
+            "Study generalization, double descent, implicit bias of SGD, and Chinchilla/inference-compute scaling laws",
+            "Run controlled experiments varying model width, depth, and dataset size on a fixed compute budget",
+            "Fit empirical power-law scaling curves to predict loss at larger scales"
           ],
           "upskilling_instructions": [
-            "Train models beyond interpolation thresholds to observe generalization benefits.",
-            "Analyze generalization error metrics across training steps.",
-            "Expose activation statistics inside review tool dashboards."
+            "Design clean, controlled ablations changing one hyperparameter at a time.",
+            "Separate training-compute scaling from test-time compute scaling.",
+            "Report error bars across multiple random seeds."
           ],
           "references": [
             {
-              "title": "Understanding Machine Learning Theory Book",
-              "url": "https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "Deep Double Descent Research",
-              "url": "https://arxiv.org/abs/1912.02292"
+              "title": "arXiv Computer Science (cs.LG / cs.CL)",
+              "url": "https://arxiv.org/list/cs.LG/recent"
             },
             {
-              "title": "TensorBoard Visualization Guide",
-              "url": "https://pytorch.org/docs/stable/tensorboard.html"
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
             }
           ]
         },
         {
           "month": 5,
-          "focus": "Attention & Transformer Architectures",
+          "focus": "Modern Transformer Internals",
           "tasks": [
-            "Write scaled dot-product attention and multi-head attention modules from scratch in PyTorch",
-            "Implement sinusoidal positional embeddings and layer normalization blocks",
-            "Assemble a complete Transformer Encoder block and verify input-output shape mappings"
+            "Implement scaled dot-product attention, Grouped-Query Attention (GQA), RoPE, RMSNorm, and SwiGLU from scratch in PyTorch",
+            "Understand KV-cache mechanics, FlashAttention memory hierarchy, and causal masking",
+            "Verify tensor shapes and numerical equivalence against reference implementations"
           ],
           "upskilling_instructions": [
-            "Implement masking parameters within self-attention vectors to preserve causal rules.",
-            "Compare Pre-LN vs Post-LN stability behaviors.",
-            "Review shapes throughout matrix projections."
+            "Go beyond 2017 sinusoidal/LayerNorm blocks—implement the 2026 standard Transformer components (RoPE, GQA, RMSNorm, SwiGLU).",
+            "Profile memory bandwidth vs FLOPs in attention layers.",
+            "Test KV-cache incremental decoding vs full-sequence forward passes."
           ],
           "references": [
             {
-              "title": "Attention Is All You Need",
-              "url": "https://arxiv.org/abs/1706.03762"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "The Annotated Transformer",
-              "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "PyTorch Transformer Layers API",
-              "url": "https://pytorch.org/docs/stable/nn.html#transformer-layers"
+              "title": "arXiv Computer Science (cs.LG / cs.CL)",
+              "url": "https://arxiv.org/list/cs.LG/recent"
             }
           ]
         },
@@ -7396,195 +8776,2610 @@ window.ROADMAP_DATA = {
           "month": 6,
           "focus": "Language Model Pretraining",
           "tasks": [
-            "Build a custom character-level or subword-level tokenizer",
-            "Write a PyTorch pretraining script with masked language modeling (MLM) or causal language modeling",
-            "Pretrain a small 10M parameter GPT model on a subset of Wikipedia or textbooks"
+            "Train a BPE tokenizer and build a streaming, packed token dataloader",
+            "Write a clean PyTorch 2.x pretraining loop with BF16 mixed precision and torch.compile",
+            "Pretrain a small 50M-150M parameter causal LM and track perplexity and downstream evals"
           ],
           "upskilling_instructions": [
-            "Train a Byte-Pair Encoding (BPE) tokenizer using Tokenizers.",
-            "Implement causal masking inside model configurations.",
-            "Expose generated generation outputs on baseline check points."
+            "Measure tokens/sec and Model FLOPs Utilization (MFU) on your hardware.",
+            "Verify data packing does not leak attention across document boundaries.",
+            "Save and resume checkpoints cleanly."
           ],
           "references": [
             {
-              "title": "Hugging Face Tokenizers",
-              "url": "https://huggingface.co/docs/tokenizers/index"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "Let's build GPT - Karpathy YouTube",
-              "url": "https://www.youtube.com/watch?v=kCc8FmEb1nY"
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "PyTorch DataLoader Guide",
-              "url": "https://pytorch.org/docs/stable/data.html"
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
             }
           ]
         },
         {
           "month": 7,
-          "focus": "Reinforcement Learning Foundations",
+          "focus": "Reinforcement Learning & Reasoning Post-Training",
           "tasks": [
-            "Implement Q-learning and Policy Gradient (REINFORCE) algorithms on OpenAI Gym environments",
-            "Study Markov Decision Processes (MDPs), value iteration, and policy iteration",
-            "Graph training reward curves to evaluate convergence stability"
+            "Implement policy gradients (REINFORCE, PPO) on Gymnasium environments",
+            "Study RL with Verifiable Rewards (RLVR), GRPO, and DPO for reasoning models",
+            "Train a compact model with GRPO/TRL on verifiable math or coding tasks"
           ],
           "upskilling_instructions": [
-            "Construct discrete agent states utilizing gym baseline environments.",
-            "Formulate reward updates using value iteration algorithms.",
-            "Mitigate policy variance drops using variance reduction techniques."
+            "Connect classic RL foundations directly to modern reasoning-model post-training.",
+            "Monitor KL divergence from the reference policy to prevent reward hacking and collapse.",
+            "Evaluate pass@1 vs pass@k and test-time compute scaling."
           ],
           "references": [
             {
-              "title": "Sutton & Barto Reinforcement Learning Book",
-              "url": "http://incompleteideas.net/book/the-book-2nd.html"
-            },
-            {
-              "title": "Gymnasium Documentation",
+              "title": "Gymnasium RL Environments",
               "url": "https://gymnasium.farama.org/"
             },
             {
-              "title": "Spinning Up in Deep RL by OpenAI",
-              "url": "https://spinningup.openai.com/en/latest/"
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
+            },
+            {
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             }
           ]
         },
         {
           "month": 8,
-          "focus": "Custom Optimization & Schedulers",
+          "focus": "Parameter-Efficient Adaptation & Synthetic Data",
           "tasks": [
-            "Implement learning rate schedules (cosine annealing with linear warmup) in PyTorch",
-            "Implement gradient clipping and weight decay (L2 vs AdamW decapsulation rules)",
-            "Investigate training behavior changes under various learning rate scales"
+            "Implement LoRA layers from scratch in PyTorch and compare full fine-tuning vs LoRA/DoRA",
+            "Study synthetic data generation, rejection sampling, and distillation from frontier reasoning models",
+            "Measure catastrophic forgetting and distribution shift across fine-tuning stages"
           ],
           "upskilling_instructions": [
-            "Configure customized scheduler classes inside PyTorch train runs.",
-            "Apply gradient clipping norms before optimizer updates.",
-            "Document loss behavior trends across training sweeps."
+            "Investigate rank, target modules, and learning-rate scaling in LoRA.",
+            "Filter synthetic datasets with deterministic verifiers whenever possible.",
+            "Run controlled ablations on data quality vs quantity."
           ],
           "references": [
             {
-              "title": "PyTorch Learning Rate Schedulers",
-              "url": "https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "AdamW Optimization Publication",
-              "url": "https://arxiv.org/abs/1711.05101"
+              "title": "Hugging Face TRL (SFT, DPO, GRPO)",
+              "url": "https://huggingface.co/docs/trl/index"
             },
             {
-              "title": "Deep Learning Training Playbook",
-              "url": "https://github.com/google-research/tuning_playbook"
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
             }
           ]
         },
         {
           "month": 9,
-          "focus": "Parameter-Efficient Fine-Tuning (PEFT)",
+          "focus": "Distributed Training & Systems Efficiency",
           "tasks": [
-            "Implement LoRA (Low-Rank Adaptation) layers from scratch in PyTorch",
-            "Fine-tune a pretrained LLM using QLoRA and quantization on a consumer GPU",
-            "Analyze the parameter reduction and memory savings compared to full fine-tuning"
+            "Study Data Parallelism (DDP), FSDP2, Tensor Parallelism, and Pipeline Parallelism",
+            "Run multi-GPU training with PyTorch FSDP2 and activation checkpointing",
+            "Profile communication vs compute overlap using PyTorch Profiler"
           ],
           "upskilling_instructions": [
-            "Construct adapter matrices and join target weights dynamically.",
-            "Set up 4-bit quantizations using BitsAndBytes parameters.",
-            "Compare GPU memory profiles of standard and PEFT modes."
+            "Understand memory breakdown: parameters, gradients, optimizer states (AdamW), and activations.",
+            "Measure scaling efficiency across GPUs and eliminate dataloader bottlenecks.",
+            "Test fault-tolerant checkpointing."
           ],
           "references": [
             {
-              "title": "LoRA Publication",
-              "url": "https://arxiv.org/abs/2106.09685"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "Hugging Face PEFT Library",
-              "url": "https://huggingface.co/docs/peft/index"
+              "title": "Ray & KubeRay Documentation",
+              "url": "https://docs.ray.io/en/latest/"
             },
             {
-              "title": "QLoRA Publication",
-              "url": "https://arxiv.org/abs/2305.14314"
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
             }
           ]
         },
         {
           "month": 10,
-          "focus": "Distributed Training Algorithms",
+          "focus": "Mechanistic Interpretability & Evaluation",
           "tasks": [
-            "Study data parallelism (DP/DDP), tensor parallelism, and pipeline parallelism",
-            "Configure a multi-GPU training run using PyTorch DistributedDataParallel (DDP)",
-            "Measure scaling efficiency (communication overhead vs throughput)"
+            "Study Sparse Autoencoders (SAEs), circuit tracing, and linear probing on Transformer activations",
+            "Build reproducible evaluation harnesses (e.g., Inspect AI) for reasoning and capability measurement",
+            "Test whether discovered internal features causally influence model outputs via steering"
           ],
           "upskilling_instructions": [
-            "Verify gradient synchronizations across parallel run steps.",
-            "Launch multinode setups utilizing torchrun command suites.",
-            "Expose training iteration logs to verify speed gains."
+            "Treat interpretability hypotheses scientifically: formulate falsifiable predictions and run causal ablation tests.",
+            "Beware of confirmation bias when interpreting feature examples.",
+            "Share clean analysis notebooks."
           ],
           "references": [
             {
-              "title": "PyTorch Distributed Overview",
-              "url": "https://pytorch.org/docs/stable/distributed.html"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "DeepSpeed Documentation",
-              "url": "https://www.deepspeed.ai/"
+              "title": "Inspect AI Safety Evaluation Framework",
+              "url": "https://inspect.aisi.org.uk/"
             },
             {
-              "title": "Megatron-LM GitHub",
-              "url": "https://github.com/NVIDIA/Megatron-LM"
+              "title": "arXiv Computer Science (cs.LG / cs.CL)",
+              "url": "https://arxiv.org/list/cs.LG/recent"
             }
           ]
         },
         {
           "month": 11,
-          "focus": "Vision and Multimodal Architectures",
+          "focus": "Multimodal & World-Model Architectures",
           "tasks": [
-            "Implement a Vision Transformer (ViT) architecture in PyTorch",
-            "Study contrastive representation learning (CLIP) and image-text alignment",
-            "Train a multi-modal projection layer connecting a ViT to an LLM"
+            "Implement a Vision Transformer (ViT) and vision-language projection/cross-attention bridge",
+            "Study unified multimodal tokenization, audio/video encoders, and diffusion/flow-matching basics",
+            "Train a small multimodal experiment and ablate resolution/token budgets"
           ],
           "upskilling_instructions": [
-            "Convert raw images into sequential token patches inside model feeds.",
-            "Define CLIP loss pipelines calculating cosine scores on image-text outputs.",
-            "Construct linear projections aligning vision states to language vocabularies."
+            "Understand how visual patch counts explode context length and compute.",
+            "Run ablations comparing early-fusion vs late-projection multimodal designs.",
+            "Evaluate multimodal grounding carefully to avoid text-prior shortcuts."
           ],
           "references": [
             {
-              "title": "Vision Transformer Publication",
-              "url": "https://arxiv.org/abs/2010.11929"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "CLIP Publication - OpenAI",
-              "url": "https://arxiv.org/abs/2103.00020"
+              "title": "Hugging Face Transformers & PEFT",
+              "url": "https://huggingface.co/docs/transformers/index"
             },
             {
-              "title": "LLaVA Architecture Publication",
-              "url": "https://arxiv.org/abs/2304.08485"
+              "title": "arXiv Computer Science (cs.LG / cs.CL)",
+              "url": "https://arxiv.org/list/cs.LG/recent"
             }
           ]
         },
         {
           "month": 12,
-          "focus": "Capstone Project: Custom Model Training",
+          "focus": "Capstone: Original Research Paper & Reproducible Code",
           "tasks": [
-            "Train a custom Transformer-based model from scratch on a specialized text corpus",
-            "Evaluate performance against standard benchmarks and baseline models",
-            "Write an academic-style paper or comprehensive technical report on your findings"
+            "Formulate a clear research question, design baselines and ablations, and run rigorous experiments",
+            "Evaluate against standard benchmarks with statistical significance and error bars",
+            "Write an arXiv-style technical paper with open-source, uv-reproducible code"
           ],
           "upskilling_instructions": [
-            "Deploy custom models to Hugging Face Hub models directories.",
-            "Score accuracy outputs against standard metrics.",
-            "Detail architecture and training curves in LaTeX/Markdown files."
+            "A strong, clean negative result with insightful ablations beats a sloppy positive claim.",
+            "Make every figure, table, and hyperparameter reproducible from your repo.",
+            "Present your work in reading groups or open-source communities for peer feedback."
           ],
           "references": [
             {
-              "title": "Hugging Face Model Hub upload",
-              "url": "https://huggingface.co/docs/hub/adding-a-model"
+              "title": "arXiv Computer Science (cs.LG / cs.CL)",
+              "url": "https://arxiv.org/list/cs.LG/recent"
             },
             {
-              "title": "Overleaf LaTeX Tutorials",
-              "url": "https://www.overleaf.com/learn"
+              "title": "PyTorch Tutorials & 2.x Docs",
+              "url": "https://pytorch.org/tutorials/"
             },
             {
-              "title": "Google Technical Writing Course",
-              "url": "https://developers.google.com/tech-writing"
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Any Role",
+      "target_ai_role": "Agentic AI Engineer",
+      "title": "Any Role to Agentic AI Engineer",
+      "summary": "A 2026 roadmap to becoming an Agentic AI Engineer: context engineering, Model Context Protocol (MCP), durable multi-step workflows, sandboxing, agent memory, and trajectory evaluations.",
+      "base_difficulty": 78,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Modern Python & Typed Contracts",
+          "tasks": [
+            "Set up reproducible Python projects with uv, ruff, and pytest",
+            "Master async/await, Pydantic v2 schemas, and structured error handling",
+            "Build a typed CLI that orchestrates multi-step API calls with retries"
+          ],
+          "upskilling_instructions": [
+            "Agents fail unpredictably when tool inputs/outputs are untyped—use Pydantic v2 everywhere.",
+            "Write pytest unit tests for deterministic business logic before adding LLM calls.",
+            "Keep secrets strictly in environment variables."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "LLM Foundations & Reasoning Models",
+          "tasks": [
+            "Build resilient clients for frontier and reasoning models with strict JSON Schema outputs",
+            "Learn when to use deterministic workflows vs single-turn LLM calls vs autonomous agent loops",
+            "Benchmark thinking budgets, prompt caching, and latency/cost tradeoffs"
+          ],
+          "upskilling_instructions": [
+            "Start with the simplest workflow pattern (chaining, routing, parallelization) before introducing open-ended agent loops.",
+            "Measure token spend per step—multi-turn agents multiply input tokens rapidly.",
+            "Handle model refusals and truncated responses gracefully."
+          ],
+          "references": [
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Context Engineering & Memory Systems",
+          "tasks": [
+            "Design layered context: system instructions, dynamic tool schemas, working memory, and episodic/long-term memory",
+            "Implement context compaction (summarizing older turns and pruning stale tool outputs)",
+            "Prevent context rot and instruction drift across 30+ turn sessions"
+          ],
+          "upskilling_instructions": [
+            "Keep context lean and high-signal—dumping 100k tokens of noisy tool logs degrades reasoning accuracy.",
+            "Test how your agent performs at turn 25 compared to turn 2.",
+            "Use prompt caching for stable system prefixes."
+          ],
+          "references": [
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            },
+            {
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Model Context Protocol (MCP) Mastery",
+          "tasks": [
+            "Build custom MCP servers exposing typed tools, resources, and prompts",
+            "Connect an MCP client to multiple servers and manage tool-namespace collisions",
+            "Write clear, unambiguous tool descriptions and parameter schemas that guide model selection"
+          ],
+          "upskilling_instructions": [
+            "Invest heavily in tool ergonomics: clear parameter names, examples, and actionable error messages help agents self-correct.",
+            "Return concise, structured tool outputs rather than raw 50KB HTML or JSON blobs.",
+            "Test MCP servers independently with unit and contract tests."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Agentic RAG & Tool-Augmented Retrieval",
+          "tasks": [
+            "Build agentic retrieval where the model iteratively refines queries, filters, and follows citations",
+            "Combine hybrid search (BM25 + dense + reranking) with structured SQL/DuckDB lookups",
+            "Verify groundedness and prevent retrieval loops"
+          ],
+          "upskilling_instructions": [
+            "Cap maximum retrieval hops per user turn so an agent cannot spin indefinitely on missing information.",
+            "Enforce document-level permissions inside the retrieval tool, never in the prompt.",
+            "Require source chunk IDs on every factual claim."
+          ],
+          "references": [
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            },
+            {
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
+            },
+            {
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Durable Execution & Long-Running Workflows",
+          "tasks": [
+            "Make multi-step agents crash-proof and resumable using Temporal or durable state machines",
+            "Handle long-running human-in-the-loop (HITL) pauses, webhooks, and scheduled wakeups",
+            "Design idempotent tool actions so retries never duplicate emails, charges, or database writes"
+          ],
+          "upskilling_instructions": [
+            "Separate deterministic state transitions from non-deterministic LLM reasoning steps.",
+            "Test killing a worker mid-workflow and verifying it resumes cleanly from the last checkpoint.",
+            "Assign idempotency keys to every external mutation."
+          ],
+          "references": [
+            {
+              "title": "Temporal Durable Execution",
+              "url": "https://docs.temporal.io/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Multi-Agent Orchestration & Subagents",
+          "tasks": [
+            "Implement supervisor/worker, handoff, and parallel-subagent patterns cleanly",
+            "Define crisp inter-agent contracts, scoped workspaces, and shared artifacts",
+            "Avoid over-fragmentation: benchmark single-agent vs multi-agent latency, cost, and accuracy"
+          ],
+          "upskilling_instructions": [
+            "Only split into multiple agents when distinct context isolation, permissions, or parallel execution genuinely helps.",
+            "Prevent infinite ping-pong loops between peer agents with explicit handoff budgets.",
+            "Pass structured summaries between agents rather than raw full histories."
+          ],
+          "references": [
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Browser, Computer-Use & Coding Agents",
+          "tasks": [
+            "Build bounded browser-automation or repo-editing agents with verification loops",
+            "Combine visual/DOM grounding with deterministic assertions (tests, linters, type-checks)",
+            "Handle dynamic UI states, timeouts, and ambiguous page elements safely"
+          ],
+          "upskilling_instructions": [
+            "Pair coding or browser agents with fast automated verifiers (pytest, tsc, DOM checks) so they self-correct on real signals.",
+            "Never let a browser agent submit payments or sensitive forms without human confirmation.",
+            "Capture screenshots and action logs for every step."
+          ],
+          "references": [
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Agent Sandboxing & Security",
+          "tasks": [
+            "Isolate agent code execution and shell tools inside ephemeral Docker/microVM sandboxes",
+            "Defend against indirect prompt injection, MCP tool poisoning, and excessive agency",
+            "Enforce least-privilege credentials, egress firewalls, and PII redaction"
+          ],
+          "upskilling_instructions": [
+            "Treat every external webpage, email, or document read by an agent as untrusted attacker-controlled input.",
+            "Block internal VPC and cloud metadata endpoints from agent sandboxes.",
+            "Require explicit user approval for state-changing or external-communication tools."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Agent Trajectory Evals & Observability",
+          "tasks": [
+            "Instrument OpenTelemetry GenAI spans across every reasoning step, tool call, and subagent",
+            "Build trajectory and task-completion evals using Inspect AI and Langfuse",
+            "Measure pass@k, step efficiency, tool-error recovery, and cost per completed task"
+          ],
+          "upskilling_instructions": [
+            "Evaluate both the final state (did the DB/file change correctly?) and the trajectory (did it take 3 clean steps or 25 chaotic ones?).",
+            "Run deterministic verifier scripts on agent environments instead of relying only on LLM judges.",
+            "Turn every failed production trace into a regression scenario."
+          ],
+          "references": [
+            {
+              "title": "Inspect AI Agent & Safety Evals",
+              "url": "https://inspect.aisi.org.uk/"
+            },
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Production Deployment & Cost Controls",
+          "tasks": [
+            "Deploy agent backends with FastAPI, async worker queues, and streaming progress updates",
+            "Implement per-tenant token budgets, step caps, and circuit breakers",
+            "Run chaos tests simulating tool outages, rate limits, and slow reasoning models"
+          ],
+          "upskilling_instructions": [
+            "Design clear UI/API progress events so users see what the agent is doing during 30-second runs.",
+            "Set hard per-run cost and step ceilings to prevent runaway loops.",
+            "Align governance controls with NIST AI RMF."
+          ],
+          "references": [
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Capstone: Production Multi-Step Agent System",
+          "tasks": [
+            "Ship a durable, sandboxed agentic application with MCP tools, context compaction, HITL approvals, and automated trajectory evals",
+            "Publish architecture diagrams, eval scorecards (task success rate, cost/task, p95 duration), and security threat model",
+            "Prepare for Agentic AI Engineer interviews covering context engineering, MCP, and reliability"
+          ],
+          "upskilling_instructions": [
+            "Show real benchmark numbers across 50+ realistic tasks rather than cherry-picked happy-path videos.",
+            "Highlight how you prevented runaway loops, prompt injections, and silent state corruption.",
+            "Make your repo reproducible with `uv run` and Docker Compose."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Inspect AI Agent & Safety Evals",
+              "url": "https://inspect.aisi.org.uk/"
+            },
+            {
+              "title": "Temporal Durable Execution",
+              "url": "https://docs.temporal.io/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Software Engineer",
+      "target_ai_role": "Agentic AI Engineer",
+      "title": "Software Engineer to Agentic AI Engineer",
+      "summary": "An accelerated 2026 path for software engineers into production agentic systems: MCP servers/clients, durable execution (Temporal), context engineering, sandboxing, and trajectory evals.",
+      "base_difficulty": 70,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Modern Python AI Stack & Typed Agent Contracts",
+          "tasks": [
+            "Standardize on uv, ruff, Pydantic v2, and strict typing for agent state and tool schemas",
+            "Build resilient multi-provider LLM clients with structured outputs and retries",
+            "Compare reasoning models vs fast models on latency, cost, and tool-calling accuracy"
+          ],
+          "upskilling_instructions": [
+            "Treat agent state transitions like distributed systems state machines with strict typed schemas.",
+            "Measure token burn and latency from day one.",
+            "Write unit tests for all deterministic validation and routing code."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Workflow Patterns & Context Engineering",
+          "tasks": [
+            "Implement core agentic patterns: prompt chaining, parallel fan-out, evaluator-optimizer, and bounded loops",
+            "Design context compaction, tool-result truncation, and memory layers",
+            "Optimize prompt caching for large shared instructions and tool definitions"
+          ],
+          "upskilling_instructions": [
+            "Default to deterministic orchestration wherever control flow is known upfront; reserve autonomous loops for genuinely open-ended tasks.",
+            "Verify accuracy does not degrade over long 20+ turn horizons.",
+            "Keep system prompts and tool definitions cache-friendly."
+          ],
+          "references": [
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Model Context Protocol (MCP) Engineering",
+          "tasks": [
+            "Author production MCP servers (stdio and streamable HTTP) with typed tools, resources, and auth",
+            "Build an MCP client host managing tool discovery, schema validation, and error formatting",
+            "Design idempotent, least-privilege tool interfaces"
+          ],
+          "upskilling_instructions": [
+            "Return concise, structured error messages from tools so the model can self-correct invalid arguments.",
+            "Scope MCP server permissions tightly per user/tenant.",
+            "Test MCP servers with automated contract suites."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Durable Execution & Distributed Agent State",
+          "tasks": [
+            "Build crash-safe, long-running agents using Temporal workflows and activities",
+            "Support human-in-the-loop (HITL) approval signals, timeouts, and resumable state",
+            "Ensure external side effects use idempotency keys and saga/compensation logic"
+          ],
+          "upskilling_instructions": [
+            "Separate deterministic workflow orchestration from non-deterministic LLM/tool activities.",
+            "Test worker restarts mid-execution to prove zero lost progress or duplicate writes.",
+            "Stream live step updates to clients via SSE/WebSockets."
+          ],
+          "references": [
+            {
+              "title": "Temporal Durable Execution",
+              "url": "https://docs.temporal.io/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Agentic Retrieval & Hybrid Knowledge",
+          "tasks": [
+            "Build hybrid search (BM25 + Qdrant/pgvector + reranking) exposed as agent retrieval tools",
+            "Combine unstructured document search with structured DuckDB/Postgres queries",
+            "Enforce document-level ACLs inside retrieval tools and require verifiable citations"
+          ],
+          "upskilling_instructions": [
+            "Give agents targeted search tools (by metadata, date, section) rather than a single blurry semantic query.",
+            "Cap retrieval retries to avoid infinite search loops.",
+            "Verify citation spans programmatically."
+          ],
+          "references": [
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            },
+            {
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
+            },
+            {
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Multi-Agent Systems & Coordination",
+          "tasks": [
+            "Design supervisor-worker and parallel-subagent architectures with isolated context windows",
+            "Implement shared message boards/artifacts and clean handoff protocols",
+            "Benchmark single-agent vs multi-agent cost, latency, and task success"
+          ],
+          "upskilling_instructions": [
+            "Use subagents primarily to keep specialized contexts clean and run independent subtasks in parallel.",
+            "Enforce strict handoff budgets and loop detection.",
+            "Validate inter-agent payloads with Pydantic."
+          ],
+          "references": [
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "Temporal Durable Execution",
+              "url": "https://docs.temporal.io/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Coding, Browser & Computer-Use Agents",
+          "tasks": [
+            "Build sandboxed coding or browser-use agents backed by deterministic verifiers (tests, linters, DOM checks)",
+            "Implement diff previews, rollback checkpoints, and safe workspace branching",
+            "Handle flaky external pages and tool timeouts gracefully"
+          ],
+          "upskilling_instructions": [
+            "Closed-loop verification (run tests -> read failure -> fix -> re-run) is the biggest reliability multiplier for coding agents.",
+            "Always snapshot or branch workspaces before letting an agent edit files.",
+            "Never auto-submit irreversible web forms."
+          ],
+          "references": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            },
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Sandboxing, Security & Prompt-Injection Defense",
+          "tasks": [
+            "Run untrusted agent code and tools in ephemeral, egress-restricted containers/microVMs",
+            "Red-team agents against indirect prompt injection, MCP tool poisoning, and data exfiltration",
+            "Implement PII redaction and human approval gates for sensitive actions"
+          ],
+          "upskilling_instructions": [
+            "Apply zero-trust principles: assume retrieved web/doc content may contain adversarial instructions.",
+            "Block access to cloud metadata services and internal networks from agent sandboxes.",
+            "Audit against OWASP LLM & Agentic Top 10."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Trajectory Evaluations & Verification",
+          "tasks": [
+            "Build end-to-end agent eval harnesses with Inspect AI and Promptfoo",
+            "Grade both final environment state and intermediate tool trajectories",
+            "Track pass@k, step efficiency, and regression rates in GitHub Actions"
+          ],
+          "upskilling_instructions": [
+            "Use deterministic environment assertions (did the right file/row/PR get created?) wherever possible.",
+            "Pin eval environments in Docker so runs are reproducible.",
+            "Turn every production trace failure into a permanent eval task."
+          ],
+          "references": [
+            {
+              "title": "Inspect AI Agent & Safety Evals",
+              "url": "https://inspect.aisi.org.uk/"
+            },
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "OpenTelemetry Observability & FinOps",
+          "tasks": [
+            "Instrument full distributed traces across agent steps, MCP servers, and LLM calls using OpenTelemetry GenAI",
+            "Build Langfuse/Grafana dashboards tracking cost per task, loop counts, and tool failure rates",
+            "Enforce per-run token/step ceilings and circuit breakers"
+          ],
+          "upskilling_instructions": [
+            "Trace IDs must flow seamlessly from client -> orchestrator -> subagents -> MCP servers.",
+            "Alert on abnormal step-count spikes that signal infinite loops.",
+            "Optimize expensive loops with prompt caching and model routing."
+          ],
+          "references": [
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            },
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Grafana Documentation",
+              "url": "https://grafana.com/docs/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Production Hardening & Governance",
+          "tasks": [
+            "Load-test concurrent agent executions, queue backpressure, and provider failover",
+            "Implement audit logs, compliance artifacts (NIST AI RMF), and kill switches",
+            "Run game-day drills for model outages and compromised tool responses"
+          ],
+          "upskilling_instructions": [
+            "Ensure operators can pause or terminate runaway background agents immediately.",
+            "Maintain immutable audit logs of all tool mutations.",
+            "Test graceful degradation when reasoning models are throttled."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Temporal Durable Execution",
+              "url": "https://docs.temporal.io/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Capstone: Enterprise Agentic Platform",
+          "tasks": [
+            "Ship a production-grade agentic system with Temporal durability, MCP servers, sandboxed execution, OpenTelemetry tracing, and Inspect AI evals",
+            "Publish benchmarks (task completion rate, cost/task, p95 duration) and security architecture",
+            "Prepare for Senior/Staff Agentic AI Engineer interviews"
+          ],
+          "upskilling_instructions": [
+            "Your software engineering rigor (durability, idempotency, sandboxing, observability) is what separates production agents from brittle demos.",
+            "Present concrete ablation results showing how verifiers and context engineering improved pass rates.",
+            "Keep the repo clean and runnable via Docker Compose."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Temporal Durable Execution",
+              "url": "https://docs.temporal.io/"
+            },
+            {
+              "title": "Inspect AI Agent & Safety Evals",
+              "url": "https://inspect.aisi.org.uk/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Any Role",
+      "target_ai_role": "AI Systems & Inference Engineer",
+      "title": "Any Role to AI Systems & Inference Engineer",
+      "summary": "A deep 2026 systems roadmap focused on high-throughput LLM serving: GPU architecture, PyTorch 2.x, Triton kernels, vLLM/SGLang, KV-cache & speculative decoding, quantization, and Kubernetes inference scaling.",
+      "base_difficulty": 86,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Systems Python, Linux & Performance Profiling",
+          "tasks": [
+            "Master uv, profiling tools (py-spy, cProfile), and async concurrency in Python",
+            "Understand CPU/GPU memory hierarchy, PCIe/NVLink bandwidth, and roofline modeling",
+            "Build a benchmark harness measuring TTFT, inter-token latency (ITL), and throughput"
+          ],
+          "upskilling_instructions": [
+            "Always distinguish compute-bound (prefill) from memory-bandwidth-bound (decode) phases in LLM inference.",
+            "Measure p50, p95, and p99 latencies under concurrent load, never single-request averages.",
+            "Automate reproducible benchmarks."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "PyTorch Documentation",
+              "url": "https://pytorch.org/docs/stable/index.html"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "PyTorch 2.x Internals & torch.compile",
+          "tasks": [
+            "Understand PyTorch tensors, strides, CUDA streams, and memory allocators",
+            "Accelerate models with torch.compile, CUDA Graphs, and BF16/FP16 mixed precision",
+            "Profile GPU kernels and CPU dispatch overhead using PyTorch Profiler"
+          ],
+          "upskilling_instructions": [
+            "Eliminate CPU-GPU synchronization points (`.item()`, unnecessary host copies) that stall GPU execution.",
+            "Use CUDA Graphs to slash kernel-launch overhead during autoregressive decode.",
+            "Verify numerical equivalence after compiler optimizations."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Documentation",
+              "url": "https://pytorch.org/docs/stable/index.html"
+            },
+            {
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Transformer Memory & KV-Cache Mechanics",
+          "tasks": [
+            "Calculate exact parameter, activation, and KV-cache VRAM budgets for GQA/MQA models",
+            "Study FlashAttention tiling and PagedAttention virtual memory management",
+            "Implement a minimal KV-cache autoregressive decoder in PyTorch"
+          ],
+          "upskilling_instructions": [
+            "Build a spreadsheet or script that predicts exact max batch size for any model, context length, and GPU VRAM.",
+            "Understand why GQA and FP8 KV-cache dramatically increase concurrent batch capacity.",
+            "Inspect memory fragmentation issues."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Documentation",
+              "url": "https://pytorch.org/docs/stable/index.html"
+            },
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Production Serving with vLLM & SGLang",
+          "tasks": [
+            "Deploy and tune open-weight LLMs with vLLM and SGLang",
+            "Configure continuous batching, chunked prefill, and prefix caching (RadixAttention)",
+            "Benchmark throughput/latency tradeoffs across varying prompt/output length distributions"
+          ],
+          "upskilling_instructions": [
+            "Enable prefix caching for workloads with shared system prompts or multi-turn agent histories.",
+            "Tune chunked prefill so long prompts do not stall active decode batches.",
+            "Compare vLLM and SGLang on structured-output and multi-turn benchmarks."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "SGLang Fast Serving Framework",
+              "url": "https://docs.sglang.ai/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Quantization: FP8, FP4, AWQ & GGUF",
+          "tasks": [
+            "Apply post-training quantization (FP8, AWQ, GPTQ, GGUF) and measure VRAM/speedups",
+            "Evaluate quantized models on perplexity and downstream reasoning/coding evals",
+            "Understand activation outliers and mixed-precision dequantization kernels"
+          ],
+          "upskilling_instructions": [
+            "Never deploy a quantized model on speed benchmarks alone—always check quality degradation on reasoning and structured-output tasks.",
+            "Benchmark FP8 on Hopper/Blackwell GPUs vs INT4 weight-only quantization.",
+            "Document quality-vs-throughput Pareto curves."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "SGLang Fast Serving Framework",
+              "url": "https://docs.sglang.ai/"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Speculative Decoding & Latency Optimization",
+          "tasks": [
+            "Implement and benchmark speculative decoding (draft models, Medusa/Eagle-style heads)",
+            "Measure acceptance rates across domains (code, chat, structured JSON)",
+            "Combine structured-output constrained decoding (xgrammar/outlines) with high throughput"
+          ],
+          "upskilling_instructions": [
+            "Speculative decoding shines on predictable text like code and JSON—measure actual tokens/sec speedup, not theoretical acceptance.",
+            "Verify constrained decoding masks do not stall the GPU scheduler.",
+            "Test under both low and high concurrency."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "SGLang Fast Serving Framework",
+              "url": "https://docs.sglang.ai/"
+            },
+            {
+              "title": "PyTorch Documentation",
+              "url": "https://pytorch.org/docs/stable/index.html"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "GPU Kernel Programming with Triton",
+          "tasks": [
+            "Learn GPU warps, shared memory, coalesced memory access, and SRAM tiling",
+            "Write custom fused elementwise, softmax, and RMSNorm kernels in OpenAI Triton",
+            "Benchmark your Triton kernels against PyTorch eager and torch.compile baselines"
+          ],
+          "upskilling_instructions": [
+            "Focus on memory-bandwidth-bound ops where fusing reads/writes into a single kernel yields huge speedups.",
+            "Verify kernel correctness across edge-case tensor shapes and dtypes.",
+            "Profile achieved memory bandwidth vs hardware theoretical peak."
+          ],
+          "references": [
+            {
+              "title": "OpenAI Triton GPU Kernels",
+              "url": "https://triton-lang.org/main/index.html"
+            },
+            {
+              "title": "PyTorch Documentation",
+              "url": "https://pytorch.org/docs/stable/index.html"
+            },
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Multi-GPU & Disaggregated Inference",
+          "tasks": [
+            "Configure Tensor Parallelism (TP) and Pipeline Parallelism (PP) for large models",
+            "Study disaggregated prefill/decode architectures and KV-cache transfer over RDMA/NVLink",
+            "Benchmark inter-node communication overhead vs single-node TP"
+          ],
+          "upskilling_instructions": [
+            "Separate prefill-heavy nodes from decode-heavy nodes when long-context workloads cause TTFT/ITL interference.",
+            "Measure NVLink vs PCIe scaling efficiency.",
+            "Tune NCCL environment settings for multi-GPU stability."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "SGLang Fast Serving Framework",
+              "url": "https://docs.sglang.ai/"
+            },
+            {
+              "title": "PyTorch Documentation",
+              "url": "https://pytorch.org/docs/stable/index.html"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Kubernetes Inference & AI Gateways",
+          "tasks": [
+            "Deploy inference engines on Kubernetes with GPU scheduling, readiness probes, and autoscaling",
+            "Implement KV-cache-aware routing and prefix-affinity load balancing at the AI gateway",
+            "Handle graceful pod draining without dropping active streaming connections"
+          ],
+          "upskilling_instructions": [
+            "Standard round-robin load balancing destroys prefix-cache hit rates—route requests with shared prefixes to warm replicas.",
+            "Autoscale on queue depth and KV-cache utilization, not CPU.",
+            "Test rolling upgrades under live streaming traffic."
+          ],
+          "references": [
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Observability, Profiling & SLO Engineering",
+          "tasks": [
+            "Expose vLLM/SGLang metrics to Prometheus and build Grafana SLO dashboards",
+            "Instrument OpenTelemetry traces across gateway routing and inference workers",
+            "Diagnose tail-latency spikes (GC pauses, prefill interference, thermal throttling, OOMs)"
+          ],
+          "upskilling_instructions": [
+            "Track TTFT, TPOT (time-per-output-token), KV-cache usage %, and preemption counts continuously.",
+            "Set actionable SLO alerts tied to user-visible latency.",
+            "Profile production-like traffic replays."
+          ],
+          "references": [
+            {
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
+            },
+            {
+              "title": "Grafana Documentation",
+              "url": "https://grafana.com/docs/"
+            },
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Inference Economics & Capacity Planning",
+          "tasks": [
+            "Model cost per 1M input/output tokens across GPU types (H100/H200/B200/L40S)",
+            "Design tiered routing (small quantized models + frontier fallback) and spot/reserved capacity mixes",
+            "Implement rate limiting, token quotas, and denial-of-wallet protections"
+          ],
+          "upskilling_instructions": [
+            "Compute break-even utilization for self-hosted GPUs vs serverless token APIs.",
+            "Account for idle off-peak hours and cold-start buffers in capacity math.",
+            "Verify security hardening on multi-tenant inference endpoints."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Capstone: High-Throughput Inference Stack",
+          "tasks": [
+            "Deliver a benchmarked inference platform with vLLM/SGLang, FP8/speculative optimization, prefix-aware routing on Kubernetes, and Grafana SLO dashboards",
+            "Publish Pareto curves (throughput vs p95 latency vs eval accuracy vs $/1M tokens)",
+            "Prepare for AI Systems & Inference Engineer interviews covering GPU memory, Triton, and distributed serving"
+          ],
+          "upskilling_instructions": [
+            "Bring hard, reproducible numbers: tokens/sec/GPU, KV-cache hit rate, and $/1M tokens.",
+            "Include load-testing scripts so reviewers can reproduce your benchmarks.",
+            "Practice explaining prefill vs decode bottlenecks clearly."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "OpenAI Triton GPU Kernels",
+              "url": "https://triton-lang.org/main/index.html"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "DevOps Engineer",
+      "target_ai_role": "AI Systems & Inference Engineer",
+      "title": "DevOps Engineer to AI Systems & Inference Engineer",
+      "summary": "A 2026 path leveraging Kubernetes, Linux, and SRE expertise into GPU inference infrastructure, vLLM/SGLang tuning, quantization, prefix-aware routing, and AI serving SLOs.",
+      "base_difficulty": 74,
+      "months": [
+        {
+          "month": 1,
+          "focus": "GPU Hardware & LLM Inference Basics",
+          "tasks": [
+            "Understand GPU VRAM, HBM bandwidth, NVLink, and the roofline model of LLM inference",
+            "Set up reproducible Python tooling with uv and build an async TTFT/ITL benchmark client",
+            "Size GPU memory budgets for weights, activations, and KV-cache"
+          ],
+          "upskilling_instructions": [
+            "Map your SRE intuition for CPU/memory saturation directly to GPU compute (prefill) vs HBM bandwidth (decode).",
+            "Always benchmark p95/p99 tail latency under realistic concurrency.",
+            "Build a VRAM sizing calculator script."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "CUDA Containers & Model Weight Delivery",
+          "tasks": [
+            "Build lean multi-stage CUDA Docker images with NVIDIA Container Toolkit",
+            "Optimize multi-gigabyte model weight caching (NVMe, OCI/artifact caches, fast object storage)",
+            "Eliminate cold-start bottlenecks in autoscaled GPU pods"
+          ],
+          "upskilling_instructions": [
+            "Keep container images small and stream/mount weights from fast local NVMe or parallel object-store pulls.",
+            "Configure startup probes tuned for weight-loading time.",
+            "Scan base images for CVEs in CI."
+          ],
+          "references": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            },
+            {
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "PyTorch 2.x & Profiling Fundamentals",
+          "tasks": [
+            "Understand PyTorch execution, CUDA streams, BF16 mixed precision, and torch.compile",
+            "Profile inference bottlenecks using PyTorch Profiler and NVIDIA Nsight/DCGM metrics",
+            "Identify CPU-bound tokenization or preprocessing bottlenecks starving GPUs"
+          ],
+          "upskilling_instructions": [
+            "Often GPUs sit idle because Python tokenization, image decoding, or HTTP serialization is single-threaded.",
+            "Separate CPU preprocessing workers from GPU inference pods when needed.",
+            "Verify GPU utilization with DCGM."
+          ],
+          "references": [
+            {
+              "title": "PyTorch Documentation",
+              "url": "https://pytorch.org/docs/stable/index.html"
+            },
+            {
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
+            },
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Production Serving with vLLM & SGLang",
+          "tasks": [
+            "Deploy and tune vLLM and SGLang with continuous batching and PagedAttention",
+            "Configure chunked prefill and prefix caching (RadixAttention) for multi-turn agent workloads",
+            "Load-test mixed short/long context workloads to find saturation points"
+          ],
+          "upskilling_instructions": [
+            "Tune `max-num-seqs` and `gpu-memory-utilization` carefully to maximize throughput without KV-cache thrashing.",
+            "Verify prefix caching hit rates on realistic agent traces.",
+            "Test graceful shutdown so streaming responses finish cleanly."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "SGLang Fast Serving Framework",
+              "url": "https://docs.sglang.ai/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Quantization & Speculative Decoding",
+          "tasks": [
+            "Deploy FP8, AWQ, and GGUF quantized models and measure VRAM savings and throughput gains",
+            "Run automated accuracy evals (Promptfoo/Inspect) to ensure quantization stays within quality SLOs",
+            "Test speculative decoding on code and structured-output traffic"
+          ],
+          "upskilling_instructions": [
+            "Treat model quantization like any other performance optimization: prove correctness with automated evals before shipping.",
+            "Compare throughput per dollar across GPU SKUs.",
+            "Document quality-latency Pareto curves."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Hugging Face Transformers",
+              "url": "https://huggingface.co/docs/transformers/index"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Multi-GPU & Disaggregated Serving",
+          "tasks": [
+            "Configure Tensor Parallelism across multi-GPU nodes and tune NCCL networking",
+            "Explore disaggregated prefill/decode pools to isolate TTFT from decode ITL",
+            "Test node failure recovery and RDMA/network health checks"
+          ],
+          "upskilling_instructions": [
+            "Only use Tensor Parallelism when a model cannot fit or meet latency SLOs on a single GPU—TP adds communication overhead.",
+            "Isolate long-context prefill bursts from latency-sensitive decode traffic.",
+            "Automate GPU health checks (XID errors, ECC)."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "SGLang Fast Serving Framework",
+              "url": "https://docs.sglang.ai/"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Kubernetes GPU Scheduling & Autoscaling",
+          "tasks": [
+            "Configure GPU node pools, NVIDIA GPU Operator, MIG/time-slicing, and topology-aware scheduling",
+            "Autoscale inference replicas using custom metrics (waiting requests, KV-cache usage)",
+            "Manage multi-region failover and warm standby pools"
+          ],
+          "upskilling_instructions": [
+            "CPU/RAM HPA metrics are useless for LLM pods—scale on vLLM/SGLang queue depth and KV-cache saturation.",
+            "Use MIG slicing for smaller embedding/guardrail models.",
+            "Practice node drain and preemption drills."
+          ],
+          "references": [
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
+            },
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Prefix-Aware AI Gateways & Routing",
+          "tasks": [
+            "Deploy an AI gateway performing auth, rate limiting, token quotas, and fallback routing",
+            "Implement prefix-affinity / session-aware load balancing to maximize KV-cache reuse",
+            "Configure circuit breakers and automatic failover to managed APIs during capacity spikes"
+          ],
+          "upskilling_instructions": [
+            "Routing consecutive turns of an agent session to the same warm replica can cut TTFT dramatically.",
+            "Enforce per-tenant token-per-minute limits at the gateway.",
+            "Test failover under simulated GPU cluster outages."
+          ],
+          "references": [
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Observability & Tail-Latency Debugging",
+          "tasks": [
+            "Build Prometheus + Grafana dashboards for DCGM GPU stats, TTFT, TPOT, and preemption rates",
+            "Instrument OpenTelemetry GenAI traces end-to-end from gateway to inference engine",
+            "Diagnose tail-latency anomalies (batching stalls, KV-cache evictions, noisy neighbors)"
+          ],
+          "upskilling_instructions": [
+            "Alert on KV-cache preemption spikes—they directly cause sudden latency cliffs.",
+            "Keep trace sampling smart so observability does not add overhead.",
+            "Scrub PII from logged payloads."
+          ],
+          "references": [
+            {
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
+            },
+            {
+              "title": "Grafana Documentation",
+              "url": "https://grafana.com/docs/"
+            },
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Triton & Custom Kernel Literacy",
+          "tasks": [
+            "Learn GPU kernel execution basics and read OpenAI Triton kernels",
+            "Understand how custom fused kernels (FlashAttention, quantized GEMMs) impact serving engines",
+            "Benchmark inference engine upgrades safely in canary environments"
+          ],
+          "upskilling_instructions": [
+            "Even if you do not write CUDA kernels daily, reading Triton/kernel profiles helps you diagnose hardware bottlenecks.",
+            "Validate new vLLM/CUDA releases in staging against regression suites.",
+            "Track upstream kernel optimizations for your GPU generation."
+          ],
+          "references": [
+            {
+              "title": "OpenAI Triton GPU Kernels",
+              "url": "https://triton-lang.org/main/index.html"
+            },
+            {
+              "title": "PyTorch Documentation",
+              "url": "https://pytorch.org/docs/stable/index.html"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Inference FinOps & Security Hardening",
+          "tasks": [
+            "Build $/1M-token unit economics models comparing self-hosted GPUs vs serverless APIs",
+            "Harden multi-tenant inference clusters (network policies, safetensors-only, weight integrity)",
+            "Implement denial-of-wallet protections and automated idle-GPU scale-down"
+          ],
+          "upskilling_instructions": [
+            "Idle H100s are expensive—automate scale-to-zero or spot fallback for non-critical environments.",
+            "Enforce safetensors-only weight loading to eliminate pickle RCE risks.",
+            "Audit endpoints against OWASP LLM Top 10."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Capstone: Production GPU Inference Platform",
+          "tasks": [
+            "Deliver a Kubernetes inference platform with vLLM/SGLang, prefix-aware gateway routing, custom autoscaling, and Grafana SLO dashboards",
+            "Publish reproducible load-test benchmarks, cold-start timings, and $/1M-token analysis",
+            "Target AI Inference Engineer, AI Infrastructure Engineer, or Staff MLOps roles"
+          ],
+          "upskilling_instructions": [
+            "Your SRE + Kubernetes depth combined with real vLLM/GPU tuning is one of the scarcest skillsets in 2026.",
+            "Present concrete before/after throughput and cost optimizations.",
+            "Include clean runbooks for GPU OOMs and cluster failovers."
+          ],
+          "references": [
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "Grafana Documentation",
+              "url": "https://grafana.com/docs/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Any Role",
+      "target_ai_role": "AI UX Designer",
+      "title": "Any Role to AI UX Designer",
+      "summary": "A 2026 roadmap into AI UX Design: designing non-deterministic interfaces, generative UI, agentic supervision & approval flows, multimodal/voice UX, live model prototyping, and human-centered evals.",
+      "base_difficulty": 62,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Human-Centered AI Foundations",
+          "tasks": [
+            "Study Google PAIR Guidebook and 2026 AI UX patterns (copilot, inline assist, generative UI, background agents)",
+            "Audit 5 leading AI products to catalog how they handle latency, uncertainty, and errors",
+            "Learn core AI concepts: tokens, context windows, reasoning models, RAG, and MCP"
+          ],
+          "upskilling_instructions": [
+            "Stop thinking of AI UX as a single chat box—most great AI products embed intelligence directly into existing canvases and workflows.",
+            "Map where deterministic controls are faster and clearer than natural language.",
+            "Build a pattern library of real-world AI interactions."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Designing for Non-Determinism & Uncertainty",
+          "tasks": [
+            "Design UI states for streaming, thinking/reasoning progress, partial results, and failures",
+            "Create graceful error-recovery, regeneration, and manual-override patterns",
+            "Define honest empty states and capability boundaries so users know what the AI can do"
+          ],
+          "upskilling_instructions": [
+            "Every AI interaction has failure modes—design the 'when AI is wrong' path with as much care as the happy path.",
+            "Keep thinking traces collapsible and scannable so users feel informed without being overwhelmed.",
+            "Avoid fake precision or misleading confidence scores."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Generative UI & Beyond-Chat Interfaces",
+          "tasks": [
+            "Design structured Generative UI components (interactive cards, diff views, inline tables, forms)",
+            "Craft seamless transitions between natural-language prompts and direct manipulation",
+            "Prototype canvas-based and ambient AI workflows"
+          ],
+          "upskilling_instructions": [
+            "Give users structured controls (toggles, sliders, inline edits) to refine AI output instead of forcing them to re-prompt from scratch.",
+            "Use diff views for edits so users immediately see what changed.",
+            "Keep layouts stable during streaming to avoid disorienting jumps."
+          ],
+          "references": [
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Trust, Provenance & Citation UX",
+          "tasks": [
+            "Design inline citations, hover evidence previews, and source-verification drawers for RAG",
+            "Create clear visual distinctions between verified source facts and model synthesis",
+            "Design honest 'not found in sources' and ambiguity-clarification states"
+          ],
+          "upskilling_instructions": [
+            "Trust comes from easy verification—users should be able to check a claim against its original source in one click.",
+            "Test whether users over-trust fluent AI prose during usability sessions.",
+            "Show data freshness and scope clearly."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Agentic UX, Control & Human-in-the-Loop",
+          "tasks": [
+            "Design supervision interfaces for multi-step background agents and MCP tool use",
+            "Create clear approval dialogs showing exact tool arguments, impact, and undo/rollback options",
+            "Design resumable progress timelines, pause/steer controls, and escalation notifications"
+          ],
+          "upskilling_instructions": [
+            "Match autonomy to risk: auto-run read-only searches, preview drafts, and require explicit approval for external writes or sends.",
+            "Let users steer or correct an agent mid-run rather than waiting for it to fail at step 12.",
+            "Design clear audit trails of what an agent changed."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Live AI Prototyping with Code & AI Studio",
+          "tasks": [
+            "Learn TypeScript/HTML/CSS basics and prototype live AI flows using Vercel AI SDK or AI Studio",
+            "Test your designs against real, unscripted model outputs and real latency",
+            "Iterate on prompt framing and UI copy together"
+          ],
+          "upskilling_instructions": [
+            "Static Figma mocks lie about AI UX because they use perfect lorem-ipsum text and zero latency—always prototype with live models.",
+            "Observe how real streaming speed and messy formatting affect layout.",
+            "Share interactive prototypes with engineers for faster alignment."
+          ],
+          "references": [
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "TypeScript Handbook",
+              "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+            },
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Multimodal, Voice & Spatial Interactions",
+          "tasks": [
+            "Design multimodal inputs (annotated screenshots, camera, file drops) and real-time voice UX",
+            "Handle voice turn-taking, barge-in interruptions, noise, and live editable transcripts",
+            "Provide instant text/visual fallbacks for every voice or camera interaction"
+          ],
+          "upskilling_instructions": [
+            "Voice UX fails if users cannot glance at a visual anchor or edit a misheard entity easily.",
+            "Show clear listening, thinking, and speaking states.",
+            "Test multimodal flows in realistic, imperfect environments."
+          ],
+          "references": [
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "MDN Web Accessibility (ARIA)",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "AI Usability Research & Evaluation",
+          "tasks": [
+            "Run task-based usability tests measuring verification time, edit distance, and user trust",
+            "Translate qualitative UX findings into golden eval test cases with PMs and engineers",
+            "Analyze real user prompt logs and abandonment points"
+          ],
+          "upskilling_instructions": [
+            "Watch where users hesitate, copy-paste into another tool, or abandon the AI completely.",
+            "Pair qualitative observation with quantitative edit-rate metrics.",
+            "Contribute edge-case prompts directly to the team's eval suite."
+          ],
+          "references": [
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Accessibility & Inclusive AI Design",
+          "tasks": [
+            "Audit streaming text, Generative UI, and tool-approval modals for WCAG & ARIA compliance",
+            "Ensure screen readers announce streamed updates cleanly without spamming focus",
+            "Test AI copy and UX across diverse languages, literacy levels, and assistive tech"
+          ],
+          "upskilling_instructions": [
+            "Use polite ARIA live regions and clear keyboard shortcuts for stop/regenerate/approve actions.",
+            "Avoid relying solely on color or subtle motion to indicate AI confidence or errors.",
+            "Test with actual keyboard-only and screen-reader workflows."
+          ],
+          "references": [
+            {
+              "title": "MDN Web Accessibility (ARIA)",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Responsible AI, Privacy & Consent UX",
+          "tasks": [
+            "Design transparent AI disclosures, data-usage controls, and enterprise privacy indicators",
+            "Create safe confirmation patterns that help users spot potential prompt injections or risky actions",
+            "Align UX patterns with EU AI Act transparency obligations and NIST AI RMF"
+          ],
+          "upskilling_instructions": [
+            "Explain data boundaries in plain human language—tell users what is shared, stored, or kept private.",
+            "Never use dark patterns to nudge users into sharing sensitive data.",
+            "Design clear reporting flows for harmful or inaccurate outputs."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Design Systems for AI Products",
+          "tasks": [
+            "Build reusable AI UI tokens and components (streaming containers, citation chips, diff cards, approval sheets)",
+            "Document usage guidelines for when to use inline assist vs side-panel vs background agent",
+            "Collaborate with frontend engineers on responsive, low-CLS component implementations"
+          ],
+          "upskilling_instructions": [
+            "Standardize AI patterns across the product so users do not have to relearn trust cues on every screen.",
+            "Include states for loading, partial stream, empty, refusal, and error in every component spec.",
+            "Partner closely with engineering on component ergonomics."
+          ],
+          "references": [
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "MDN Web Accessibility (ARIA)",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "AI UX Portfolio & Case Studies",
+          "tasks": [
+            "Publish 2 deep AI UX case studies featuring live prototypes, failure-mode handling, and usability metrics",
+            "Show before/after flows demonstrating reduced verification time and higher user trust",
+            "Prepare for AI UX / Product Designer interviews with live critique and prototyping exercises"
+          ],
+          "upskilling_instructions": [
+            "Highlight how you designed for non-determinism, agency, and error recovery—not just pretty dark-mode chat bubbles.",
+            "Include recordings of live model prototypes.",
+            "Be ready to critique any AI product's UX, trust cues, and workflow fit."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "UX Designer",
+      "target_ai_role": "AI UX Designer",
+      "title": "UX Designer to AI UX Designer",
+      "summary": "A focused 2026 specialization path for UX designers to master generative UI, agentic human-in-the-loop patterns, live model prototyping, multimodal/voice UX, and eval-driven design.",
+      "base_difficulty": 48,
+      "months": [
+        {
+          "month": 1,
+          "focus": "2026 AI Paradigms Through a UX Lens",
+          "tasks": [
+            "Master how reasoning models, RAG, context windows, and MCP agents shape user experience",
+            "Deconstruct 5 leading AI-native products beyond chat (canvas, inline, background agent)",
+            "Establish a personal AI UX pattern library"
+          ],
+          "upskilling_instructions": [
+            "Connect technical constraints (TTFT, context rot, tool errors) directly to interaction design choices.",
+            "Identify where deterministic UI beats prompting every time.",
+            "Test multiple frontier models daily to build taste for model behavior."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Designing for Latency & Probabilistic Outputs",
+          "tasks": [
+            "Craft streaming, thinking-indicator, cancellation, and graceful-failure patterns",
+            "Design progressive disclosure for model reasoning and confidence cues",
+            "Create honest empty states and prompt-starter scaffolding"
+          ],
+          "upskilling_instructions": [
+            "Design the unhappy paths first: timeouts, hallucinations, refusals, and partial streams.",
+            "Never hide latency behind dead spinners—use meaningful progress and partial rendering.",
+            "Avoid misleading numerical confidence percentages without calibration."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Generative UI & Direct Manipulation",
+          "tasks": [
+            "Design structured Generative UI components (tables, diffs, forms, action cards)",
+            "Combine natural-language intent with direct-manipulation controls for fast refinement",
+            "Prototype inline editing and one-click undo/retry flows"
+          ],
+          "upskilling_instructions": [
+            "Users should be able to tweak a slider or edit a single cell without rewriting a whole prompt.",
+            "Use clear diff highlights whenever AI modifies user work.",
+            "Keep layout shifts near zero while components stream in."
+          ],
+          "references": [
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Zod Schema Validation",
+              "url": "https://zod.dev/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Trust, Citations & Groundedness UX",
+          "tasks": [
+            "Design inline citations, source drawers, and highlighted evidence spans",
+            "Distinguish retrieved facts from synthesized recommendations visually",
+            "Design clear 'insufficient evidence' and clarification states"
+          ],
+          "upskilling_instructions": [
+            "Make verifying an AI claim effortless—one click from sentence to exact highlighted source passage.",
+            "Watch for automation bias in user testing where users blindly accept polished prose.",
+            "Surface source recency and access scope."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "Agentic Supervision & Approval Patterns",
+          "tasks": [
+            "Design multi-step agent timelines, pause/steer controls, and MCP tool-approval modals",
+            "Map risk tiers to autonomy levels (auto-execute read vs confirm write vs escalate)",
+            "Design clear audit logs and rollback mechanisms for agent actions"
+          ],
+          "upskilling_instructions": [
+            "Preview the exact external payload (email, PR, SQL, calendar invite) before an agent executes a mutation.",
+            "Let users redirect an agent mid-flight instead of canceling from scratch.",
+            "Design calm, non-spammy notifications for background agents."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "Live Model Prototyping",
+          "tasks": [
+            "Build interactive prototypes with live models using AI Studio, v0/coding agents, or Vercel AI SDK",
+            "Test your Figma concepts against real, messy model outputs and real API latency",
+            "Co-iterate on prompt instructions and UI copy with engineers"
+          ],
+          "upskilling_instructions": [
+            "Live prototyping exposes weird phrasing, slow reasoning pauses, and edge-case formatting immediately.",
+            "Share working code prototypes to cut handoff ambiguity.",
+            "Test with messy real user inputs, not clean demo data."
+          ],
+          "references": [
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "TypeScript Handbook",
+              "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Multimodal & Voice Interaction Design",
+          "tasks": [
+            "Design seamless image, screenshot, document, and voice input flows",
+            "Craft real-time voice turn-taking, interruption handling, and editable live transcripts",
+            "Ensure text/visual parity for noisy or low-privacy environments"
+          ],
+          "upskilling_instructions": [
+            "Pair voice interactions with persistent visual state so users never lose context.",
+            "Make correcting a transcription error effortless.",
+            "Design clear privacy indicators for mic and camera."
+          ],
+          "references": [
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            },
+            {
+              "title": "MDN Web Accessibility (ARIA)",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "AI Usability Testing & Eval Collaboration",
+          "tasks": [
+            "Run usability studies measuring verification overhead, edit distance, and task trust",
+            "Convert observed UX failures into golden test cases in Promptfoo or Langfuse",
+            "Partner with PMs and engineers in weekly trace-review rituals"
+          ],
+          "upskilling_instructions": [
+            "Your qualitative research skills are vital for catching subtle UX failures that automated evals miss.",
+            "Define what 'good' looks like in concrete rubrics.",
+            "Track how UI changes affect prompt success rates."
+          ],
+          "references": [
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Accessibility in AI Interfaces",
+          "tasks": [
+            "Design WCAG-compliant streaming regions, keyboard-first approvals, and accessible citations",
+            "Ensure voice and multimodal flows have full keyboard and screen-reader alternatives",
+            "Test AI interfaces with assistive technologies"
+          ],
+          "upskilling_instructions": [
+            "Configure ARIA live regions carefully so screen readers announce completed chunks cleanly without chaos.",
+            "Never rely on color alone for diff highlights or status.",
+            "Keep focus management predictable when Generative UI updates."
+          ],
+          "references": [
+            {
+              "title": "MDN Web Accessibility (ARIA)",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Privacy, Transparency & Safe AI UX",
+          "tasks": [
+            "Design clear AI disclosures, memory/data controls, and opt-out settings",
+            "Craft friction-right warnings for risky agent actions or untrusted external content",
+            "Align interface transparency with EU AI Act and NIST AI RMF expectations"
+          ],
+          "upskilling_instructions": [
+            "Use plain, respectful language to explain what context the AI can see and what is stored.",
+            "Make deleting memory or chat history obvious and immediate.",
+            "Design clear feedback/reporting controls."
+          ],
+          "references": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "AI Design Systems & Cross-Functional Leadership",
+          "tasks": [
+            "Create a scalable AI component library (streaming, citations, diffs, agent cards, approvals)",
+            "Write clear product-wide guidelines on when to use copilot vs autonomous agent patterns",
+            "Lead AI design critiques and mentor peers on human-centered AI"
+          ],
+          "upskilling_instructions": [
+            "Include every edge state (loading, streaming, error, refusal, offline) in your Figma and code specs.",
+            "Align design, engineering, and PM on shared quality bars.",
+            "Keep components flexible as models evolve."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "MDN Web Accessibility (ARIA)",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "AI UX Specialization Portfolio",
+          "tasks": [
+            "Publish 2 standout AI UX case studies with live interactive prototypes, eval collaboration, and trust metrics",
+            "Present clear before/after outcomes (task time, edit rate, user confidence)",
+            "Interview confidently for Senior/Staff AI UX Designer or Design Technologist roles"
+          ],
+          "upskilling_instructions": [
+            "Lead with how you solved hard non-deterministic UX problems: control, verification, and error recovery.",
+            "Show live prototypes alongside research artifacts.",
+            "Articulate how UX and model evals reinforce each other."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Vercel AI SDK",
+              "url": "https://sdk.vercel.ai/docs"
+            },
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "current_role": "Any Role",
+      "target_ai_role": "Forward Deployed AI Engineer",
+      "title": "Any Role to Forward Deployed AI Engineer",
+      "summary": "A 2026 roadmap for Forward Deployed AI Engineers: rapid customer discovery, messy enterprise data integration, MCP connectors, custom SME-calibrated evals, security/compliance, and production delivery.",
+      "base_difficulty": 78,
+      "months": [
+        {
+          "month": 1,
+          "focus": "Modern Python & Rapid Prototyping Stack",
+          "tasks": [
+            "Set up fast, reproducible Python workspaces with uv, ruff, FastAPI, and Pydantic v2",
+            "Build clean CLI and API wrappers around frontier and open-weight LLM providers",
+            "Use Git branching and pytest to move fast without breaking customer environments"
+          ],
+          "upskilling_instructions": [
+            "Forward Deployed Engineers ship fast under ambiguity—reproducible uv environments and strict Pydantic schemas keep rapid iterations reliable.",
+            "Write smoke tests for every customer-specific transform.",
+            "Keep configuration cleanly separated per deployment."
+          ],
+          "references": [
+            {
+              "title": "uv: Python Package & Project Manager",
+              "url": "https://docs.astral.sh/uv/"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 2,
+          "focus": "Enterprise Discovery & Problem Scoping",
+          "tasks": [
+            "Shadow domain experts (ops, finance, legal, support) to map real manual workflows",
+            "Translate vague executive AI goals into narrow, measurable, high-ROI pilot scopes",
+            "Identify data availability, access-control, and verification bottlenecks upfront"
+          ],
+          "upskilling_instructions": [
+            "Never build in isolation for 6 weeks—sit with the actual operators on day one and watch their screen.",
+            "Pick an initial use case with clear ground truth and high weekly frequency.",
+            "Define concrete success metrics with the customer sponsor before coding."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 3,
+          "focus": "Messy Enterprise Data & Multimodal ETL",
+          "tasks": [
+            "Ingest and normalize ugly real-world PDFs, spreadsheets, emails, and legacy APIs using Polars, DuckDB, and VLMs",
+            "Preserve document hierarchy, timestamps, and source links during parsing",
+            "Build incremental syncs and data-quality alerts"
+          ],
+          "upskilling_instructions": [
+            "Enterprise data is always messier than expected—inspect 50 real documents before designing your chunking or extraction schema.",
+            "Use DuckDB to slice and audit ingested records in seconds.",
+            "Handle encoding quirks, scanned PDFs, and nested tables cleanly."
+          ],
+          "references": [
+            {
+              "title": "Polars User Guide",
+              "url": "https://docs.pola.rs/"
+            },
+            {
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
+            },
+            {
+              "title": "Google Gemini API & Agent Docs",
+              "url": "https://ai.google.dev/gemini-api/docs"
+            }
+          ]
+        },
+        {
+          "month": 4,
+          "focus": "Hybrid RAG & Permission-Aware Retrieval",
+          "tasks": [
+            "Deploy hybrid search (BM25 + Qdrant/pgvector + reranking) tailored to domain terminology",
+            "Enforce customer ACLs, tenant isolation, and row-level security inside retrieval queries",
+            "Deliver verifiable inline citations pointing back to exact enterprise source records"
+          ],
+          "upskilling_instructions": [
+            "Enterprise pilots fail immediately if an employee sees a document they lack permission to view—enforce ACLs in the retrieval layer.",
+            "Tune hybrid weights for exact SKUs, policy IDs, and internal acronyms.",
+            "Show clickable provenance in every answer."
+          ],
+          "references": [
+            {
+              "title": "Qdrant Vector Search Docs",
+              "url": "https://qdrant.tech/documentation/"
+            },
+            {
+              "title": "pgvector: Vector Similarity Search",
+              "url": "https://github.com/pgvector/pgvector"
+            },
+            {
+              "title": "OpenAI Agents & Responses Docs",
+              "url": "https://platform.openai.com/docs/overview"
+            }
+          ]
+        },
+        {
+          "month": 5,
+          "focus": "MCP Connectors & Legacy System Integration",
+          "tasks": [
+            "Build custom MCP servers wrapping customer ERPs, CRMs, ticketing tools, and SQL warehouses",
+            "Implement read-only sandboxes, rate limits, and idempotent write tools with human approval",
+            "Handle flaky legacy APIs with retries, circuit breakers, and clear error messages"
+          ],
+          "upskilling_instructions": [
+            "MCP lets you connect AI workflows cleanly to heterogeneous customer stacks without rewriting core agents.",
+            "Start with read-only tools and draft-creation before enabling automated writes.",
+            "Log every external API call with correlation IDs."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            },
+            {
+              "title": "Pydantic v2 Documentation",
+              "url": "https://docs.pydantic.dev/latest/"
+            }
+          ]
+        },
+        {
+          "month": 6,
+          "focus": "SME-Calibrated Evals & Golden Datasets",
+          "tasks": [
+            "Co-create 50-100 golden test cases directly with customer domain experts",
+            "Build automated eval suites in Langfuse and Promptfoo calibrated to SME grading",
+            "Run side-by-side accuracy, latency, and cost scorecards for weekly customer readouts"
+          ],
+          "upskilling_instructions": [
+            "Evals are your best stakeholder alignment tool: turn subjective feedback ('it feels off') into concrete test cases.",
+            "Calibrate automated LLM judges against SME scores until they agree.",
+            "Gate every deployment on zero regressions."
+          ],
+          "references": [
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "Promptfoo Evaluation & Red Teaming",
+              "url": "https://www.promptfoo.dev/docs/intro/"
+            },
+            {
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/"
+            }
+          ]
+        },
+        {
+          "month": 7,
+          "focus": "Agentic Workflows & Durable Execution",
+          "tasks": [
+            "Build reliable multi-step workflows combining deterministic code with bounded LLM/agent steps",
+            "Use durable execution (Temporal or state queues) for long-running enterprise batch/approval flows",
+            "Add human-in-the-loop review queues for low-confidence or high-impact outputs"
+          ],
+          "upskilling_instructions": [
+            "Enterprise customers prize predictability over flashiness—use deterministic state machines wherever possible.",
+            "Design clean escalation paths to human operators when confidence is low.",
+            "Test crash recovery mid-workflow."
+          ],
+          "references": [
+            {
+              "title": "Temporal Durable Execution",
+              "url": "https://docs.temporal.io/"
+            },
+            {
+              "title": "Anthropic: Building Effective Agents",
+              "url": "https://www.anthropic.com/research/building-effective-agents"
+            },
+            {
+              "title": "FastAPI Documentation",
+              "url": "https://fastapi.tiangolo.com/"
+            }
+          ]
+        },
+        {
+          "month": 8,
+          "focus": "Enterprise Security, Privacy & Deployment",
+          "tasks": [
+            "Deploy inside customer VPCs or isolated cloud environments using Docker and Kubernetes",
+            "Implement PII scrubbing (Presidio), zero-data-retention API configs, and prompt-injection defenses",
+            "Complete security architecture reviews aligned with OWASP LLM Top 10 and NIST AI RMF"
+          ],
+          "upskilling_instructions": [
+            "Know how to answer InfoSec questionnaires crisply: data residency, encryption, RBAC, and audit logging.",
+            "Sandbox any code execution or untrusted document processing.",
+            "Never log raw customer secrets in external observability tools."
+          ],
+          "references": [
+            {
+              "title": "OWASP Top 10 for LLM & GenAI Apps",
+              "url": "https://genai.owasp.org/llm-top-10/"
+            },
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+            },
+            {
+              "title": "Microsoft Presidio PII Anonymization",
+              "url": "https://microsoft.github.io/presidio/"
+            }
+          ]
+        },
+        {
+          "month": 9,
+          "focus": "Observability, Latency & Unit Economics",
+          "tasks": [
+            "Instrument OpenTelemetry GenAI traces and build customer-facing ROI & usage dashboards",
+            "Optimize cost and speed via prompt caching, smart model routing, and batch APIs",
+            "Monitor production drift, tool errors, and user edit rates"
+          ],
+          "upskilling_instructions": [
+            "Prove ROI with hard numbers: hours saved, tickets resolved, and cost per task vs manual baseline.",
+            "Catch silent upstream data changes before they degrade quality.",
+            "Set hard budget alerts."
+          ],
+          "references": [
+            {
+              "title": "OpenTelemetry GenAI Semantic Conventions",
+              "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+            },
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "DuckDB Documentation",
+              "url": "https://duckdb.org/docs/"
+            }
+          ]
+        },
+        {
+          "month": 10,
+          "focus": "Open-Weight & Air-Gapped Inference",
+          "tasks": [
+            "Deploy open-weight models via vLLM in strict privacy or air-gapped customer environments",
+            "Benchmark quantized self-hosted models against frontier APIs on the customer's golden eval set",
+            "Configure health checks, autoscaling, and fallback routing"
+          ],
+          "upskilling_instructions": [
+            "Many regulated enterprises require self-hosted or VPC-local models—knowing vLLM and quantization unlocks those deals.",
+            "Verify structured-output and tool-calling reliability on open models before committing.",
+            "Document exact GPU sizing."
+          ],
+          "references": [
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
+            },
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/"
+            },
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/"
+            }
+          ]
+        },
+        {
+          "month": 11,
+          "focus": "Production Rollout, Enablement & Handoff",
+          "tasks": [
+            "Lead phased rollouts (shadow -> pilot -> team-wide GA) with clear adoption tracking",
+            "Write operator runbooks, admin guides, and internal champion training materials",
+            "Package reusable patterns back into core platform templates"
+          ],
+          "upskilling_instructions": [
+            "A technically great system still fails if frontline staff do not trust or adopt it—invest in onboarding and clear UX.",
+            "Gather real user feedback in the first 2 weeks post-launch to fix friction fast.",
+            "Document clean handoff procedures for customer IT/SRE."
+          ],
+          "references": [
+            {
+              "title": "Google PAIR: People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions"
+            },
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            }
+          ]
+        },
+        {
+          "month": 12,
+          "focus": "Capstone: End-to-End Enterprise Deployment",
+          "tasks": [
+            "Build a complete simulated enterprise deployment: messy multimodal ingestion, ACL-enforced hybrid RAG, MCP connector, SME-calibrated evals, and VPC-ready Docker/K8s packaging",
+            "Write an executive ROI & architecture case study showing business impact, security posture, and eval results",
+            "Prepare for Forward Deployed AI Engineer interviews (live coding, ambiguous customer scoping, and rapid architecture)"
+          ],
+          "upskilling_instructions": [
+            "FDEs are judged on end-to-end ownership: customer empathy + full-stack AI engineering + production reliability.",
+            "Practice scoping an ambiguous enterprise problem in a 30-minute mock discovery session.",
+            "Showcase working, tested, containerized code."
+          ],
+          "references": [
+            {
+              "title": "Model Context Protocol (MCP)",
+              "url": "https://modelcontextprotocol.io/introduction"
+            },
+            {
+              "title": "Langfuse Agent Tracing & Evals",
+              "url": "https://langfuse.com/docs"
+            },
+            {
+              "title": "vLLM High-Throughput Serving",
+              "url": "https://docs.vllm.ai/"
             }
           ]
         }

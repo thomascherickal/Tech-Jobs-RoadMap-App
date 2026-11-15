@@ -40,19 +40,3 @@ No terminal installation or setups required:
 
 ---
 
-## ☁️ Deploy to GitHub Pages for Free
-
-This zero-cost static page is 100% ready to serve worldwide:
-
-1.  Create a new repository on GitHub.
-2.  Commit and push all files in this project folder.
-3.  Navigate to your repository's **Settings** tab.
-4.  Go to the **Pages** section in the left sidebar.
-5.  Under **Build and deployment**, set **Source** to `Deploy from a branch`.
-6.  Select your branch (usually `master` or `main`) and the root folder `/`.
-7.  Click **Save**.
-
-Your generator will go live within seconds at:
-```text
-https://YOUR-USERNAME.github.io/YOUR-REPOSITORY-NAME/
-```
